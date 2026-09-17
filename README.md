@@ -135,7 +135,7 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 
 Archived on Zenodo — cite the **version-specific DOI**:
 
-> Pan Q, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
+> Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
 > long-term mortality model in critically ill patients with acute brain injury* (v1.0.1).
 > Zenodo, 2026. **doi: [10.5281/zenodo.22820024](https://doi.org/10.5281/zenodo.22820024)**
 
