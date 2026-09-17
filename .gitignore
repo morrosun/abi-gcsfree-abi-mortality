@@ -1,0 +1,11 @@
+data/*.csv
+!data/huaian_local_cohort_deidentified.csv
+output/
+figs/
+*.joblib
+*.pkl
+.workbuddy/
+__pycache__/
+*.log
+.DS_Store
+.Rhistory
