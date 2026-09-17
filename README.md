@@ -1,7 +1,6 @@
 # Analysis code and de-identified local cohort for a GCS-free long-term mortality model in critically ill patients with acute brain injury
 
-Companion repository for the manuscript submitted to **Frontiers in Neurology**
-(Research Topic 82450, *Long-Term Outcomes of Critically Ill Patients with Acute Brain Injury*):
+Companion repository for the manuscript:
 
 > **A transportable, Glasgow Coma Scale–free model for predicting long-term mortality in critically ill
 > patients with acute brain injury: development and multi-scenario external validation across four
@@ -119,12 +118,6 @@ produce plausible-looking but wrong numbers:
    the **logistic regression expects standardised features**, the **XGBoost expects raw features**.
    Feeding the wrong one is not harmless — in our cohort it moved XGBoost AUC from 0.800 to 0.876 and
    logistic AUC from 0.865 to 0.577, with a between-prediction correlation of only 0.54.
-
-## Ethics
-
-The local single-centre cohort was collected under approval **KY-2026-227-01**
-(The Affiliated Huaian No.1 People's Hospital of Nanjing Medical University), with a waiver of informed
-consent for retrospective use of de-identified routine data.
 
 ## License
 
