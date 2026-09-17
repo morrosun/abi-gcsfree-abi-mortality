@@ -133,10 +133,12 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 
 ## Citation / DOI
 
-Code and data are permanently archived on Zenodo. Cite the **version-specific** Zenodo DOI listed
-here when re-using the dataset:
+Archived on Zenodo — cite the **version-specific DOI**:
 
 > Pan Q, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury.* Zenodo. DOI pending.
+> long-term mortality model in critically ill patients with acute brain injury* (v1.0.1).
+> Zenodo, 2026. **doi: [10.5281/zenodo.22820024](https://doi.org/10.5281/zenodo.22820024)**
 
-Repository: <https://github.com/morrosun/abi-gcsfree-abi-mortality>
+- Version DOI (this release, v1.0.1): `10.5281/zenodo.22820024`
+- Concept DOI (always resolves to the latest version): `10.5281/zenodo.22820023`
+- Repository: <https://github.com/morrosun/abi-gcsfree-abi-mortality>
