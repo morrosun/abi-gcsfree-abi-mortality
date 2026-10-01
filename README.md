@@ -197,15 +197,18 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 
 ## Citation / DOI
 
-Archived on Zenodo:
+Archived on Zenodo — cite the **version-specific DOI** of the release you used:
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.0.1).
-> Zenodo, 2026. **doi: [10.5281/zenodo.22820024](https://doi.org/10.5281/zenodo.22820024)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.1.0).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23077740](https://doi.org/10.5281/zenodo.23077740)**
 
+- v1.1.0 (current): `10.5281/zenodo.23077740` — adds the transportability/harmonisation audit layer,
+  the machine-readable `results/` directory, and the figure-number manifests
+- v1.0.1 (previous): `10.5281/zenodo.22820024` — development and first validation round only
 - Concept DOI (always resolves to the latest version): `10.5281/zenodo.22820023`
 - Repository: <https://github.com/morrosun/abi-gcsfree-abi-mortality>
 
-> **This README is a living document.** The Zenodo archive is a frozen snapshot taken at its release tag;
-> the version-specific DOI listed above points at that snapshot, not at this file. Metadata for the next
-> release is declared in `.zenodo.json`.
+> **This README is a living document.** Each Zenodo archive is a frozen snapshot taken at its release tag;
+> a version-specific DOI points at that snapshot, not at this file. Release metadata
+> (title, author list, keywords, licence) is declared in `.zenodo.json`.
