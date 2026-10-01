@@ -1,0 +1,141 @@
+{
+ "generated_at": "2026-10-01 06:44:08",
+ "outcome": "1-year death (MIMIC-IV internal held-out test set)",
+ "split": {
+  "test_size": 0.3,
+  "stratify": true,
+  "seed": 42,
+  "n_train": 11617,
+  "n_test": 4980,
+  "events_train": 3710,
+  "events_test": 1591
+ },
+ "features": {
+  "n": 28,
+  "names": [
+   "age",
+   "female",
+   "tbi",
+   "sah",
+   "ich",
+   "ais",
+   "cns_inf",
+   "seizure",
+   "anoxic",
+   "charlson_comorbidity_index",
+   "heart_rate_mean",
+   "mbp_mean",
+   "resp_rate_mean",
+   "temperature_mean",
+   "spo2_mean",
+   "wbc_max",
+   "hemoglobin_min",
+   "platelets_min",
+   "sodium_min",
+   "potassium_max",
+   "creatinine_max",
+   "bun_max",
+   "glucose_max",
+   "bicarbonate_min",
+   "inr_max",
+   "mech_vent",
+   "vasopressor",
+   "rrt"
+  ],
+  "continuous": [
+   "age",
+   "charlson_comorbidity_index",
+   "heart_rate_mean",
+   "mbp_mean",
+   "resp_rate_mean",
+   "temperature_mean",
+   "spo2_mean",
+   "wbc_max",
+   "hemoglobin_min",
+   "platelets_min",
+   "sodium_min",
+   "potassium_max",
+   "creatinine_max",
+   "bun_max",
+   "glucose_max",
+   "bicarbonate_min",
+   "inr_max"
+  ],
+  "binary": [
+   "tbi",
+   "sah",
+   "ich",
+   "ais",
+   "cns_inf",
+   "seizure",
+   "anoxic",
+   "mech_vent",
+   "vasopressor",
+   "rrt",
+   "female"
+  ]
+ },
+ "preprocessing": {
+  "imputation": "training-set median for continuous; 0 for indicators",
+  "scaling": "StandardScaler fitted on the training split; applied to the logistic/LASSO inputs only",
+  "frozen_artefacts": "preproc.joblib / models.joblib (1-year)"
+ },
+ "bootstrap": {
+  "B": 1000,
+  "method": "percentile",
+  "resampled": "patient-level, with replacement",
+  "seed": 42
+ },
+ "learners": {
+  "Logistic": {
+   "auc": 0.8161221120796217,
+   "ci95": [
+    0.8042144257780187,
+    0.82911622537043
+   ],
+   "brier": 0.15882893319002295,
+   "n_nonzero_coef": 28,
+   "standardised_input": true
+  },
+  "LASSO": {
+   "auc": 0.8160994855430342,
+   "ci95": [
+    0.8040372710179875,
+    0.828938513188937
+   ],
+   "brier": 0.158705844471574,
+   "n_nonzero_coef": 26,
+   "standardised_input": true
+  },
+  "RandomForest": {
+   "auc": 0.8316669136421138,
+   "ci95": [
+    0.820092242838646,
+    0.8429991043689828
+   ],
+   "brier": 0.15648113046461354,
+   "n_nonzero_coef": null,
+   "standardised_input": false
+  },
+  "GradientBoosting": {
+   "auc": 0.8405747214478608,
+   "ci95": [
+    0.8289590345935005,
+    0.8523461392440806
+   ],
+   "brier": 0.1482704325524016,
+   "n_nonzero_coef": null,
+   "standardised_input": false
+  },
+  "XGBoost": {
+   "auc": 0.8464648540338015,
+   "ci95": [
+    0.8354282681982622,
+    0.858123692099628
+   ],
+   "brier": 0.14617790281772614,
+   "n_nonzero_coef": null,
+   "standardised_input": false
+  }
+ }
+}

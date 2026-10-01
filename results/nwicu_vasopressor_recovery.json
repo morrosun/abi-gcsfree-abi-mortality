@@ -1,0 +1,228 @@
+{
+ "generated_by": "74_recover_nwicu_vasopressor.py",
+ "eps": 1e-06,
+ "seed": 42,
+ "chosen_variant": "D_iv_or_inj_no_local",
+ "variants": {
+  "A_any_route": {
+   "positives": 498,
+   "prevalence_pct": 14.56
+  },
+  "B_iv_or_injection": {
+   "positives": 495,
+   "prevalence_pct": 14.47
+  },
+  "C_iv_only": {
+   "positives": 329,
+   "prevalence_pct": 9.62
+  },
+  "D_iv_or_inj_no_local": {
+   "positives": 381,
+   "prevalence_pct": 11.14
+  }
+ },
+ "source_evidence": {
+  "rx_rows": 1852983,
+  "rx_vaso_rows": 20353,
+  "nw_icu_objects": [
+   "abi_a1_ext",
+   "chartevents",
+   "d_items",
+   "icustays",
+   "procedureevents"
+  ]
+ },
+ "harmonisation_error": {
+  "description": "sql/11_nwicu_cohort.sql hard-coded `0 as vasopressor`; the source does have hosp.prescriptions with vasopressor records.",
+  "published_prevalence_pct": 0.0,
+  "recovered_prevalence_pct": 11.14,
+  "delta_auc": {
+   "Logistic": {
+    "d_auc": 0.0013,
+    "d_auc_inhosp": 0.0023,
+    "d_brier": -0.0003,
+    "d_slope": 0.0005
+   },
+   "XGBoost": {
+    "d_auc": 0.0047,
+    "d_auc_inhosp": 0.0004,
+    "d_brier": -0.001,
+    "d_slope": 0.0059
+   }
+  }
+ },
+ "nwicu": {
+  "hardcoded_zero": {
+   "n": 3420,
+   "events": 635,
+   "positives": 0,
+   "prevalence_pct": 0.0,
+   "Logistic": {
+    "auc": 0.6958,
+    "slope": 0.039,
+    "intercept": -1.5394,
+    "oe": 0.5381,
+    "brier": 0.2451
+   },
+   "XGBoost": {
+    "auc": 0.7959,
+    "slope": 0.8321,
+    "intercept": -0.2518,
+    "oe": 0.9644,
+    "brier": 0.1234
+   },
+   "inhosp": {
+    "events": 16,
+    "Logistic": {
+     "auc": 0.5241,
+     "slope": -0.0963,
+     "intercept": -5.4818,
+     "oe": 0.018,
+     "brier": 0.2072
+    },
+    "XGBoost": {
+     "auc": 0.6833,
+     "slope": 0.2802,
+     "intercept": -4.5788,
+     "oe": 0.0494,
+     "brier": 0.038
+    }
+   }
+  },
+  "recovered": {
+   "n": 3420,
+   "events": 635,
+   "positives": 381,
+   "prevalence_pct": 11.14,
+   "Logistic": {
+    "auc": 0.6971,
+    "slope": 0.0395,
+    "intercept": -1.5408,
+    "oe": 0.5349,
+    "brier": 0.2448
+   },
+   "XGBoost": {
+    "auc": 0.8006,
+    "slope": 0.838,
+    "intercept": -0.2889,
+    "oe": 0.9354,
+    "brier": 0.1224
+   },
+   "inhosp": {
+    "events": 16,
+    "Logistic": {
+     "auc": 0.5264,
+     "slope": -0.0909,
+     "intercept": -5.467,
+     "oe": 0.0178,
+     "brier": 0.2089
+    },
+    "XGBoost": {
+     "auc": 0.6837,
+     "slope": 0.2818,
+     "intercept": -4.5901,
+     "oe": 0.0476,
+     "brier": 0.0402
+    }
+   }
+  }
+ },
+ "prevalence": {
+  "MIMIC(dev)": 23.3,
+  "eICU": 11.8,
+  "INSPIRE": 8.7,
+  "NWICU": 11.1
+ },
+ "drop_sensitivity": {
+  "drop_vasopressor_only": {
+   "hardcoded_zero": {
+    "n_predictors": 27,
+    "Logistic": {
+     "auc": 0.698,
+     "slope": 0.0395,
+     "intercept": -1.5409,
+     "oe": 0.5346,
+     "brier": 0.2448
+    },
+    "XGBoost": {
+     "auc": 0.7992,
+     "slope": 0.8356,
+     "intercept": -0.3031,
+     "oe": 0.9264,
+     "brier": 0.1225
+    }
+   },
+   "recovered": {
+    "n_predictors": 27,
+    "Logistic": {
+     "auc": 0.698,
+     "slope": 0.0395,
+     "intercept": -1.5409,
+     "oe": 0.5346,
+     "brier": 0.2448
+    },
+    "XGBoost": {
+     "auc": 0.7992,
+     "slope": 0.8356,
+     "intercept": -0.3031,
+     "oe": 0.9264,
+     "brier": 0.1225
+    }
+   },
+   "internal": {
+    "Logistic": {
+     "auc": 0.8161
+    },
+    "XGBoost": {
+     "auc": 0.8456
+    }
+   }
+  },
+  "drop_all_organ_support": {
+   "hardcoded_zero": {
+    "n_predictors": 25,
+    "Logistic": {
+     "auc": 0.6686,
+     "slope": 0.0352,
+     "intercept": -1.5379,
+     "oe": 0.5106,
+     "brier": 0.2527
+    },
+    "XGBoost": {
+     "auc": 0.7708,
+     "slope": 0.776,
+     "intercept": -0.4169,
+     "oe": 0.8953,
+     "brier": 0.1291
+    }
+   },
+   "recovered": {
+    "n_predictors": 25,
+    "Logistic": {
+     "auc": 0.6686,
+     "slope": 0.0352,
+     "intercept": -1.5379,
+     "oe": 0.5106,
+     "brier": 0.2527
+    },
+    "XGBoost": {
+     "auc": 0.7708,
+     "slope": 0.776,
+     "intercept": -0.4169,
+     "oe": 0.8953,
+     "brier": 0.1291
+    }
+   },
+   "internal": {
+    "Logistic": {
+     "auc": 0.8067
+    },
+    "XGBoost": {
+     "auc": 0.8383
+    }
+   }
+  }
+ },
+ "output_data_file": "nwicu_abi_final_vp2.csv",
+ "note": "D 口径 = intravenous/injection route 且排除 lidocaine–epinephrine 局麻复方与 直肠栓剂；窗口 = intime-6h ~ intime+1day，与其余预测因子的首日口径一致。"
+}

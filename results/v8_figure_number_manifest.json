@@ -1,0 +1,159 @@
+{
+ "gcs_components_v8.png": [
+  {
+   "item": "Logistic ΔAUC + total GCS",
+   "value": 0.0051,
+   "source": "audit_decisionE.gcs_increment_decisionE.Logistic.plus_total_gcs.dAUC"
+  },
+  {
+   "item": "Logistic ΔAUC + motor GCS",
+   "value": 0.0154,
+   "source": "audit_decisionE.gcs_increment_decisionE.Logistic.plus_motor_gcs.dAUC"
+  },
+  {
+   "item": "XGBoost ΔAUC + total GCS",
+   "value": 0.0057,
+   "source": "audit_decisionE.gcs_increment_decisionE.XGBoost.plus_total_gcs.dAUC"
+  },
+  {
+   "item": "XGBoost ΔAUC + motor GCS",
+   "value": 0.0152,
+   "source": "audit_decisionE.gcs_increment_decisionE.XGBoost.plus_motor_gcs.dAUC"
+  },
+  {
+   "item": "Total GCS alone AUC",
+   "value": 0.5513,
+   "source": "audit_decisionE.gcs_increment_decisionE.alone_AUC_logit.gcs_total"
+  },
+  {
+   "item": "Motor GCS alone AUC",
+   "value": 0.6808,
+   "source": "audit_decisionE.gcs_increment_decisionE.alone_AUC_logit.gcs_motor"
+  },
+  {
+   "item": "Total GCS alone, ventilated",
+   "value": 0.488,
+   "source": "revision2.N3_gcs_sensitivity.gcs_alone_auc.ventilated.auc"
+  },
+  {
+   "item": "Total GCS alone, non-ventilated",
+   "value": 0.653,
+   "source": "revision2.N3_gcs_sensitivity.gcs_alone_auc.nonventilated.auc"
+  }
+ ],
+ "leakage_dauc_v8.png": [
+  {
+   "item": "A 1-year ΔAUC Logistic",
+   "value": -0.0202,
+   "source": "leakage_sensitivity.summary.A_1yr_full.Logistic.delta_no_aet"
+  },
+  {
+   "item": "B in-hospital ΔAUC Logistic",
+   "value": -0.0192,
+   "source": "leakage_sensitivity.summary.B_inhosp.Logistic.delta_no_aet"
+  },
+  {
+   "item": "C survivors ΔAUC Logistic",
+   "value": -0.0131,
+   "source": "leakage_sensitivity.summary.C_survivors.Logistic.delta_no_aet"
+  },
+  {
+   "item": "eICU in-hospital ΔAUC Logistic",
+   "value": -0.0246,
+   "source": "leakage_sensitivity.external.B_inhosp|eICU.Logistic.delta"
+  }
+ ],
+ "slope_eps_v8.png": [
+  {
+   "item": "Huaian Logistic slope range over ε",
+   "value": 0.3473,
+   "source": "slope_epsilon_audit.results.Huaian_inhosp.Logistic.slope_range"
+  },
+  {
+   "item": "NWICU Logistic slope range over ε",
+   "value": 0.1312,
+   "source": "slope_epsilon_audit.results.NWICU_1yr.Logistic.slope_range"
+  }
+ ],
+ "calib_ci_v8.png": [
+  {
+   "item": "MIMIC Logistic slope [CI]",
+   "value": [
+    0.9452,
+    0.8868,
+    1.0136
+   ],
+   "source": "calibration_ci_and_severity.calibration_ci.MIMIC_internal_1yr.Logistic"
+  },
+  {
+   "item": "NWICU Logistic slope [CI]",
+   "value": [
+    0.0395,
+    0.0276,
+    0.0516
+   ],
+   "source": "calibration_ci_and_severity.calibration_ci.NWICU_1yr.Logistic"
+  },
+  {
+   "item": "Huaian Logistic slope [CI]",
+   "value": [
+    0.8986,
+    0.344,
+    1.7869
+   ],
+   "source": "calibration_ci_and_severity.calibration_ci.Huaian_inhosp.Logistic"
+  }
+ ],
+ "harmonisation_v8.png": [
+  {
+   "item": "Unit discordance ΔAUC Logistic",
+   "value": 0.0001,
+   "source": "v8_harmonisation.delta.unit_discordant.Logistic.dAUC"
+  },
+  {
+   "item": "Unit discordance O:E Logistic",
+   "value": [
+    1.0859,
+    1.8009
+   ],
+   "source": "v8_harmonisation.variants.{harmonised,unit_discordant}.Logistic.oe"
+  },
+  {
+   "item": "Unit discordance ΔAUC XGBoost",
+   "value": -0.0154,
+   "source": "v8_harmonisation.delta.unit_discordant.XGBoost.dAUC"
+  },
+  {
+   "item": "Scale discordance ΔAUC Logistic",
+   "value": -0.2881,
+   "source": "v8_harmonisation.delta.scale_discordant.Logistic.dAUC"
+  },
+  {
+   "item": "Scale discordance ΔAUC XGBoost",
+   "value": 0.0755,
+   "source": "v8_harmonisation.delta.scale_discordant.XGBoost.dAUC"
+  }
+ ],
+ "huaian_panel_v8.png": [
+  {
+   "item": "Huaian Logistic AUC",
+   "value": 0.8646,
+   "source": "v8_harmonisation.huaian_eps1e6.Logistic.auc"
+  },
+  {
+   "item": "Huaian Logistic slope (ε=1e-6)",
+   "value": 0.8986,
+   "source": "v8_harmonisation.huaian_eps1e6.Logistic.slope"
+  },
+  {
+   "item": "Huaian XGBoost AUC",
+   "value": 0.8001,
+   "source": "v8_harmonisation.huaian_eps1e6.XGBoost.auc"
+  },
+  {
+   "item": "Huaian XGBoost slope (ε=1e-6)",
+   "value": 0.8496,
+   "source": "v8_harmonisation.huaian_eps1e6.XGBoost.slope"
+  }
+ ]
+}

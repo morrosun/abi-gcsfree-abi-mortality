@@ -1,0 +1,235 @@
+{
+  "gcs_increment_decisionE": {
+    "Logistic": {
+      "base_auc": 0.8161,
+      "base_ci": [
+        0.8046736824519292,
+        0.8291474341450789
+      ],
+      "plus_total_gcs": {
+        "auc": 0.8213,
+        "dAUC": 0.0051,
+        "delong_z": 4.182,
+        "delong_p": 2.8938751630791515e-05,
+        "cNRI": 0.1965,
+        "NRI_event": -0.2847,
+        "NRI_nonevent": 0.4813,
+        "IDI": 0.0082,
+        "ci": [
+          0.8095532484038075,
+          0.8343074277093181
+        ]
+      },
+      "plus_motor_gcs": {
+        "auc": 0.8315,
+        "dAUC": 0.0154,
+        "delong_z": 6.427,
+        "delong_p": 1.297948415412975e-10,
+        "cNRI": 0.6072,
+        "NRI_event": 0.0321,
+        "NRI_nonevent": 0.5751,
+        "IDI": 0.0289,
+        "ci": [
+          0.819648220151908,
+          0.8436794951359292
+        ]
+      }
+    },
+    "XGBoost": {
+      "base_auc": 0.8465,
+      "base_ci": [
+        0.8361996945707612,
+        0.8571866667011244
+      ],
+      "plus_total_gcs": {
+        "auc": 0.8522,
+        "dAUC": 0.0057,
+        "delong_z": 3.468,
+        "delong_p": 0.0005249833842226881,
+        "cNRI": 0.1249,
+        "NRI_event": -0.0572,
+        "NRI_nonevent": 0.1821,
+        "IDI": 0.013,
+        "ci": [
+          0.8418716203437236,
+          0.8629340464454881
+        ]
+      },
+      "plus_motor_gcs": {
+        "auc": 0.8617,
+        "dAUC": 0.0152,
+        "delong_z": 6.532,
+        "delong_p": 6.484057735178794e-11,
+        "cNRI": 0.4423,
+        "NRI_event": 0.115,
+        "NRI_nonevent": 0.3272,
+        "IDI": 0.0338,
+        "ci": [
+          0.8517780698285008,
+          0.8719558594030061
+        ]
+      }
+    },
+    "alone_AUC_logit": {
+      "gcs_total": 0.5513,
+      "gcs_motor": 0.6808
+    },
+    "missingness_pct": {
+      "gcs_min_pct": 0.34,
+      "gcs_motor_pct": 1.01
+    }
+  },
+  "single_centre": {
+    "n": 225,
+    "events": 55,
+    "event_rate_pct": 24.4,
+    "aetiology_counts": {
+      "tbi": 224,
+      "sah": 0,
+      "ich": 0,
+      "ais": 40,
+      "cns_inf": 39,
+      "seizure": 15,
+      "anoxic": 48
+    },
+    "tbi_pct": 99.6,
+    "anoxic_pct": 21.3,
+    "model_AUC": {
+      "Logistic": [
+        0.8646,
+        [
+          0.7985,
+          0.922
+        ]
+      ],
+      "XGBoost": [
+        0.8001,
+        [
+          0.7326,
+          0.8603
+        ]
+      ]
+    },
+    "single_predictor_AUC": {
+      "age": {
+        "auc": 0.499,
+        "abs_from_050": 0.001
+      },
+      "female": {
+        "auc": 0.5348,
+        "abs_from_050": 0.0348
+      },
+      "tbi": {
+        "auc": 0.5029,
+        "abs_from_050": 0.0029
+      },
+      "sah": {
+        "auc": null,
+        "note": "constant in this cohort"
+      },
+      "ich": {
+        "auc": null,
+        "note": "constant in this cohort"
+      },
+      "ais": {
+        "auc": 0.5027,
+        "abs_from_050": 0.0027
+      },
+      "cns_inf": {
+        "auc": 0.4936,
+        "abs_from_050": 0.0064
+      },
+      "seizure": {
+        "auc": 0.4799,
+        "abs_from_050": 0.0201
+      },
+      "anoxic": {
+        "auc": 0.8762,
+        "abs_from_050": 0.3762
+      },
+      "charlson_comorbidity_index": {
+        "auc": 0.488,
+        "abs_from_050": 0.012
+      },
+      "heart_rate_mean": {
+        "auc": 0.5513,
+        "abs_from_050": 0.0513
+      },
+      "mbp_mean": {
+        "auc": 0.506,
+        "abs_from_050": 0.006
+      },
+      "resp_rate_mean": {
+        "auc": 0.4302,
+        "abs_from_050": 0.0698
+      },
+      "temperature_mean": {
+        "auc": 0.4406,
+        "abs_from_050": 0.0594
+      },
+      "spo2_mean": {
+        "auc": 0.4788,
+        "abs_from_050": 0.0212
+      },
+      "wbc_max": {
+        "auc": 0.552,
+        "abs_from_050": 0.052
+      },
+      "hemoglobin_min": {
+        "auc": 0.4338,
+        "abs_from_050": 0.0662
+      },
+      "platelets_min": {
+        "auc": 0.3928,
+        "abs_from_050": 0.1072
+      },
+      "sodium_min": {
+        "auc": 0.5659,
+        "abs_from_050": 0.0659
+      },
+      "potassium_max": {
+        "auc": 0.4423,
+        "abs_from_050": 0.0577
+      },
+      "creatinine_max": {
+        "auc": 0.5576,
+        "abs_from_050": 0.0576
+      },
+      "bun_max": {
+        "auc": 0.5139,
+        "abs_from_050": 0.0139
+      },
+      "glucose_max": {
+        "auc": 0.5948,
+        "abs_from_050": 0.0948
+      },
+      "bicarbonate_min": {
+        "auc": 0.4693,
+        "abs_from_050": 0.0307
+      },
+      "inr_max": {
+        "auc": 0.6698,
+        "abs_from_050": 0.1698
+      },
+      "mech_vent": {
+        "auc": 0.5147,
+        "abs_from_050": 0.0147
+      },
+      "vasopressor": {
+        "auc": 0.6225,
+        "abs_from_050": 0.1225
+      },
+      "rrt": {
+        "auc": 0.5612,
+        "abs_from_050": 0.0612
+      }
+    },
+    "editor_claim_anoxic_reproduces_model": {
+      "anoxic_alone_auc": 0.8762,
+      "model_logistic_auc": 0.8646,
+      "model_xgb_auc": 0.8001,
+      "gap_logistic": -0.0116,
+      "verdict": "需人工判读：anoxic 单独接近模型"
+    }
+  }
+}

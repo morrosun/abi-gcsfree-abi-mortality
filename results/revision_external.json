@@ -1,0 +1,204 @@
+{
+  "M2_inhosp_parallel": {
+    "MIMIC_internal": {
+      "Logistic": {
+        "auc": 0.845
+      },
+      "XGBoost": {
+        "auc": 0.8754
+      }
+    },
+    "eICU": {
+      "n": 14852,
+      "events": 1894,
+      "prev": 12.8,
+      "Logistic": {
+        "auc": 0.8107,
+        "ci": [
+          0.800152112541445,
+          0.8214501845671973
+        ],
+        "brier": 0.0948,
+        "slope": 0.675,
+        "intercept": -0.749
+      },
+      "XGBoost": {
+        "auc": 0.8496,
+        "ci": [
+          0.840462830072127,
+          0.8590507902063682
+        ],
+        "brier": 0.1021,
+        "slope": 0.703,
+        "intercept": -1.181
+      }
+    },
+    "NWICU": {
+      "n": 3420,
+      "events": 16,
+      "prev": 0.5,
+      "Logistic": {
+        "auc": 0.5264,
+        "ci": [
+          0.41705912440181514,
+          0.638828119430434
+        ],
+        "brier": 0.2089,
+        "slope": -0.091,
+        "intercept": -5.467
+      },
+      "XGBoost": {
+        "auc": 0.6837,
+        "ci": [
+          0.5529453696280762,
+          0.7998546291334635
+        ],
+        "brier": 0.0402,
+        "slope": 0.282,
+        "intercept": -4.59
+      }
+    },
+    "INSPIRE": {
+      "n": 1543,
+      "events": 126,
+      "prev": 8.2,
+      "Logistic": {
+        "auc": 0.6443,
+        "ci": [
+          0.5921505317592209,
+          0.7022736061996303
+        ],
+        "brier": 0.0756,
+        "slope": 0.519,
+        "intercept": -1.234
+      },
+      "XGBoost": {
+        "auc": 0.72,
+        "ci": [
+          0.6754647016716683,
+          0.765646777958126
+        ],
+        "brier": 0.0765,
+        "slope": 0.616,
+        "intercept": -1.07
+      }
+    }
+  },
+  "M3_aetiology_strata": {
+    "NWICU": {
+      "tbi": {
+        "n": 859,
+        "events": 121,
+        "auc_xgb": 0.78
+      },
+      "sah": {
+        "n": 348,
+        "events": 68,
+        "auc_xgb": 0.804
+      },
+      "ich": {
+        "n": 565,
+        "events": 137,
+        "auc_xgb": 0.799
+      },
+      "ais": {
+        "n": 1486,
+        "events": 259,
+        "auc_xgb": 0.775
+      },
+      "cns_inf": {
+        "n": 64,
+        "events": 9,
+        "auc_xgb": 0.653
+      },
+      "seizure": {
+        "n": 323,
+        "events": 36,
+        "auc_xgb": 0.802
+      },
+      "anoxic": {
+        "n": 100,
+        "events": 69,
+        "auc_xgb": 0.748
+      }
+    },
+    "INSPIRE": {
+      "tbi": {
+        "n": 223,
+        "events": 55,
+        "auc_xgb": 0.771
+      },
+      "sah": {
+        "n": 264,
+        "events": 25,
+        "auc_xgb": 0.842
+      },
+      "ich": {
+        "n": 270,
+        "events": 59,
+        "auc_xgb": 0.774
+      },
+      "ais": {
+        "n": 902,
+        "events": 157,
+        "auc_xgb": 0.709
+      },
+      "cns_inf": {
+        "n": 69,
+        "events": 7,
+        "auc_xgb": 0.857
+      },
+      "seizure": {
+        "n": 0,
+        "events": 0,
+        "auc_xgb": null
+      },
+      "anoxic": {
+        "n": 0,
+        "events": 0,
+        "auc_xgb": null
+      }
+    }
+  },
+  "M3_inspire_noaet": {
+    "full_model": {
+      "Logistic": 0.7292,
+      "XGBoost": 0.7587
+    },
+    "noaet_model": {
+      "Logistic": 0.7061,
+      "XGBoost": 0.7417
+    },
+    "mimic_internal_noaet": {
+      "Logistic": {
+        "auc": 0.7959
+      },
+      "XGBoost": {
+        "auc": 0.8335
+      }
+    }
+  },
+  "M3_nwicu_slope": {
+    "vasopressor_prevalence": {
+      "MIMIC(dev)": 23.3,
+      "eICU": 11.8,
+      "NWICU": 11.1,
+      "INSPIRE": 8.7
+    },
+    "full_model_slope_LR": 0.039,
+    "portable_core_slope_LR": 0.035,
+    "portable_core_auc": {
+      "Logistic": 0.6686,
+      "XGBoost": 0.7708,
+      "slope_XGB": 0.776
+    },
+    "core_mimic_internal": {
+      "Logistic": {
+        "auc": 0.8067
+      },
+      "XGBoost": {
+        "auc": 0.8383
+      }
+    }
+  }
+}

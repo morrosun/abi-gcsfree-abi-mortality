@@ -1,0 +1,332 @@
+{
+  "generated_at": "2026-10-01 06:40:33",
+  "rule": "eICU / Huaian = same-outcome in-hospital parallel model; NWICU / INSPIRE = frozen 1-year model",
+  "source_artifacts": {
+    "preproc.joblib": "2026-07-29 17:37:16",
+    "models.joblib": "2026-07-29 17:37:47",
+    "model_inhosp.joblib": "2026-10-01 06:37:14"
+  },
+  "discrimination": {
+    "NWICU_1yr": {
+      "database": "NWICU",
+      "outcome": "1-year death",
+      "n": 3420,
+      "events": 635,
+      "prevalence_pct": 18.6,
+      "Logistic": {
+        "auc": 0.6971,
+        "ci": [
+          0.6785,
+          0.7168
+        ],
+        "brier": 0.2448,
+        "slope": 0.039,
+        "intercept": -1.541,
+        "oe": 0.535,
+        "ece": 0.1635
+      },
+      "XGBoost": {
+        "auc": 0.8006,
+        "ci": [
+          0.7828,
+          0.8181
+        ],
+        "brier": 0.1224,
+        "slope": 0.838,
+        "intercept": -0.289,
+        "oe": 0.935,
+        "ece": 0.0212
+      }
+    },
+    "INSPIRE_1yr": {
+      "database": "INSPIRE",
+      "outcome": "1-year death",
+      "n": 1543,
+      "events": 262,
+      "prevalence_pct": 17.0,
+      "Logistic": {
+        "auc": 0.7292,
+        "ci": [
+          0.6941,
+          0.7597
+        ],
+        "brier": 0.1314,
+        "slope": 0.807,
+        "intercept": -0.515,
+        "oe": 0.807,
+        "ece": 0.0418
+      },
+      "XGBoost": {
+        "auc": 0.7587,
+        "ci": [
+          0.7256,
+          0.7853
+        ],
+        "brier": 0.1305,
+        "slope": 0.802,
+        "intercept": -0.612,
+        "oe": 0.752,
+        "ece": 0.0562
+      }
+    },
+    "eICU_inhosp": {
+      "database": "eICU",
+      "outcome": "In-hospital death",
+      "n": 14852,
+      "events": 1894,
+      "prevalence_pct": 12.8,
+      "Logistic": {
+        "auc": 0.8107,
+        "ci": [
+          0.8002,
+          0.8215
+        ],
+        "brier": 0.0948,
+        "slope": 0.675,
+        "intercept": -0.749,
+        "oe": 0.806,
+        "ece": 0.0396
+      },
+      "XGBoost": {
+        "auc": 0.8496,
+        "ci": [
+          0.8405,
+          0.8591
+        ],
+        "brier": 0.1021,
+        "slope": 0.703,
+        "intercept": -1.181,
+        "oe": 0.586,
+        "ece": 0.0902
+      }
+    },
+    "NWICU_inhosp": {
+      "database": "NWICU",
+      "outcome": "In-hospital death",
+      "n": 3420,
+      "events": 16,
+      "prevalence_pct": 0.5,
+      "Logistic": {
+        "auc": 0.5264,
+        "ci": [
+          0.4171,
+          0.6388
+        ],
+        "brier": 0.2089,
+        "slope": -0.091,
+        "intercept": -5.467,
+        "oe": 0.018,
+        "ece": 0.2579
+      },
+      "XGBoost": {
+        "auc": 0.6837,
+        "ci": [
+          0.5529,
+          0.7999
+        ],
+        "brier": 0.0402,
+        "slope": 0.282,
+        "intercept": -4.59,
+        "oe": 0.048,
+        "ece": 0.0936
+      }
+    },
+    "INSPIRE_inhosp": {
+      "database": "INSPIRE",
+      "outcome": "In-hospital death",
+      "n": 1543,
+      "events": 126,
+      "prevalence_pct": 8.2,
+      "Logistic": {
+        "auc": 0.6443,
+        "ci": [
+          0.5922,
+          0.7023
+        ],
+        "brier": 0.0756,
+        "slope": 0.519,
+        "intercept": -1.234,
+        "oe": 0.754,
+        "ece": 0.0446
+      },
+      "XGBoost": {
+        "auc": 0.72,
+        "ci": [
+          0.6755,
+          0.7656
+        ],
+        "brier": 0.0765,
+        "slope": 0.616,
+        "intercept": -1.07,
+        "oe": 0.709,
+        "ece": 0.0408
+      }
+    }
+  },
+  "recalibration": {
+    "NWICU (1-year)|Logistic": {
+      "database": "NWICU (1-year)",
+      "model": "Logistic",
+      "n": 3420,
+      "events": 635,
+      "auc": 0.6971,
+      "oe_orig": 0.535,
+      "oe_log": 0.999,
+      "slope_orig": 0.039,
+      "slope_log": 0.978,
+      "intcpt_orig": -1.541,
+      "intcpt_log": -0.034,
+      "brier_orig": 0.2448,
+      "brier_log": 0.1499,
+      "ece_orig": 0.1635,
+      "ece_int": 0.2845,
+      "ece_log": 0.0174,
+      "a_log": -1.541,
+      "b_log": 0.039
+    },
+    "NWICU (1-year)|XGBoost": {
+      "database": "NWICU (1-year)",
+      "model": "XGBoost",
+      "n": 3420,
+      "events": 635,
+      "auc": 0.8006,
+      "oe_orig": 0.935,
+      "oe_log": 1.0,
+      "slope_orig": 0.838,
+      "slope_log": 0.996,
+      "intcpt_orig": -0.289,
+      "intcpt_log": -0.005,
+      "brier_orig": 0.1224,
+      "brier_log": 0.121,
+      "ece_orig": 0.0212,
+      "ece_int": 0.0296,
+      "ece_log": 0.0201,
+      "a_log": -0.289,
+      "b_log": 0.838
+    },
+    "INSPIRE (1-year)|Logistic": {
+      "database": "INSPIRE (1-year)",
+      "model": "Logistic",
+      "n": 1543,
+      "events": 262,
+      "auc": 0.7292,
+      "oe_orig": 0.807,
+      "oe_log": 1.001,
+      "slope_orig": 0.807,
+      "slope_log": 0.994,
+      "intcpt_orig": -0.515,
+      "intcpt_log": -0.007,
+      "brier_orig": 0.1314,
+      "brier_log": 0.1275,
+      "ece_orig": 0.0418,
+      "ece_int": 0.0287,
+      "ece_log": 0.0184,
+      "a_log": -0.515,
+      "b_log": 0.807
+    },
+    "INSPIRE (1-year)|XGBoost": {
+      "database": "INSPIRE (1-year)",
+      "model": "XGBoost",
+      "n": 1543,
+      "events": 262,
+      "auc": 0.7587,
+      "oe_orig": 0.752,
+      "oe_log": 1.0,
+      "slope_orig": 0.802,
+      "slope_log": 0.994,
+      "intcpt_orig": -0.612,
+      "intcpt_log": -0.008,
+      "brier_orig": 0.1305,
+      "brier_log": 0.1236,
+      "ece_orig": 0.0562,
+      "ece_int": 0.0345,
+      "ece_log": 0.0235,
+      "a_log": -0.612,
+      "b_log": 0.802
+    },
+    "eICU (in-hospital)|Logistic": {
+      "database": "eICU (in-hospital)",
+      "model": "Logistic",
+      "n": 14852,
+      "events": 1894,
+      "auc": 0.8107,
+      "oe_orig": 0.806,
+      "oe_log": 1.0,
+      "slope_orig": 0.675,
+      "slope_log": 0.999,
+      "intcpt_orig": -0.749,
+      "intcpt_log": -0.001,
+      "brier_orig": 0.0948,
+      "brier_log": 0.0892,
+      "ece_orig": 0.0396,
+      "ece_int": 0.0319,
+      "ece_log": 0.0061,
+      "a_log": -0.749,
+      "b_log": 0.675
+    },
+    "eICU (in-hospital)|XGBoost": {
+      "database": "eICU (in-hospital)",
+      "model": "XGBoost",
+      "n": 14852,
+      "events": 1894,
+      "auc": 0.8496,
+      "oe_orig": 0.586,
+      "oe_log": 1.0,
+      "slope_orig": 0.703,
+      "slope_log": 0.999,
+      "intcpt_orig": -1.181,
+      "intcpt_log": -0.002,
+      "brier_orig": 0.1021,
+      "brier_log": 0.0824,
+      "ece_orig": 0.0902,
+      "ece_int": 0.0286,
+      "ece_log": 0.0066,
+      "a_log": -1.181,
+      "b_log": 0.703
+    }
+  },
+  "inhosp_parallel_mimic_internal": {
+    "Logistic": {
+      "auc": 0.845
+    },
+    "XGBoost": {
+      "auc": 0.8754
+    }
+  },
+  "local_huaian": {
+    "Logistic": {
+      "AUC": 0.8645989304812834,
+      "CI": [
+        0.7984774061833579,
+        0.9220454137174983
+      ],
+      "obs": 0.24444444444444444,
+      "pred": 0.22510489432899122,
+      "OE": 1.0859135034495893,
+      "brier": 0.12158363584626354,
+      "slope": 0.799744646992548,
+      "intercept": -0.08016636765400893
+    },
+    "XGBoost": {
+      "AUC": 0.8001069518716577,
+      "CI": [
+        0.732607693137502,
+        0.8602614270800435
+      ],
+      "obs": 0.24444444444444444,
+      "pred": 0.2569112181663513,
+      "OE": 0.9514743894373869,
+      "brier": 0.14196279644966125,
+      "slope": 0.8496233224868774,
+      "intercept": -0.21625255048274994
+    },
+    "n": 225,
+    "events": 55,
+    "unit_conversion": {
+      "creatinine_max": "÷88.4 (μmol/L→mg/dL)",
+      "bun_max": "÷0.357 (mmol/L→mg/dL)",
+      "glucose_max": "×18 (mmol/L→mg/dL)",
+      "hemoglobin_min": "÷10 (g/L→g/dL)"
+    }
+  }
+}

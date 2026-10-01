@@ -1,0 +1,1359 @@
+{
+ "generated_by": "65_build_v8_appendix.py",
+ "eps": 1e-06,
+ "features": [
+  "age",
+  "female",
+  "tbi",
+  "sah",
+  "ich",
+  "ais",
+  "cns_inf",
+  "seizure",
+  "anoxic",
+  "charlson_comorbidity_index",
+  "heart_rate_mean",
+  "mbp_mean",
+  "resp_rate_mean",
+  "temperature_mean",
+  "spo2_mean",
+  "wbc_max",
+  "hemoglobin_min",
+  "platelets_min",
+  "sodium_min",
+  "potassium_max",
+  "creatinine_max",
+  "bun_max",
+  "glucose_max",
+  "bicarbonate_min",
+  "inr_max",
+  "mech_vent",
+  "vasopressor",
+  "rrt"
+ ],
+ "availability": {
+  "MIMIC-IV": {
+   "age": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "female": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "tbi": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "sah": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ich": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ais": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "cns_inf": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "seizure": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "anoxic": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "charlson_comorbidity_index": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "heart_rate_mean": {
+    "present": true,
+    "recorded_pct": 99.8
+   },
+   "mbp_mean": {
+    "present": true,
+    "recorded_pct": 99.8
+   },
+   "resp_rate_mean": {
+    "present": true,
+    "recorded_pct": 99.6
+   },
+   "temperature_mean": {
+    "present": true,
+    "recorded_pct": 97.4
+   },
+   "spo2_mean": {
+    "present": true,
+    "recorded_pct": 99.8
+   },
+   "wbc_max": {
+    "present": true,
+    "recorded_pct": 98.6
+   },
+   "hemoglobin_min": {
+    "present": true,
+    "recorded_pct": 98.6
+   },
+   "platelets_min": {
+    "present": true,
+    "recorded_pct": 98.6
+   },
+   "sodium_min": {
+    "present": true,
+    "recorded_pct": 97.8
+   },
+   "potassium_max": {
+    "present": true,
+    "recorded_pct": 97.8
+   },
+   "creatinine_max": {
+    "present": true,
+    "recorded_pct": 98.7
+   },
+   "bun_max": {
+    "present": true,
+    "recorded_pct": 98.7
+   },
+   "glucose_max": {
+    "present": true,
+    "recorded_pct": 97.7
+   },
+   "bicarbonate_min": {
+    "present": true,
+    "recorded_pct": 97.7
+   },
+   "inr_max": {
+    "present": true,
+    "recorded_pct": 92.6
+   },
+   "mech_vent": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "vasopressor": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "rrt": {
+    "present": true,
+    "recorded_pct": 100.0
+   }
+  },
+  "eICU": {
+   "age": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "female": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "tbi": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "sah": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ich": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ais": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "cns_inf": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "seizure": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "anoxic": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "charlson_comorbidity_index": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "heart_rate_mean": {
+    "present": true,
+    "recorded_pct": 94.0
+   },
+   "mbp_mean": {
+    "present": true,
+    "recorded_pct": 93.8
+   },
+   "resp_rate_mean": {
+    "present": true,
+    "recorded_pct": 93.7
+   },
+   "temperature_mean": {
+    "present": true,
+    "recorded_pct": 90.3
+   },
+   "spo2_mean": {
+    "present": true,
+    "recorded_pct": 97.9
+   },
+   "wbc_max": {
+    "present": true,
+    "recorded_pct": 70.6
+   },
+   "hemoglobin_min": {
+    "present": true,
+    "recorded_pct": 84.7
+   },
+   "platelets_min": {
+    "present": true,
+    "recorded_pct": 84.3
+   },
+   "sodium_min": {
+    "present": true,
+    "recorded_pct": 74.4
+   },
+   "potassium_max": {
+    "present": true,
+    "recorded_pct": 88.2
+   },
+   "creatinine_max": {
+    "present": true,
+    "recorded_pct": 73.8
+   },
+   "bun_max": {
+    "present": true,
+    "recorded_pct": 73.6
+   },
+   "glucose_max": {
+    "present": true,
+    "recorded_pct": 82.0
+   },
+   "bicarbonate_min": {
+    "present": true,
+    "recorded_pct": 86.2
+   },
+   "inr_max": {
+    "present": true,
+    "recorded_pct": 37.4
+   },
+   "mech_vent": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "vasopressor": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "rrt": {
+    "present": true,
+    "recorded_pct": 100.0
+   }
+  },
+  "NWICU": {
+   "age": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "female": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "tbi": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "sah": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ich": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ais": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "cns_inf": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "seizure": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "anoxic": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "charlson_comorbidity_index": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "heart_rate_mean": {
+    "present": true,
+    "recorded_pct": 78.2
+   },
+   "mbp_mean": {
+    "present": true,
+    "recorded_pct": 77.5
+   },
+   "resp_rate_mean": {
+    "present": true,
+    "recorded_pct": 78.0
+   },
+   "temperature_mean": {
+    "present": true,
+    "recorded_pct": 77.8
+   },
+   "spo2_mean": {
+    "present": true,
+    "recorded_pct": 78.2
+   },
+   "wbc_max": {
+    "present": true,
+    "recorded_pct": 96.5
+   },
+   "hemoglobin_min": {
+    "present": true,
+    "recorded_pct": 95.6
+   },
+   "platelets_min": {
+    "present": true,
+    "recorded_pct": 96.6
+   },
+   "sodium_min": {
+    "present": true,
+    "recorded_pct": 97.2
+   },
+   "potassium_max": {
+    "present": true,
+    "recorded_pct": 97.3
+   },
+   "creatinine_max": {
+    "present": true,
+    "recorded_pct": 97.3
+   },
+   "bun_max": {
+    "present": true,
+    "recorded_pct": 97.2
+   },
+   "glucose_max": {
+    "present": true,
+    "recorded_pct": 98.0
+   },
+   "bicarbonate_min": {
+    "present": true,
+    "recorded_pct": 0.0
+   },
+   "inr_max": {
+    "present": true,
+    "recorded_pct": 0.0
+   },
+   "mech_vent": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "vasopressor": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "rrt": {
+    "present": true,
+    "recorded_pct": 100.0
+   }
+  },
+  "INSPIRE": {
+   "age": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "female": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "tbi": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "sah": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ich": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ais": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "cns_inf": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "seizure": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "anoxic": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "charlson_comorbidity_index": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "heart_rate_mean": {
+    "present": true,
+    "recorded_pct": 85.5
+   },
+   "mbp_mean": {
+    "present": true,
+    "recorded_pct": 85.4
+   },
+   "resp_rate_mean": {
+    "present": true,
+    "recorded_pct": 85.4
+   },
+   "temperature_mean": {
+    "present": true,
+    "recorded_pct": 85.2
+   },
+   "spo2_mean": {
+    "present": true,
+    "recorded_pct": 85.2
+   },
+   "wbc_max": {
+    "present": true,
+    "recorded_pct": 91.8
+   },
+   "hemoglobin_min": {
+    "present": true,
+    "recorded_pct": 91.7
+   },
+   "platelets_min": {
+    "present": true,
+    "recorded_pct": 91.2
+   },
+   "sodium_min": {
+    "present": true,
+    "recorded_pct": 93.0
+   },
+   "potassium_max": {
+    "present": true,
+    "recorded_pct": 93.1
+   },
+   "creatinine_max": {
+    "present": true,
+    "recorded_pct": 92.5
+   },
+   "bun_max": {
+    "present": true,
+    "recorded_pct": 92.4
+   },
+   "glucose_max": {
+    "present": true,
+    "recorded_pct": 86.6
+   },
+   "bicarbonate_min": {
+    "present": true,
+    "recorded_pct": 88.3
+   },
+   "inr_max": {
+    "present": true,
+    "recorded_pct": 88.6
+   },
+   "mech_vent": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "vasopressor": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "rrt": {
+    "present": true,
+    "recorded_pct": 100.0
+   }
+  },
+  "Huaian": {
+   "age": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "female": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "tbi": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "sah": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ich": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "ais": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "cns_inf": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "seizure": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "anoxic": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "charlson_comorbidity_index": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "heart_rate_mean": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "mbp_mean": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "resp_rate_mean": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "temperature_mean": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "spo2_mean": {
+    "present": true,
+    "recorded_pct": 99.1
+   },
+   "wbc_max": {
+    "present": true,
+    "recorded_pct": 82.2
+   },
+   "hemoglobin_min": {
+    "present": true,
+    "recorded_pct": 82.2
+   },
+   "platelets_min": {
+    "present": true,
+    "recorded_pct": 82.2
+   },
+   "sodium_min": {
+    "present": true,
+    "recorded_pct": 82.2
+   },
+   "potassium_max": {
+    "present": true,
+    "recorded_pct": 82.2
+   },
+   "creatinine_max": {
+    "present": true,
+    "recorded_pct": 82.2
+   },
+   "bun_max": {
+    "present": true,
+    "recorded_pct": 82.2
+   },
+   "glucose_max": {
+    "present": true,
+    "recorded_pct": 77.8
+   },
+   "bicarbonate_min": {
+    "present": true,
+    "recorded_pct": 22.7
+   },
+   "inr_max": {
+    "present": true,
+    "recorded_pct": 81.8
+   },
+   "mech_vent": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "vasopressor": {
+    "present": true,
+    "recorded_pct": 100.0
+   },
+   "rrt": {
+    "present": true,
+    "recorded_pct": 100.0
+   }
+  }
+ },
+ "complete_case": {
+  "MIMIC_internal_1yr": {
+   "label": "MIMIC-IV held-out test set (1-year)",
+   "full": {
+    "n": 4980,
+    "events": 1591,
+    "Logistic": {
+     "auc": 0.8161135807625477,
+     "slope": 0.945185667524184,
+     "intercept": -0.05231683314155052,
+     "oe": 0.9897393971701158,
+     "brier": 0.1588293758461174
+    },
+    "XGBoost": {
+     "auc": 0.8464648540338015,
+     "slope": 0.9438674279301202,
+     "intercept": -0.05411976810216952,
+     "oe": 0.9884946263716996,
+     "brier": 0.14617790020377605
+    }
+   },
+   "complete_case": {
+    "n": 4432,
+    "events": 1394,
+    "pct_of_cohort": 89.0,
+    "Logistic": {
+     "auc": 0.8127876642395748,
+     "slope": 0.9354943529849691,
+     "intercept": -0.08104226239917528,
+     "oe": 0.9784839326624096,
+     "brier": 0.1593685829446577
+    },
+    "XGBoost": {
+     "auc": 0.8413044997700103,
+     "slope": 0.9275648474448361,
+     "intercept": -0.07534252468868502,
+     "oe": 0.9826858410540433,
+     "brier": 0.14806072351019753
+    }
+   },
+   "complete_case_recorded": {
+    "n": 4432,
+    "events": 1394,
+    "n_predictors": 28,
+    "pct_of_cohort": 89.0,
+    "Logistic": {
+     "auc": 0.8127876642395748,
+     "slope": 0.9354943529849691,
+     "intercept": -0.08104226239917528,
+     "oe": 0.9784839326624096,
+     "brier": 0.1593685829446577
+    },
+    "XGBoost": {
+     "auc": 0.8413044997700103,
+     "slope": 0.9275648474448361,
+     "intercept": -0.07534252468868502,
+     "oe": 0.9826858410540433,
+     "brier": 0.14806072351019753
+    }
+   }
+  },
+  "NWICU_1yr": {
+   "label": "NWICU (1-year)",
+   "full": {
+    "n": 3420,
+    "events": 635,
+    "Logistic": {
+     "auc": 0.6970884519147853,
+     "slope": 0.039481054865711726,
+     "intercept": -1.5407981227141558,
+     "oe": 0.5348749065660272,
+     "brier": 0.24484370745353706
+    },
+    "XGBoost": {
+     "auc": 0.8006412304386548,
+     "slope": 0.8380363472209424,
+     "intercept": -0.2888694028213686,
+     "oe": 0.9353538462407817,
+     "brier": 0.12237786277223012
+    }
+   },
+   "complete_case": {
+    "n": 0,
+    "events": 0,
+    "pct_of_cohort": 0.0,
+    "too_few": true
+   },
+   "complete_case_recorded": {
+    "n": 2510,
+    "events": 425,
+    "n_predictors": 26,
+    "pct_of_cohort": 73.4,
+    "Logistic": {
+     "auc": 0.7010624911835238,
+     "slope": 0.03623829982059923,
+     "intercept": -1.6541456238024879,
+     "oe": 0.4804337342454317,
+     "brier": 0.2500414696081154
+    },
+    "XGBoost": {
+     "auc": 0.8183235999435746,
+     "slope": 0.8861821402295944,
+     "intercept": -0.3665913136932059,
+     "oe": 0.8619699834346817,
+     "brier": 0.11203147032845381
+    }
+   }
+  },
+  "INSPIRE_1yr": {
+   "label": "INSPIRE (1-year)",
+   "full": {
+    "n": 1543,
+    "events": 262,
+    "Logistic": {
+     "auc": 0.7291729981943973,
+     "slope": 0.8067723401848771,
+     "intercept": -0.5151335909742147,
+     "oe": 0.8068981560260065,
+     "brier": 0.13139121128097964
+    },
+    "XGBoost": {
+     "auc": 0.7587330389545381,
+     "slope": 0.8019249283492635,
+     "intercept": -0.6120480198851468,
+     "oe": 0.7516484011036325,
+     "brier": 0.13050759755597166
+    }
+   },
+   "complete_case": {
+    "n": 1154,
+    "events": 181,
+    "pct_of_cohort": 74.8,
+    "Logistic": {
+     "auc": 0.7448626733971937,
+     "slope": 0.8572173014105052,
+     "intercept": -0.5511674968090631,
+     "oe": 0.7556363407909336,
+     "brier": 0.12172756098119093
+    },
+    "XGBoost": {
+     "auc": 0.7830483837081874,
+     "slope": 0.8882059647369726,
+     "intercept": -0.7017419881259823,
+     "oe": 0.6715149311735331,
+     "brier": 0.12209437412571661
+    }
+   },
+   "complete_case_recorded": {
+    "n": 1154,
+    "events": 181,
+    "n_predictors": 28,
+    "pct_of_cohort": 74.8,
+    "Logistic": {
+     "auc": 0.7448626733971937,
+     "slope": 0.8572173014105052,
+     "intercept": -0.5511674968090631,
+     "oe": 0.7556363407909336,
+     "brier": 0.12172756098119093
+    },
+    "XGBoost": {
+     "auc": 0.7830483837081874,
+     "slope": 0.8882059647369726,
+     "intercept": -0.7017419881259823,
+     "oe": 0.6715149311735331,
+     "brier": 0.12209437412571661
+    }
+   }
+  },
+  "eICU_inhosp": {
+   "label": "eICU (in-hospital)",
+   "full": {
+    "n": 14852,
+    "events": 1894,
+    "Logistic": {
+     "auc": 0.8107035515440757,
+     "slope": 0.6745356392308666,
+     "intercept": -0.7489999922555709,
+     "oe": 0.8062568270164843,
+     "brier": 0.09477217954178169
+    },
+    "XGBoost": {
+     "auc": 0.8495929013123873,
+     "slope": 0.70323325718581,
+     "intercept": -1.1805923395886457,
+     "oe": 0.5857803323555956,
+     "brier": 0.10210360944679868
+    }
+   },
+   "complete_case": {
+    "n": 4056,
+    "events": 782,
+    "pct_of_cohort": 27.3,
+    "Logistic": {
+     "auc": 0.814749862123809,
+     "slope": 0.6296775143665849,
+     "intercept": -0.632351372660745,
+     "oe": 0.8515303519589577,
+     "brier": 0.12830044215993314
+    },
+    "XGBoost": {
+     "auc": 0.8615082483552504,
+     "slope": 0.7025070709512754,
+     "intercept": -1.1640846205466762,
+     "oe": 0.6047285958770775,
+     "brier": 0.13835578316076588
+    }
+   },
+   "complete_case_recorded": {
+    "n": 4056,
+    "events": 782,
+    "n_predictors": 28,
+    "pct_of_cohort": 27.3,
+    "Logistic": {
+     "auc": 0.814749862123809,
+     "slope": 0.6296775143665849,
+     "intercept": -0.632351372660745,
+     "oe": 0.8515303519589577,
+     "brier": 0.12830044215993314
+    },
+    "XGBoost": {
+     "auc": 0.8615082483552504,
+     "slope": 0.7025070709512754,
+     "intercept": -1.1640846205466762,
+     "oe": 0.6047285958770775,
+     "brier": 0.13835578316076588
+    }
+   }
+  },
+  "Huaian_inhosp": {
+   "label": "Huaian (in-hospital)",
+   "full": {
+    "n": 225,
+    "events": 55,
+    "Logistic": {
+     "auc": 0.8645989304812834,
+     "slope": 0.8985700063109732,
+     "intercept": 0.032733848297479384,
+     "oe": 1.0859134822145724,
+     "brier": 0.12158362704242438
+    },
+    "XGBoost": {
+     "auc": 0.8001069518716577,
+     "slope": 0.8496232981693329,
+     "intercept": -0.21625255816795583,
+     "oe": 0.9514743737091877,
+     "brier": 0.14196280107524642
+    }
+   },
+   "complete_case": {
+    "n": 51,
+    "events": 14,
+    "pct_of_cohort": 22.7,
+    "Logistic": {
+     "auc": 0.8474903474903476,
+     "slope": 1.0446862318438814,
+     "intercept": 0.3036442886954572,
+     "oe": 1.1456074710605113,
+     "brier": 0.14432240947616218
+    },
+    "XGBoost": {
+     "auc": 0.7992277992277992,
+     "slope": 0.8480395030997891,
+     "intercept": -0.45247226896027265,
+     "oe": 0.8237998023051964,
+     "brier": 0.15333383586925317
+    }
+   },
+   "complete_case_recorded": {
+    "n": 51,
+    "events": 14,
+    "n_predictors": 28,
+    "pct_of_cohort": 22.7,
+    "Logistic": {
+     "auc": 0.8474903474903476,
+     "slope": 1.0446862318438814,
+     "intercept": 0.3036442886954572,
+     "oe": 1.1456074710605113,
+     "brier": 0.14432240947616218
+    },
+    "XGBoost": {
+     "auc": 0.7992277992277992,
+     "slope": 0.8480395030997891,
+     "intercept": -0.45247226896027265,
+     "oe": 0.8237998023051964,
+     "brier": 0.15333383586925317
+    }
+   }
+  }
+ },
+ "epsilon_grid": {
+  "NWICU_1yr": {
+   "Logistic": {
+    "1e-09": {
+     "slope": 0.0231,
+     "intercept": -1.5462
+    },
+    "1e-06": {
+     "slope": 0.0395,
+     "intercept": -1.5408
+    },
+    "0.0001": {
+     "slope": 0.0671,
+     "intercept": -1.5239
+    },
+    "0.001": {
+     "slope": 0.0963,
+     "intercept": -1.5002
+    },
+    "0.01": {
+     "slope": 0.1543,
+     "intercept": -1.4438
+    }
+   },
+   "XGBoost": {
+    "1e-09": {
+     "slope": 0.838,
+     "intercept": -0.2889
+    },
+    "1e-06": {
+     "slope": 0.838,
+     "intercept": -0.2889
+    },
+    "0.0001": {
+     "slope": 0.838,
+     "intercept": -0.2889
+    },
+    "0.001": {
+     "slope": 0.838,
+     "intercept": -0.2889
+    },
+    "0.01": {
+     "slope": 0.8386,
+     "intercept": -0.2885
+    }
+   }
+  },
+  "INSPIRE_1yr": {
+   "Logistic": {
+    "1e-09": {
+     "slope": 0.8068,
+     "intercept": -0.5151
+    },
+    "1e-06": {
+     "slope": 0.8068,
+     "intercept": -0.5151
+    },
+    "0.0001": {
+     "slope": 0.8068,
+     "intercept": -0.5151
+    },
+    "0.001": {
+     "slope": 0.8068,
+     "intercept": -0.5151
+    },
+    "0.01": {
+     "slope": 0.807,
+     "intercept": -0.515
+    }
+   },
+   "XGBoost": {
+    "1e-09": {
+     "slope": 0.8019,
+     "intercept": -0.612
+    },
+    "1e-06": {
+     "slope": 0.8019,
+     "intercept": -0.612
+    },
+    "0.0001": {
+     "slope": 0.8019,
+     "intercept": -0.612
+    },
+    "0.001": {
+     "slope": 0.8019,
+     "intercept": -0.612
+    },
+    "0.01": {
+     "slope": 0.8021,
+     "intercept": -0.612
+    }
+   }
+  },
+  "eICU_inhosp": {
+   "Logistic": {
+    "1e-09": {
+     "slope": 0.6745,
+     "intercept": -0.749
+    },
+    "1e-06": {
+     "slope": 0.6745,
+     "intercept": -0.749
+    },
+    "0.0001": {
+     "slope": 0.6746,
+     "intercept": -0.7489
+    },
+    "0.001": {
+     "slope": 0.6754,
+     "intercept": -0.7478
+    },
+    "0.01": {
+     "slope": 0.6846,
+     "intercept": -0.7415
+    }
+   },
+   "XGBoost": {
+    "1e-09": {
+     "slope": 0.7032,
+     "intercept": -1.1806
+    },
+    "1e-06": {
+     "slope": 0.7032,
+     "intercept": -1.1806
+    },
+    "0.0001": {
+     "slope": 0.7032,
+     "intercept": -1.1806
+    },
+    "0.001": {
+     "slope": 0.7032,
+     "intercept": -1.1806
+    },
+    "0.01": {
+     "slope": 0.7086,
+     "intercept": -1.1801
+    }
+   }
+  },
+  "Huaian_inhosp": {
+   "Logistic": {
+    "1e-09": {
+     "slope": 0.7997,
+     "intercept": -0.0802
+    },
+    "1e-06": {
+     "slope": 0.8986,
+     "intercept": 0.0327
+    },
+    "0.0001": {
+     "slope": 1.0084,
+     "intercept": 0.1563
+    },
+    "0.001": {
+     "slope": 1.0692,
+     "intercept": 0.224
+    },
+    "0.01": {
+     "slope": 1.147,
+     "intercept": 0.3099
+    }
+   },
+   "XGBoost": {
+    "1e-09": {
+     "slope": 0.8496,
+     "intercept": -0.2163
+    },
+    "1e-06": {
+     "slope": 0.8496,
+     "intercept": -0.2163
+    },
+    "0.0001": {
+     "slope": 0.8496,
+     "intercept": -0.2163
+    },
+    "0.001": {
+     "slope": 0.8496,
+     "intercept": -0.2163
+    },
+    "0.01": {
+     "slope": 0.8498,
+     "intercept": -0.2162
+    }
+   }
+  }
+ },
+ "epsilon_spread": {
+  "NWICU_1yr": {
+   "Logistic": {
+    "range": 0.1312,
+    "grade": "FRAGILE"
+   },
+   "XGBoost": {
+    "range": 0.0006,
+    "grade": "STABLE"
+   }
+  },
+  "INSPIRE_1yr": {
+   "Logistic": {
+    "range": 0.0002,
+    "grade": "STABLE"
+   },
+   "XGBoost": {
+    "range": 0.0002,
+    "grade": "STABLE"
+   }
+  },
+  "eICU_inhosp": {
+   "Logistic": {
+    "range": 0.0101,
+    "grade": "FRAGILE"
+   },
+   "XGBoost": {
+    "range": 0.0054,
+    "grade": "STABLE"
+   }
+  },
+  "Huaian_inhosp": {
+   "Logistic": {
+    "range": 0.3473,
+    "grade": "FRAGILE"
+   },
+   "XGBoost": {
+    "range": 0.0002,
+    "grade": "STABLE"
+   }
+  }
+ },
+ "unit_conversion": {
+  "creatinine_max": "÷88.4 (µmol/L→mg/dL)",
+  "bun_max": "÷0.357 (mmol/L→mg/dL)",
+  "glucose_max": "×18 (mmol/L→mg/dL)",
+  "hemoglobin_min": "÷10 (g/L→g/dL)"
+ },
+ "medians": {
+  "creatinine_max": {
+   "SI_median": 66.0,
+   "conventional_median": 0.75
+  },
+  "bun_max": {
+   "SI_median": 5.98,
+   "conventional_median": 16.75
+  },
+  "glucose_max": {
+   "SI_median": 8.29,
+   "conventional_median": 149.22
+  },
+  "hemoglobin_min": {
+   "SI_median": 108.0,
+   "conventional_median": 10.8
+  }
+ },
+ "harmonisation_variants": {
+  "harmonised": {
+   "desc": "Reference: SI→conventional unit conversion applied; logistic fed standardised, XGBoost fed native-scale features",
+   "Logistic": {
+    "auc": 0.8646,
+    "brier": 0.1216,
+    "slope": 0.8986,
+    "intercept": 0.0327,
+    "oe": 1.0859,
+    "ece": 0.0726
+   },
+   "XGBoost": {
+    "auc": 0.8001,
+    "brier": 0.142,
+    "slope": 0.8496,
+    "intercept": -0.2163,
+    "oe": 0.9515,
+    "ece": 0.0693
+   }
+  },
+  "unit_discordant": {
+   "desc": "Threat U: laboratory values fed in SI units without conversion",
+   "Logistic": {
+    "auc": 0.8647,
+    "brier": 0.1466,
+    "slope": 0.844,
+    "intercept": 0.6221,
+    "oe": 1.8009,
+    "ece": 0.1175
+   },
+   "XGBoost": {
+    "auc": 0.7847,
+    "brier": 0.1576,
+    "slope": 0.7403,
+    "intercept": -0.4374,
+    "oe": 0.8678,
+    "ece": 0.0639
+   }
+  },
+  "scale_discordant": {
+   "desc": "Threat S: logistic fed unstandardised and XGBoost fed standardised features (roles swapped)",
+   "Logistic": {
+    "auc": 0.5765,
+    "brier": 0.7525,
+    "slope": 0.1288,
+    "intercept": -2.8765,
+    "oe": 0.2449,
+    "ece": 0.7539
+   },
+   "XGBoost": {
+    "auc": 0.8756,
+    "brier": 0.1399,
+    "slope": 2.6826,
+    "intercept": 1.4835,
+    "oe": 0.9496,
+    "ece": 0.1818
+   }
+  }
+ },
+ "leakage_scenarios": {
+  "A_1yr_full": {
+   "outcome": "1-year death (all patients)",
+   "internal_n": 4980,
+   "internal_events": 1591,
+   "Logistic": {
+    "full": 0.8161221120796217,
+    "no_aet": 0.7959282991020419,
+    "delta_no_aet": -0.020193812977579828,
+    "aet_only": 0.6296788014760663
+   },
+   "XGBoost": {
+    "full": 0.8464648540338015,
+    "no_aet": 0.833545936227663,
+    "delta_no_aet": -0.012918917806138408,
+    "aet_only": 0.6318320317201788
+   }
+  },
+  "B_inhosp": {
+   "outcome": "in-hospital death (max leakage)",
+   "internal_n": 4980,
+   "internal_events": 840,
+   "Logistic": {
+    "full": 0.8449669312169313,
+    "no_aet": 0.8257841614906833,
+    "delta_no_aet": -0.019182769726247995,
+    "aet_only": 0.6624214975845412
+   },
+   "XGBoost": {
+    "full": 0.8753749712445366,
+    "no_aet": 0.8645925350816654,
+    "delta_no_aet": -0.010782436162871112,
+    "aet_only": 0.6723064757303886
+   }
+  },
+  "C_survivors": {
+   "outcome": "1-year death among hospital survivors",
+   "internal_n": 4140,
+   "internal_events": 751,
+   "Logistic": {
+    "full": 0.7899792506421063,
+    "no_aet": 0.7768636604916275,
+    "delta_no_aet": -0.013115590150478806,
+    "aet_only": 0.5713872601850037
+   },
+   "XGBoost": {
+    "full": 0.7982577768836986,
+    "no_aet": 0.791383889052818,
+    "delta_no_aet": -0.0068738878308806095,
+    "aet_only": 0.571870141473609
+   }
+  }
+ },
+ "leakage_external": {
+  "A_1yr_full|NWICU": {
+   "n": 3420,
+   "events": 635,
+   "Logistic": {
+    "full": 0.6970878864558449,
+    "no_aet": 0.6965580514284906,
+    "delta": -0.000529835027354264
+   },
+   "XGBoost": {
+    "full": 0.8006412304386548,
+    "no_aet": 0.7948599782298308,
+    "delta": -0.005781252208823973
+   }
+  },
+  "A_1yr_full|INSPIRE": {
+   "n": 1543,
+   "events": 262,
+   "Logistic": {
+    "full": 0.7290657346657847,
+    "no_aet": 0.7060800543468544,
+    "delta": -0.022985680318930335
+   },
+   "XGBoost": {
+    "full": 0.7587330389545381,
+    "no_aet": 0.7416647299640666,
+    "delta": -0.017068308990471515
+   }
+  },
+  "B_inhosp|eICU": {
+   "n": 14852,
+   "events": 1894,
+   "Logistic": {
+    "full": 0.8107035515440757,
+    "no_aet": 0.7861327384892104,
+    "delta": -0.024570813054865304
+   },
+   "XGBoost": {
+    "full": 0.8495929013123873,
+    "no_aet": 0.839892525816084,
+    "delta": -0.009700375496303315
+   }
+  },
+  "B_inhosp|NWICU": {
+   "n": 3420,
+   "events": 16,
+   "Logistic": {
+    "full": 0.526439482961222,
+    "no_aet": 0.5541825793184489,
+    "delta": 0.027743096357226937
+   },
+   "XGBoost": {
+    "full": 0.6837176850763806,
+    "no_aet": 0.7069807579318449,
+    "delta": 0.02326307285546425
+   }
+  },
+  "B_inhosp|INSPIRE": {
+   "n": 1543,
+   "events": 126,
+   "Logistic": {
+    "full": 0.6442713759227521,
+    "no_aet": 0.634198115849492,
+    "delta": -0.010073260073260037
+   },
+   "XGBoost": {
+    "full": 0.7200266603936328,
+    "no_aet": 0.7080098800282286,
+    "delta": -0.012016780365404212
+   }
+  },
+  "C_survivors|NWICU": {
+   "n": 3404,
+   "events": 635,
+   "Logistic": {
+    "full": 0.6128517927675076,
+    "no_aet": 0.6091829393481827,
+    "delta": -0.00366885341932488
+   },
+   "XGBoost": {
+    "full": 0.7195422890665211,
+    "no_aet": 0.7035349183735564,
+    "delta": -0.01600737069296465
+   }
+  },
+  "C_survivors|INSPIRE": {
+   "n": 1417,
+   "events": 151,
+   "Logistic": {
+    "full": 0.7752529215446261,
+    "no_aet": 0.7629442474080119,
+    "delta": -0.012308674136614184
+   },
+   "XGBoost": {
+    "full": 0.7764769885858362,
+    "no_aet": 0.7551185880334369,
+    "delta": -0.021358400552399348
+   }
+  }
+ }
+}

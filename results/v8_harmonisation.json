@@ -1,0 +1,143 @@
+{
+ "n": 225,
+ "events": 55,
+ "eps": 1e-06,
+ "variants": {
+  "harmonised": {
+   "desc": "Reference: SI→conventional unit conversion applied; logistic fed standardised, XGBoost fed native-scale features",
+   "Logistic": {
+    "auc": 0.8646,
+    "brier": 0.1216,
+    "slope": 0.8986,
+    "intercept": 0.0327,
+    "oe": 1.0859,
+    "ece": 0.0726
+   },
+   "XGBoost": {
+    "auc": 0.8001,
+    "brier": 0.142,
+    "slope": 0.8496,
+    "intercept": -0.2163,
+    "oe": 0.9515,
+    "ece": 0.0693
+   }
+  },
+  "unit_discordant": {
+   "desc": "Threat U: laboratory values fed in SI units without conversion",
+   "Logistic": {
+    "auc": 0.8647,
+    "brier": 0.1466,
+    "slope": 0.844,
+    "intercept": 0.6221,
+    "oe": 1.8009,
+    "ece": 0.1175
+   },
+   "XGBoost": {
+    "auc": 0.7847,
+    "brier": 0.1576,
+    "slope": 0.7403,
+    "intercept": -0.4374,
+    "oe": 0.8678,
+    "ece": 0.0639
+   }
+  },
+  "scale_discordant": {
+   "desc": "Threat S: logistic fed unstandardised and XGBoost fed standardised features (roles swapped)",
+   "Logistic": {
+    "auc": 0.5765,
+    "brier": 0.7525,
+    "slope": 0.1288,
+    "intercept": -2.8765,
+    "oe": 0.2449,
+    "ece": 0.7539
+   },
+   "XGBoost": {
+    "auc": 0.8756,
+    "brier": 0.1399,
+    "slope": 2.6826,
+    "intercept": 1.4835,
+    "oe": 0.9496,
+    "ece": 0.1818
+   }
+  }
+ },
+ "delta": {
+  "unit_discordant": {
+   "Logistic": {
+    "auc_ref": 0.8646,
+    "auc_alt": 0.8647,
+    "dAUC": 0.0001,
+    "z": -0.005,
+    "p": 0.9963371300039645
+   },
+   "XGBoost": {
+    "auc_ref": 0.8001,
+    "auc_alt": 0.7847,
+    "dAUC": -0.0154,
+    "z": 0.746,
+    "p": 0.45573645235918336
+   }
+  },
+  "scale_discordant": {
+   "Logistic": {
+    "auc_ref": 0.8646,
+    "auc_alt": 0.5765,
+    "dAUC": -0.2881,
+    "z": 7.452,
+    "p": 9.192646643896296e-14
+   },
+   "XGBoost": {
+    "auc_ref": 0.8001,
+    "auc_alt": 0.8756,
+    "dAUC": 0.0755,
+    "z": -2.515,
+    "p": 0.011891873547568821
+   }
+  }
+ },
+ "unit_conversion": {
+  "creatinine_max": "÷88.4 (µmol/L→mg/dL)",
+  "bun_max": "÷0.357 (mmol/L→mg/dL)",
+  "glucose_max": "×18 (mmol/L→mg/dL)",
+  "hemoglobin_min": "÷10 (g/L→g/dL)"
+ },
+ "medians_si_vs_conventional": {
+  "creatinine_max": {
+   "SI_median": 66.0,
+   "conventional_median": 0.75
+  },
+  "bun_max": {
+   "SI_median": 5.98,
+   "conventional_median": 16.75
+  },
+  "glucose_max": {
+   "SI_median": 8.29,
+   "conventional_median": 149.22
+  },
+  "hemoglobin_min": {
+   "SI_median": 108.0,
+   "conventional_median": 10.8
+  }
+ },
+ "huaian_eps1e6": {
+  "n": 225,
+  "events": 55,
+  "eps": 1e-06,
+  "Logistic": {
+   "auc": 0.8646,
+   "brier": 0.1216,
+   "slope": 0.8986,
+   "intercept": 0.0327,
+   "oe": 1.0859,
+   "ece": 0.0726
+  },
+  "XGBoost": {
+   "auc": 0.8001,
+   "brier": 0.142,
+   "slope": 0.8496,
+   "intercept": -0.2163,
+   "oe": 0.9515,
+   "ece": 0.0693
+  }
+ }
+}

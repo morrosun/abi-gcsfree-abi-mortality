@@ -1,0 +1,157 @@
+{
+  "M1_gcs_increment": {
+    "Logistic": {
+      "auc_base": 0.8161,
+      "auc_gcs": 0.8213,
+      "dAUC": 0.0051,
+      "delong_p": 0.0,
+      "cNRI": 0.1965,
+      "NRI_event": -0.2847,
+      "NRI_nonevent": 0.4813,
+      "IDI": 0.0082,
+      "ci_base": [
+        0.8046736824519292,
+        0.8291474341450789
+      ],
+      "ci_gcs": [
+        0.8095532484038075,
+        0.8343074277093181
+      ]
+    },
+    "XGBoost": {
+      "auc_base": 0.8465,
+      "auc_gcs": 0.8522,
+      "dAUC": 0.0057,
+      "delong_p": 0.0005,
+      "cNRI": 0.1249,
+      "NRI_event": -0.0572,
+      "NRI_nonevent": 0.1821,
+      "IDI": 0.013000000268220901,
+      "ci_base": [
+        0.8361996945707612,
+        0.8571866667011244
+      ],
+      "ci_gcs": [
+        0.8418716203437236,
+        0.8629340464454881
+      ]
+    },
+    "GCS_alone_auc": 0.5513,
+    "SOFA_alone_auc": 0.7019
+  },
+  "M4_optimism": {
+    "Logistic": {
+      "apparent": 0.8233,
+      "optimism": 0.0015,
+      "corrected": 0.8218,
+      "B": 200
+    },
+    "XGBoost": {
+      "apparent": 0.9078,
+      "optimism": 0.0398,
+      "corrected": 0.868,
+      "B": 60
+    },
+    "hyperparameters": {
+      "XGBoost_grid": {
+        "n_estimators": [
+          200,
+          400,
+          600
+        ],
+        "max_depth": [
+          3,
+          4,
+          5
+        ],
+        "learning_rate": [
+          0.03,
+          0.05,
+          0.1
+        ],
+        "subsample": [
+          0.7,
+          0.8,
+          0.9
+        ],
+        "colsample_bytree": [
+          0.7,
+          0.8,
+          0.9
+        ],
+        "selected": "n=400,depth=4,lr=0.05,sub=0.8,col=0.8"
+      },
+      "RandomForest_grid": {
+        "n_estimators": [
+          300,
+          500
+        ],
+        "max_depth": [
+          6,
+          8,
+          10
+        ],
+        "min_samples_leaf": [
+          10,
+          20,
+          50
+        ],
+        "selected": "n=500,depth=8,leaf=20"
+      },
+      "Logistic": {
+        "penalty": "none/L1(LASSO CV Cs=20,5-fold)",
+        "C": "1e6 (main, unpenalized)"
+      },
+      "tuning": "5-fold CV on training set, scoring=roc_auc; seed=42"
+    }
+  },
+  "M5a_secondary": {
+    "death_90": {
+      "prev": 25.3,
+      "Logistic": {
+        "auc": 0.8236,
+        "ci": [
+          0.811758939015157,
+          0.8352220133006122
+        ],
+        "brier": 0.1402
+      },
+      "XGBoost": {
+        "auc": 0.8597,
+        "ci": [
+          0.8489305280239676,
+          0.8703917141324474
+        ],
+        "brier": 0.1271
+      }
+    },
+    "death_hosp": {
+      "prev": 16.9,
+      "Logistic": {
+        "auc": 0.845,
+        "ci": [
+          0.8289234584407984,
+          0.858270878454777
+        ],
+        "brier": 0.1025
+      },
+      "XGBoost": {
+        "auc": 0.8754,
+        "ci": [
+          0.8626182617367347,
+          0.8876512625037177
+        ],
+        "brier": 0.0958
+      }
+    }
+  },
+  "M5b_labs_increment": {
+    "n_complete": 3499,
+    "auc_base": 0.8076,
+    "auc_full": 0.8026,
+    "dAUC": -0.0049,
+    "delong_p": 0.1085,
+    "cNRI": 0.0644,
+    "IDI": 0.0012
+  }
+}

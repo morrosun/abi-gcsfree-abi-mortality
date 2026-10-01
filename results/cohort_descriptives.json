@@ -1,0 +1,192 @@
+{
+ "generated_at": "2026-10-01 06:44:10",
+ "sources": {
+  "MIMIC_IV": "data/mimic_abi_cohort.csv",
+  "eICU": "data/eicu_abi_final.csv",
+  "NWICU": "data/nwicu_abi_final_vp2.csv",
+  "INSPIRE": "data/inspire_abi_final.csv + data/inspire_deathhosp.csv",
+  "Huaian": "ABI3/output/ABI本地数据采集模板_已录入检验结果.xlsx (sheet 数据录入)"
+ },
+ "aetiology_indicators": [
+  "tbi",
+  "sah",
+  "ich",
+  "ais",
+  "cns_inf",
+  "seizure",
+  "anoxic"
+ ],
+ "cohorts": [
+  {
+   "database": "MIMIC-IV",
+   "role": "derivation (70/30 split; 4,980 held out)",
+   "outcome": "1-year death",
+   "outcome_column": "death_365",
+   "n": 16597,
+   "events": 5301,
+   "event_rate_pct": 31.9,
+   "age_median": 67.0,
+   "age_iqr": [
+    53.0,
+    79.0
+   ],
+   "female_pct": 45.0,
+   "mech_vent_pct": 42.4,
+   "vasopressor_pct": 23.3,
+   "rrt_pct": 2.7,
+   "aetiology_available": {
+    "tbi": 5271,
+    "sah": 1255,
+    "ich": 3004,
+    "ais": 4905,
+    "cns_inf": 518,
+    "seizure": 3557,
+    "anoxic": 823
+   },
+   "aetiology_structurally_empty": [],
+   "binary_available": [
+    "mech_vent",
+    "vasopressor",
+    "rrt"
+   ]
+  },
+  {
+   "database": "eICU",
+   "role": "external (parallel in-hospital model)",
+   "outcome": "in-hospital death",
+   "outcome_column": "death_hosp",
+   "n": 14852,
+   "events": 1894,
+   "event_rate_pct": 12.8,
+   "age_median": 63.0,
+   "age_iqr": [
+    49.0,
+    76.0
+   ],
+   "female_pct": 45.4,
+   "mech_vent_pct": 29.8,
+   "vasopressor_pct": 11.8,
+   "rrt_pct": 2.1,
+   "aetiology_available": {
+    "tbi": 4014,
+    "sah": 2082,
+    "ich": 1118,
+    "ais": 3745,
+    "cns_inf": 518,
+    "seizure": 5758,
+    "anoxic": 567
+   },
+   "aetiology_structurally_empty": [],
+   "binary_available": [
+    "mech_vent",
+    "vasopressor",
+    "rrt"
+   ]
+  },
+  {
+   "database": "NWICU",
+   "role": "external (1-year model)",
+   "outcome": "1-year death",
+   "outcome_column": "death_365",
+   "n": 3420,
+   "events": 635,
+   "event_rate_pct": 18.6,
+   "age_median": 69.0,
+   "age_iqr": [
+    56.0,
+    78.0
+   ],
+   "female_pct": 46.5,
+   "mech_vent_pct": 19.6,
+   "vasopressor_pct": 11.1,
+   "rrt_pct": 3.3,
+   "aetiology_available": {
+    "tbi": 859,
+    "sah": 348,
+    "ich": 565,
+    "ais": 1486,
+    "cns_inf": 64,
+    "seizure": 323,
+    "anoxic": 100
+   },
+   "aetiology_structurally_empty": [],
+   "binary_available": [
+    "mech_vent",
+    "vasopressor",
+    "rrt"
+   ]
+  },
+  {
+   "database": "INSPIRE",
+   "role": "external (1-year model)",
+   "outcome": "1-year death",
+   "outcome_column": "death_365",
+   "n": 1543,
+   "events": 262,
+   "event_rate_pct": 17.0,
+   "age_median": 65.0,
+   "age_iqr": [
+    55.0,
+    75.0
+   ],
+   "female_pct": 44.4,
+   "mech_vent_pct": 56.3,
+   "vasopressor_pct": 8.7,
+   "rrt_pct": 2.7,
+   "aetiology_available": {
+    "tbi": 223,
+    "sah": 264,
+    "ich": 270,
+    "ais": 902,
+    "cns_inf": 69,
+    "seizure": 0,
+    "anoxic": 0
+   },
+   "aetiology_structurally_empty": [
+    "seizure",
+    "anoxic"
+   ],
+   "binary_available": [
+    "mech_vent",
+    "vasopressor",
+    "rrt"
+   ]
+  },
+  {
+   "database": "Huaian",
+   "role": "external, independent healthcare system",
+   "outcome": "in-hospital death",
+   "outcome_column": "death_hosp",
+   "n": 225,
+   "events": 55,
+   "event_rate_pct": 24.4,
+   "age_median": 61.0,
+   "age_iqr": [
+    48.0,
+    68.0
+   ],
+   "female_pct": 31.1,
+   "mech_vent_pct": 97.8,
+   "vasopressor_pct": 54.2,
+   "rrt_pct": 7.1,
+   "aetiology_available": {
+    "tbi": 224,
+    "sah": 0,
+    "ich": 0,
+    "ais": 40,
+    "cns_inf": 39,
+    "seizure": 15,
+    "anoxic": 48
+   },
+   "aetiology_structurally_empty": [
+    "sah",
+    "ich"
+   ],
+   "binary_available": [
+    "mech_vent",
+    "vasopressor",
+    "rrt"
+   ]
+  }
+ ]
+}

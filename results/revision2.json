@@ -1,0 +1,77 @@
+{
+  "N2_eicu_inhosp_calibration": {
+    "obs_rate": 12.8,
+    "Logistic": {
+      "auc": 0.811,
+      "brier_pre": 0.095,
+      "brier_post": 0.089,
+      "oe_pre": 0.81,
+      "oe_post": 1.0,
+      "ece_pre": 0.04,
+      "ece_post": 0.006,
+      "exp_rate_pre": 15.8
+    },
+    "XGBoost": {
+      "auc": 0.85,
+      "brier_pre": 0.102,
+      "brier_post": 0.082,
+      "oe_pre": 0.59,
+      "oe_post": 1.0,
+      "ece_pre": 0.09,
+      "ece_post": 0.007,
+      "exp_rate_pre": 21.8
+    }
+  },
+  "N3_gcs_sensitivity": {
+    "operationalization": {
+      "source": "mimiciv_derived.first_day_gcs (ICU \u9996\u65e5\u6700\u5dee/\u6700\u4f4e GCS \u603b\u5206)",
+      "measure": "\u9996\u65e5\u6700\u5dee\u503c(worst/min)",
+      "missing_rate_pct": 0.34,
+      "imputation": "\u8bad\u7ec3\u96c6\u4e2d\u4f4d\u6570\u63d2\u8865",
+      "train_median": 14.0,
+      "gcs_min_median_iqr": [
+        14.0,
+        13.0,
+        15.0
+      ],
+      "vent_pct": 42.4
+    },
+    "gcs_alone_auc": {
+      "full_test": {
+        "auc": 0.551,
+        "n": 4980,
+        "events": 1591
+      },
+      "nonventilated": {
+        "auc": 0.653,
+        "n": 2888,
+        "events": 712
+      },
+      "ventilated": {
+        "auc": 0.488,
+        "n": 2092,
+        "events": 879
+      },
+      "motor_gcs_full": {
+        "auc": 0.679,
+        "n": 4980,
+        "events": 1591
+      },
+      "complete_case_full": {
+        "auc": 0.551,
+        "n": 4961,
+        "events": 1583
+      }
+    }
+  },
+  "N4_lab_completecase": {
+    "lab_cols": [
+      "albumin_min",
+      "lactate_max",
+      "ph_min"
+    ],
+    "n": 3499,
+    "events": 1666,
+    "event_rate_pct": 47.6
+  }
+}

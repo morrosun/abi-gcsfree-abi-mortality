@@ -1,0 +1,40 @@
+{
+  "title": "Analysis code and de-identified local validation cohort for a GCS-free long-term mortality model in critically ill patients with acute brain injury",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "version": "v1.1.0",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Pan, Qiuyin",
+      "affiliation": "The Affiliated Huaian No.1 People's Hospital of Nanjing Medical University, Huaian, China"
+    },
+    {
+      "name": "Zhu, Xingxing",
+      "affiliation": "The Affiliated Huaian No.1 People's Hospital of Nanjing Medical University, Huaian, China"
+    },
+    {
+      "name": "Li, Chang",
+      "affiliation": "The Affiliated Huaian No.1 People's Hospital of Nanjing Medical University, Huaian, China"
+    },
+    {
+      "name": "Wang, Kai",
+      "affiliation": "The Affiliated Huaian No.1 People's Hospital of Nanjing Medical University, Huaian, China"
+    }
+  ],
+  "keywords": [
+    "acute brain injury",
+    "traumatic brain injury",
+    "Glasgow Coma Scale",
+    "mortality prediction",
+    "external validation",
+    "transportability",
+    "calibration",
+    "MIMIC-IV",
+    "eICU-CRD",
+    "INSPIRE"
+  ],
+  "description": "<p>Analysis code, harmonisation and transportability audits, and the de-identified single-centre validation cohort for a Glasgow Coma Scale-free long-term mortality model in critically ill patients with acute brain injury.</p><p><strong>What is included.</strong> The full analysis pipeline (cohort description and missingness, model development with 28 predictors, external validation, recalibration, and the revision-round audits): aetiology-code leakage sensitivity analysis, GCS-component increment audit, calibration-slope epsilon-dependence audit, bootstrap confidence intervals for calibration metrics, harmonisation/transportability variants, NWICU vasopressor-extraction forensic audit, and the NWICU cohort descriptives. Every audit writes a machine-readable JSON result file; the <code>results/</code> directory holds those files, including <code>v8_figure_number_manifest.json</code>, which registers every number printed inside every figure together with the JSON path it was derived from.</p><p><strong>What is not included.</strong> Patient-level source data (PhysioNet data-use agreements forbid redistribution of the source data and of objects derived from it, e.g. extracted cohort CSVs and trained model files) and the manuscript/appendix production scripts. The de-identified local cohort (n = 239 rows) is included. See the README for the exact inclusion/exclusion boundary and how to obtain the rest.</p>",
+  "notes": "Companion analysis repository. The de-identified local cohort file is released under CC BY 4.0; the code is MIT."
+}

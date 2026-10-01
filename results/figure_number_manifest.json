@@ -1,0 +1,254 @@
+{
+  "fig6_ext_roc.png": [
+    {
+      "item": "NWICU XGBoost AUC",
+      "value": 0.801,
+      "source": "discrimination.NWICU_1yr.XGBoost.auc"
+    },
+    {
+      "item": "INSPIRE XGBoost AUC",
+      "value": 0.759,
+      "source": "discrimination.INSPIRE_1yr.XGBoost.auc"
+    }
+  ],
+  "fig7_ext_roc_bymodel.png": [
+    {
+      "item": "eICU (in-hospital) Logistic AUC",
+      "value": 0.811,
+      "source": "discrimination.eICU_inhosp.Logistic.auc"
+    },
+    {
+      "item": "eICU (in-hospital) XGBoost AUC",
+      "value": 0.85,
+      "source": "discrimination.eICU_inhosp.XGBoost.auc"
+    },
+    {
+      "item": "NWICU (1-year) Logistic AUC",
+      "value": 0.697,
+      "source": "discrimination.NWICU_1yr.Logistic.auc"
+    },
+    {
+      "item": "NWICU (1-year) XGBoost AUC",
+      "value": 0.801,
+      "source": "discrimination.NWICU_1yr.XGBoost.auc"
+    },
+    {
+      "item": "INSPIRE (1-year) Logistic AUC",
+      "value": 0.729,
+      "source": "discrimination.INSPIRE_1yr.Logistic.auc"
+    },
+    {
+      "item": "INSPIRE (1-year) XGBoost AUC",
+      "value": 0.759,
+      "source": "discrimination.INSPIRE_1yr.XGBoost.auc"
+    }
+  ],
+  "fig9_recal_calibration.png": [
+    {
+      "item": "eICU (in-hospital) Logistic Brier orig→log",
+      "value": [
+        0.0948,
+        0.0892
+      ],
+      "source": "recalibration.eICU (in-hospital)|Logistic"
+    },
+    {
+      "item": "eICU (in-hospital) Logistic ECE orig→log",
+      "value": [
+        0.0396,
+        0.0061
+      ],
+      "source": "recalibration.eICU (in-hospital)|Logistic"
+    },
+    {
+      "item": "NWICU (1-year) Logistic Brier orig→log",
+      "value": [
+        0.2448,
+        0.1499
+      ],
+      "source": "recalibration.NWICU (1-year)|Logistic"
+    },
+    {
+      "item": "NWICU (1-year) Logistic ECE orig→log",
+      "value": [
+        0.1635,
+        0.0174
+      ],
+      "source": "recalibration.NWICU (1-year)|Logistic"
+    },
+    {
+      "item": "INSPIRE (1-year) Logistic Brier orig→log",
+      "value": [
+        0.1314,
+        0.1275
+      ],
+      "source": "recalibration.INSPIRE (1-year)|Logistic"
+    },
+    {
+      "item": "INSPIRE (1-year) Logistic ECE orig→log",
+      "value": [
+        0.0418,
+        0.0184
+      ],
+      "source": "recalibration.INSPIRE (1-year)|Logistic"
+    },
+    {
+      "item": "eICU (in-hospital) XGBoost Brier orig→log",
+      "value": [
+        0.1021,
+        0.0824
+      ],
+      "source": "recalibration.eICU (in-hospital)|XGBoost"
+    },
+    {
+      "item": "eICU (in-hospital) XGBoost ECE orig→log",
+      "value": [
+        0.0902,
+        0.0066
+      ],
+      "source": "recalibration.eICU (in-hospital)|XGBoost"
+    },
+    {
+      "item": "NWICU (1-year) XGBoost Brier orig→log",
+      "value": [
+        0.1224,
+        0.121
+      ],
+      "source": "recalibration.NWICU (1-year)|XGBoost"
+    },
+    {
+      "item": "NWICU (1-year) XGBoost ECE orig→log",
+      "value": [
+        0.0212,
+        0.0201
+      ],
+      "source": "recalibration.NWICU (1-year)|XGBoost"
+    },
+    {
+      "item": "INSPIRE (1-year) XGBoost Brier orig→log",
+      "value": [
+        0.1305,
+        0.1236
+      ],
+      "source": "recalibration.INSPIRE (1-year)|XGBoost"
+    },
+    {
+      "item": "INSPIRE (1-year) XGBoost ECE orig→log",
+      "value": [
+        0.0562,
+        0.0235
+      ],
+      "source": "recalibration.INSPIRE (1-year)|XGBoost"
+    }
+  ],
+  "fig10_recal_ece.png": [
+    {
+      "item": "eICU (in-hospital) Logistic ECE orig/int/log",
+      "value": [
+        0.0396,
+        0.0319,
+        0.0061
+      ],
+      "source": "recalibration.eICU (in-hospital)|Logistic"
+    },
+    {
+      "item": "eICU (in-hospital) XGBoost ECE orig/int/log",
+      "value": [
+        0.0902,
+        0.0286,
+        0.0066
+      ],
+      "source": "recalibration.eICU (in-hospital)|XGBoost"
+    },
+    {
+      "item": "NWICU (1-year) Logistic ECE orig/int/log",
+      "value": [
+        0.1635,
+        0.2845,
+        0.0174
+      ],
+      "source": "recalibration.NWICU (1-year)|Logistic"
+    },
+    {
+      "item": "NWICU (1-year) XGBoost ECE orig/int/log",
+      "value": [
+        0.0212,
+        0.0296,
+        0.0201
+      ],
+      "source": "recalibration.NWICU (1-year)|XGBoost"
+    },
+    {
+      "item": "INSPIRE (1-year) Logistic ECE orig/int/log",
+      "value": [
+        0.0418,
+        0.0287,
+        0.0184
+      ],
+      "source": "recalibration.INSPIRE (1-year)|Logistic"
+    },
+    {
+      "item": "INSPIRE (1-year) XGBoost ECE orig/int/log",
+      "value": [
+        0.0562,
+        0.0345,
+        0.0235
+      ],
+      "source": "recalibration.INSPIRE (1-year)|XGBoost"
+    }
+  ],
+  "figR2_inhosp_parallel.png": [
+    {
+      "item": "MIMIC-IV (internal) Logistic AUC",
+      "value": 0.845,
+      "source": "inhosp_parallel_mimic_internal"
+    },
+    {
+      "item": "MIMIC-IV (internal) XGBoost AUC",
+      "value": 0.875,
+      "source": "inhosp_parallel_mimic_internal"
+    },
+    {
+      "item": "eICU Logistic AUC",
+      "value": 0.811,
+      "source": "discrimination.eICU_inhosp"
+    },
+    {
+      "item": "eICU XGBoost AUC",
+      "value": 0.85,
+      "source": "discrimination.eICU_inhosp"
+    },
+    {
+      "item": "INSPIRE Logistic AUC",
+      "value": 0.644,
+      "source": "discrimination.INSPIRE_inhosp"
+    },
+    {
+      "item": "INSPIRE XGBoost AUC",
+      "value": 0.72,
+      "source": "discrimination.INSPIRE_inhosp"
+    },
+    {
+      "item": "NWICU in-hospital events excluded",
+      "value": 16,
+      "source": "discrimination.NWICU_inhosp.events"
+    }
+  ],
+  "figR4_external_dca.png": [
+    {
+      "item": "eICU (in-hospital) event rate %",
+      "value": 12.8,
+      "source": "recalibration.eICU (in-hospital)|XGBoost (n/events)"
+    },
+    {
+      "item": "NWICU (1-year) event rate %",
+      "value": 18.6,
+      "source": "recalibration.NWICU (1-year)|XGBoost (n/events)"
+    },
+    {
+      "item": "INSPIRE (1-year) event rate %",
+      "value": 17.0,
+      "source": "recalibration.INSPIRE (1-year)|XGBoost (n/events)"
+    }
+  ]
+}

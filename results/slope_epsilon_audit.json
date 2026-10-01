@@ -1,0 +1,269 @@
+{
+  "generated_at": "2026-10-01 06:44:47",
+  "eps_list": [
+    1e-09,
+    1e-06,
+    0.0001,
+    0.001,
+    0.01
+  ],
+  "conclusion": "Calibration slope is insensitive to the clipping constant in the large cohorts (range <=0.01) but NOT in the 225-patient Huaian cohort; the manuscript must state the epsilon used.",
+  "results": {
+    "NWICU_1yr": {
+      "n": 3420,
+      "events": 635,
+      "Logistic": {
+        "pred_min": 0.0,
+        "pred_max": 1.0,
+        "pred_p01": 0.014802,
+        "pred_p99": 1.0,
+        "by_eps": {
+          "1e-09": {
+            "slope": 0.0231,
+            "intercept": -1.5462
+          },
+          "1e-06": {
+            "slope": 0.0395,
+            "intercept": -1.5408
+          },
+          "0.0001": {
+            "slope": 0.0671,
+            "intercept": -1.5239
+          },
+          "0.001": {
+            "slope": 0.0963,
+            "intercept": -1.5002
+          },
+          "0.01": {
+            "slope": 0.1543,
+            "intercept": -1.4438
+          }
+        },
+        "slope_range": 0.1312,
+        "grade": "FRAGILE"
+      },
+      "XGBoost": {
+        "pred_min": 0.003825,
+        "pred_max": 0.987481,
+        "pred_p01": 0.009622,
+        "pred_p99": 0.914593,
+        "by_eps": {
+          "1e-09": {
+            "slope": 0.838,
+            "intercept": -0.2889
+          },
+          "1e-06": {
+            "slope": 0.838,
+            "intercept": -0.2889
+          },
+          "0.0001": {
+            "slope": 0.838,
+            "intercept": -0.2889
+          },
+          "0.001": {
+            "slope": 0.838,
+            "intercept": -0.2889
+          },
+          "0.01": {
+            "slope": 0.8386,
+            "intercept": -0.2885
+          }
+        },
+        "slope_range": 0.0006,
+        "grade": "STABLE"
+      }
+    },
+    "INSPIRE_1yr": {
+      "n": 1543,
+      "events": 262,
+      "Logistic": {
+        "pred_min": 0.004895,
+        "pred_max": 0.878971,
+        "pred_p01": 0.014002,
+        "pred_p99": 0.728779,
+        "by_eps": {
+          "1e-09": {
+            "slope": 0.8068,
+            "intercept": -0.5151
+          },
+          "1e-06": {
+            "slope": 0.8068,
+            "intercept": -0.5151
+          },
+          "0.0001": {
+            "slope": 0.8068,
+            "intercept": -0.5151
+          },
+          "0.001": {
+            "slope": 0.8068,
+            "intercept": -0.5151
+          },
+          "0.01": {
+            "slope": 0.807,
+            "intercept": -0.515
+          }
+        },
+        "slope_range": 0.0002,
+        "grade": "STABLE"
+      },
+      "XGBoost": {
+        "pred_min": 0.006542,
+        "pred_max": 0.915284,
+        "pred_p01": 0.01145,
+        "pred_p99": 0.796805,
+        "by_eps": {
+          "1e-09": {
+            "slope": 0.8019,
+            "intercept": -0.612
+          },
+          "1e-06": {
+            "slope": 0.8019,
+            "intercept": -0.612
+          },
+          "0.0001": {
+            "slope": 0.8019,
+            "intercept": -0.612
+          },
+          "0.001": {
+            "slope": 0.8019,
+            "intercept": -0.612
+          },
+          "0.01": {
+            "slope": 0.8021,
+            "intercept": -0.612
+          }
+        },
+        "slope_range": 0.0002,
+        "grade": "STABLE"
+      }
+    },
+    "eICU_inhosp": {
+      "n": 14852,
+      "events": 1894,
+      "Logistic": {
+        "pred_min": 0.000904,
+        "pred_max": 0.999958,
+        "pred_p01": 0.003228,
+        "pred_p99": 0.950678,
+        "by_eps": {
+          "1e-09": {
+            "slope": 0.6745,
+            "intercept": -0.749
+          },
+          "1e-06": {
+            "slope": 0.6745,
+            "intercept": -0.749
+          },
+          "0.0001": {
+            "slope": 0.6746,
+            "intercept": -0.7489
+          },
+          "0.001": {
+            "slope": 0.6754,
+            "intercept": -0.7478
+          },
+          "0.01": {
+            "slope": 0.6846,
+            "intercept": -0.7415
+          }
+        },
+        "slope_range": 0.0101,
+        "grade": "FRAGILE"
+      },
+      "XGBoost": {
+        "pred_min": 0.001206,
+        "pred_max": 0.999021,
+        "pred_p01": 0.004109,
+        "pred_p99": 0.977518,
+        "by_eps": {
+          "1e-09": {
+            "slope": 0.7032,
+            "intercept": -1.1806
+          },
+          "1e-06": {
+            "slope": 0.7032,
+            "intercept": -1.1806
+          },
+          "0.0001": {
+            "slope": 0.7032,
+            "intercept": -1.1806
+          },
+          "0.001": {
+            "slope": 0.7032,
+            "intercept": -1.1806
+          },
+          "0.01": {
+            "slope": 0.7086,
+            "intercept": -1.1801
+          }
+        },
+        "slope_range": 0.0054,
+        "grade": "STABLE"
+      }
+    },
+    "Huaian_inhosp": {
+      "n": 225,
+      "events": 55,
+      "Logistic": {
+        "pred_min": 0.0,
+        "pred_max": 0.993189,
+        "pred_p01": 0.023857,
+        "pred_p99": 0.861771,
+        "by_eps": {
+          "1e-09": {
+            "slope": 0.7997,
+            "intercept": -0.0802
+          },
+          "1e-06": {
+            "slope": 0.8986,
+            "intercept": 0.0327
+          },
+          "0.0001": {
+            "slope": 1.0084,
+            "intercept": 0.1563
+          },
+          "0.001": {
+            "slope": 1.0692,
+            "intercept": 0.224
+          },
+          "0.01": {
+            "slope": 1.147,
+            "intercept": 0.3099
+          }
+        },
+        "slope_range": 0.3473,
+        "grade": "FRAGILE"
+      },
+      "XGBoost": {
+        "pred_min": 0.008078,
+        "pred_max": 0.956952,
+        "pred_p01": 0.013613,
+        "pred_p99": 0.911304,
+        "by_eps": {
+          "1e-09": {
+            "slope": 0.8496,
+            "intercept": -0.2163
+          },
+          "1e-06": {
+            "slope": 0.8496,
+            "intercept": -0.2163
+          },
+          "0.0001": {
+            "slope": 0.8496,
+            "intercept": -0.2163
+          },
+          "0.001": {
+            "slope": 0.8496,
+            "intercept": -0.2163
+          },
+          "0.01": {
+            "slope": 0.8498,
+            "intercept": -0.2162
+          }
+        },
+        "slope_range": 0.0002,
+        "grade": "STABLE"
+      }
+    }
+  }
+}
