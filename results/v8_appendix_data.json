@@ -1148,58 +1148,58 @@
   "harmonised": {
    "desc": "Reference: SI→conventional unit conversion applied; logistic fed standardised, XGBoost fed native-scale features",
    "Logistic": {
-    "auc": 0.8646,
-    "brier": 0.1216,
-    "slope": 0.8986,
-    "intercept": 0.0327,
-    "oe": 1.0859,
-    "ece": 0.0726
+    "auc": 0.8645989304812834,
+    "brier": 0.12158363584626354,
+    "slope": 0.8985700063109732,
+    "intercept": 0.032733848297479384,
+    "oe": 1.0859135034495893,
+    "ece": 0.07257839293076744
    },
    "XGBoost": {
-    "auc": 0.8001,
-    "brier": 0.142,
-    "slope": 0.8496,
-    "intercept": -0.2163,
-    "oe": 0.9515,
-    "ece": 0.0693
+    "auc": 0.8001069518716577,
+    "brier": 0.14196279644966125,
+    "slope": 0.8496232981693329,
+    "intercept": -0.21625255816795583,
+    "oe": 0.9514743894373869,
+    "ece": 0.06931810797088675
    }
   },
   "unit_discordant": {
    "desc": "Threat U: laboratory values fed in SI units without conversion",
    "Logistic": {
-    "auc": 0.8647,
-    "brier": 0.1466,
-    "slope": 0.844,
-    "intercept": 0.6221,
-    "oe": 1.8009,
-    "ece": 0.1175
+    "auc": 0.8647058823529411,
+    "brier": 0.1466384572973214,
+    "slope": 0.8439723572181975,
+    "intercept": 0.6220761222517838,
+    "oe": 1.800899208430301,
+    "ece": 0.117538128162297
    },
    "XGBoost": {
-    "auc": 0.7847,
-    "brier": 0.1576,
-    "slope": 0.7403,
-    "intercept": -0.4374,
-    "oe": 0.8678,
-    "ece": 0.0639
+    "auc": 0.7847058823529411,
+    "brier": 0.15759459137916565,
+    "slope": 0.740286140851872,
+    "intercept": -0.4374310417397634,
+    "oe": 0.867841468410599,
+    "ece": 0.06393253610365923
    }
   },
   "scale_discordant": {
    "desc": "Threat S: logistic fed unstandardised and XGBoost fed standardised features (roles swapped)",
    "Logistic": {
-    "auc": 0.5765,
-    "brier": 0.7525,
-    "slope": 0.1288,
-    "intercept": -2.8765,
-    "oe": 0.2449,
-    "ece": 0.7539
+    "auc": 0.576524064171123,
+    "brier": 0.7524827636550024,
+    "slope": 0.12883988881383776,
+    "intercept": -2.876493534327834,
+    "oe": 0.24486183088232905,
+    "ece": 0.7538509761346608
    },
    "XGBoost": {
-    "auc": 0.8756,
-    "brier": 0.1399,
-    "slope": 2.6826,
-    "intercept": 1.4835,
-    "oe": 0.9496,
-    "ece": 0.1818
+    "auc": 0.8755614973262033,
+    "brier": 0.13985812664031982,
+    "slope": 2.6826104579406027,
+    "intercept": 1.4834754585402776,
+    "oe": 0.9495666664492767,
+    "ece": 0.18181242711014217
    }
   }
  },

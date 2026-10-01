@@ -93,7 +93,7 @@ manuscript's one-year analyses do **not** use this local cohort.
 ## Running the pipeline
 
 ```bash
-export ABI_BASE="/path/to/your/analysis/workspace"   # must contain sql/, data/, output/, ABI3/
+export ABI_BASE="/path/to/your/analysis/workspace"   # must contain sql/, data/, output/
 python scripts/02_table1_missing.py
 python scripts/03_model_dev.py                        # fits and saves the models
 python scripts/04_figures.py
@@ -110,18 +110,38 @@ python scripts/22_missingness_diag.py
 python scripts/24_local_inhosp_validation.py
 python scripts/25_local_part1_stats.py
 python scripts/27_part1_figures.py
-# transportability / harmonisation audits
-python scripts/61_extract_severity_inputs.py          # needs PostgreSQL (see below)
+# ---- transportability / harmonisation audits -------------------------------
+# 74 MUST run first: it writes results/nwicu_vasopressor_recovery.json, which
+# 58 and 62 read. An earlier revision of this README listed it last, which
+# left those two scripts running without the recovered variable.
+python scripts/74_recover_nwicu_vasopressor.py        # needs PostgreSQL
+# 79 pulls the official severity scores out of the database into
+# data/mimic_severity_official.csv, which 62 then reads — so it precedes 62.
+python scripts/79_extract_official_scores.py          # needs PostgreSQL
+python scripts/61_extract_severity_inputs.py          # needs PostgreSQL
 python scripts/58_gcs_increment_audit.py
 python scripts/60_leakage_sensitivity.py
-python scripts/62_calib_ci_and_severity.py
+python scripts/62_calib_ci_and_severity.py            # reads the CSV written by 79
 python scripts/63_check_slope_epsilon.py
 python scripts/59_rebuild_external_figures.py         # writes results/external_current.json
 python scripts/66_v8_audit_figures.py                 # writes the figure-number manifest
 python scripts/68_internal_learners.py
 python scripts/69_cohort_descriptives.py
-python scripts/74_recover_nwicu_vasopressor.py
+# 80 needs the figure inventory written by 66, so it runs last.
+python scripts/80_panel_provenance.py
 ```
+
+Two things worth knowing before you run the audits:
+
+- `58` reads the de-identified local cohort from **`data/huaian_local_cohort_deidentified.csv`**,
+  which is published here. The two inputs were checked to be equivalent item by item
+  (n=225, 55 events, 24.4%, and every aetiology count identical). It only falls back to a
+  local, non-public spreadsheet if that CSV is absent.
+- `62` computes the SOFA / OASIS / SAPS-II head-to-head from the **official** `mimiciv_derived`
+  tables (`first_day_sofa`, `oasis`, `sapsii`) rather than from a re-implementation. A
+  hand-written version is still in the script for comparison; it assigns 0 points where the
+  official score assigns 4 (heart rate < 33, 86 patients) and misses the high-systolic-blood-pressure
+  branch entirely (347 patients), so it is **not** used for the reported numbers.
 
 Every script reads its workspace root from the `ABI_BASE` environment variable; if the variable is unset the
 original development path is used as a fallback. Extracted cohort CSVs are expected under `$ABI_BASE/data/`

@@ -1,0 +1,555 @@
+{
+  "generated_at": "2026-10-02 07:27:29",
+  "method": "provenance (generator + deps + sha256 + mtime) and byte-level reproducibility (backup -> regenerate -> cmp)",
+  "panels": {
+    "calib_ci_v8.png": {
+      "panel": "calib_ci_v8.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "generator": "66_v8_audit_figures.py",
+      "depends_on": [
+        "calibration_ci_and_severity.json"
+      ],
+      "sha256": "e22e59d54ffd56c2",
+      "panel_mtime": "2026-10-02 07:27:20",
+      "newest_dep_mtime": "2026-10-02 07:12:56",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "NOT TESTED"
+    },
+    "fig1_roc.png": {
+      "panel": "fig1_roc.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "04_figures.py",
+      "depends_on": [
+        "model_performance.csv",
+        "models.joblib",
+        "preproc.joblib"
+      ],
+      "sha256": "33948c799ce86340",
+      "panel_mtime": "2026-10-02 07:19:26",
+      "newest_dep_mtime": "2026-07-29 17:37:47",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "fig2_calibration.png": {
+      "panel": "fig2_calibration.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "04_figures.py",
+      "depends_on": [
+        "model_performance.csv",
+        "models.joblib",
+        "preproc.joblib"
+      ],
+      "sha256": "97b175c5f1c991b2",
+      "panel_mtime": "2026-10-02 07:19:26",
+      "newest_dep_mtime": "2026-07-29 17:37:47",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "fig4_forest.png": {
+      "panel": "fig4_forest.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "04_figures.py",
+      "depends_on": [
+        "logit_OR.csv",
+        "models.joblib",
+        "preproc.joblib"
+      ],
+      "sha256": "21631ff7010ff780",
+      "panel_mtime": "2026-10-02 07:19:26",
+      "newest_dep_mtime": "2026-07-29 17:37:47",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "fig5_xgb_importance.png": {
+      "panel": "fig5_xgb_importance.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "04_figures.py",
+      "depends_on": [
+        "models.joblib",
+        "preproc.joblib"
+      ],
+      "sha256": "245a21d94225b972",
+      "panel_mtime": "2026-10-02 07:19:28",
+      "newest_dep_mtime": "2026-07-29 17:37:47",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "fig6_ext_roc.png": {
+      "panel": "fig6_ext_roc.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "59_rebuild_external_figures.py",
+      "depends_on": [
+        "external_current.json"
+      ],
+      "sha256": "3ecb3f3973a247a9",
+      "panel_mtime": "2026-10-02 07:20:29",
+      "newest_dep_mtime": "2026-10-02 07:20:29",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "fig7_ext_roc_bymodel.png": {
+      "panel": "fig7_ext_roc_bymodel.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "59_rebuild_external_figures.py",
+      "depends_on": [
+        "external_current.json"
+      ],
+      "sha256": "a0a0dfa8955fbb65",
+      "panel_mtime": "2026-10-02 07:20:29",
+      "newest_dep_mtime": "2026-10-02 07:20:29",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "fig8_ext_calibration.png": {
+      "panel": "fig8_ext_calibration.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "59_rebuild_external_figures.py",
+      "depends_on": [
+        "external_current.json"
+      ],
+      "sha256": "9125a2ea9790d7aa",
+      "panel_mtime": "2026-10-02 07:20:29",
+      "newest_dep_mtime": "2026-10-02 07:20:29",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "fig9_recal_calibration.png": {
+      "panel": "fig9_recal_calibration.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "59_rebuild_external_figures.py",
+      "depends_on": [
+        "external_current.json"
+      ],
+      "sha256": "2736142d8d3573f6",
+      "panel_mtime": "2026-10-02 07:20:30",
+      "newest_dep_mtime": "2026-10-02 07:20:29",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "figR3_rootcause.png": {
+      "panel": "figR3_rootcause.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "generator": "12_revision_figures.py",
+      "depends_on": [
+        "revision_internal.json",
+        "revision_external.json"
+      ],
+      "sha256": "48785e13cf8885a8",
+      "panel_mtime": "2026-10-02 07:20:06",
+      "newest_dep_mtime": "2026-10-01 06:37:23",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "IDENTICAL"
+    },
+    "gcs_components_v8.png": {
+      "panel": "gcs_components_v8.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "generator": "66_v8_audit_figures.py",
+      "depends_on": [
+        "audit_decisionE.json"
+      ],
+      "sha256": "d39301778d6bf2ca",
+      "panel_mtime": "2026-10-02 07:27:20",
+      "newest_dep_mtime": "2026-10-02 07:26:57",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "NOT TESTED"
+    },
+    "harmonisation_v8.png": {
+      "panel": "harmonisation_v8.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "generator": "66_v8_audit_figures.py",
+      "depends_on": [
+        "v8_harmonisation.json"
+      ],
+      "sha256": "39bda60a6deb344a",
+      "panel_mtime": "2026-10-02 07:27:20",
+      "newest_dep_mtime": "2026-10-02 07:27:20",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "NOT TESTED"
+    },
+    "huaian_panel_v8.png": {
+      "panel": "huaian_panel_v8.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "generator": "66_v8_audit_figures.py",
+      "depends_on": [
+        "v8_harmonisation.json"
+      ],
+      "sha256": "eea7e34995b68793",
+      "panel_mtime": "2026-10-02 07:27:21",
+      "newest_dep_mtime": "2026-10-02 07:27:20",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "NOT TESTED"
+    },
+    "leakage_dauc_v8.png": {
+      "panel": "leakage_dauc_v8.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "generator": "66_v8_audit_figures.py",
+      "depends_on": [
+        "leakage_sensitivity.json"
+      ],
+      "sha256": "d831560497c15f9e",
+      "panel_mtime": "2026-10-02 07:27:20",
+      "newest_dep_mtime": "2026-10-01 15:14:17",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "NOT TESTED"
+    },
+    "slope_eps_v8.png": {
+      "panel": "slope_eps_v8.png",
+      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "generator": "66_v8_audit_figures.py",
+      "depends_on": [
+        "slope_epsilon_audit.json"
+      ],
+      "sha256": "d537bdd109a2ff71",
+      "panel_mtime": "2026-10-02 07:27:20",
+      "newest_dep_mtime": "2026-10-01 06:44:47",
+      "panel_newer_than_deps": true,
+      "reproducibility_20261002": "NOT TESTED"
+    }
+  },
+  "figures": [
+    {
+      "figure": 1,
+      "file": "Figure1.png",
+      "panels": [
+        "fig1_roc.png",
+        "fig2_calibration.png"
+      ]
+    },
+    {
+      "figure": 2,
+      "file": "Figure2.png",
+      "panels": [
+        "fig4_forest.png",
+        "fig5_xgb_importance.png"
+      ]
+    },
+    {
+      "figure": 3,
+      "file": "Figure3.png",
+      "panels": [
+        "gcs_components_v8.png"
+      ]
+    },
+    {
+      "figure": 4,
+      "file": "Figure4.png",
+      "panels": [
+        "fig6_ext_roc.png",
+        "fig8_ext_calibration.png"
+      ]
+    },
+    {
+      "figure": 5,
+      "file": "Figure5.png",
+      "panels": [
+        "fig7_ext_roc_bymodel.png",
+        "fig9_recal_calibration.png"
+      ]
+    },
+    {
+      "figure": 6,
+      "file": "Figure6.png",
+      "panels": [
+        "figR3_rootcause.png",
+        "leakage_dauc_v8.png"
+      ]
+    },
+    {
+      "figure": 7,
+      "file": "Figure7.png",
+      "panels": [
+        "slope_eps_v8.png",
+        "calib_ci_v8.png"
+      ]
+    },
+    {
+      "figure": 8,
+      "file": "Figure8.png",
+      "panels": [
+        "harmonisation_v8.png",
+        "huaian_panel_v8.png"
+      ]
+    }
+  ],
+  "internal_panel_numbers": {
+    "fig1_roc.png": [
+      {
+        "item": "Logistic AUC",
+        "value": 0.816,
+        "source": "model_performance.csv[Logistic]['AUC (95% CI)']"
+      },
+      {
+        "item": "LASSO AUC",
+        "value": 0.816,
+        "source": "model_performance.csv[LASSO]['AUC (95% CI)']"
+      },
+      {
+        "item": "RandomForest AUC",
+        "value": 0.832,
+        "source": "model_performance.csv[RandomForest]['AUC (95% CI)']"
+      },
+      {
+        "item": "XGBoost AUC",
+        "value": 0.846,
+        "source": "model_performance.csv[XGBoost]['AUC (95% CI)']"
+      },
+      {
+        "item": "GBM AUC",
+        "value": 0.841,
+        "source": "model_performance.csv[GBM]['AUC (95% CI)']"
+      }
+    ],
+    "fig2_calibration.png": [
+      {
+        "item": "Logistic Brier",
+        "value": 0.159,
+        "source": "model_performance.csv[Logistic]['Brier']"
+      },
+      {
+        "item": "LASSO Brier",
+        "value": 0.159,
+        "source": "model_performance.csv[LASSO]['Brier']"
+      },
+      {
+        "item": "RandomForest Brier",
+        "value": 0.156,
+        "source": "model_performance.csv[RandomForest]['Brier']"
+      },
+      {
+        "item": "XGBoost Brier",
+        "value": 0.146,
+        "source": "model_performance.csv[XGBoost]['Brier']"
+      },
+      {
+        "item": "GBM Brier",
+        "value": 0.148,
+        "source": "model_performance.csv[GBM]['Brier']"
+      }
+    ],
+    "fig4_forest.png": [
+      {
+        "item": "OR const",
+        "value": -1.9517,
+        "source": "logit_OR.csv[const]"
+      },
+      {
+        "item": "OR age",
+        "value": 0.541,
+        "source": "logit_OR.csv[age]"
+      },
+      {
+        "item": "OR female",
+        "value": -0.0944,
+        "source": "logit_OR.csv[female]"
+      },
+      {
+        "item": "OR tbi",
+        "value": 0.389,
+        "source": "logit_OR.csv[tbi]"
+      },
+      {
+        "item": "OR sah",
+        "value": 0.5639,
+        "source": "logit_OR.csv[sah]"
+      },
+      {
+        "item": "OR ich",
+        "value": 0.8619,
+        "source": "logit_OR.csv[ich]"
+      },
+      {
+        "item": "OR ais",
+        "value": -0.0706,
+        "source": "logit_OR.csv[ais]"
+      },
+      {
+        "item": "OR cns_inf",
+        "value": -0.0485,
+        "source": "logit_OR.csv[cns_inf]"
+      },
+      {
+        "item": "OR seizure",
+        "value": 0.4427,
+        "source": "logit_OR.csv[seizure]"
+      },
+      {
+        "item": "OR anoxic",
+        "value": 2.2864,
+        "source": "logit_OR.csv[anoxic]"
+      },
+      {
+        "item": "OR charlson_comorbidity_index",
+        "value": 0.638,
+        "source": "logit_OR.csv[charlson_comorbidity_index]"
+      },
+      {
+        "item": "OR heart_rate_mean",
+        "value": 0.1766,
+        "source": "logit_OR.csv[heart_rate_mean]"
+      },
+      {
+        "item": "OR mbp_mean",
+        "value": -0.0184,
+        "source": "logit_OR.csv[mbp_mean]"
+      },
+      {
+        "item": "OR resp_rate_mean",
+        "value": 0.2769,
+        "source": "logit_OR.csv[resp_rate_mean]"
+      },
+      {
+        "item": "OR temperature_mean",
+        "value": -0.1667,
+        "source": "logit_OR.csv[temperature_mean]"
+      },
+      {
+        "item": "OR spo2_mean",
+        "value": -0.1554,
+        "source": "logit_OR.csv[spo2_mean]"
+      },
+      {
+        "item": "OR wbc_max",
+        "value": 0.1089,
+        "source": "logit_OR.csv[wbc_max]"
+      },
+      {
+        "item": "OR hemoglobin_min",
+        "value": -0.1338,
+        "source": "logit_OR.csv[hemoglobin_min]"
+      },
+      {
+        "item": "OR platelets_min",
+        "value": 0.0243,
+        "source": "logit_OR.csv[platelets_min]"
+      },
+      {
+        "item": "OR sodium_min",
+        "value": 0.027,
+        "source": "logit_OR.csv[sodium_min]"
+      },
+      {
+        "item": "OR potassium_max",
+        "value": 0.0082,
+        "source": "logit_OR.csv[potassium_max]"
+      },
+      {
+        "item": "OR creatinine_max",
+        "value": -0.0614,
+        "source": "logit_OR.csv[creatinine_max]"
+      },
+      {
+        "item": "OR bun_max",
+        "value": 0.1638,
+        "source": "logit_OR.csv[bun_max]"
+      },
+      {
+        "item": "OR glucose_max",
+        "value": 0.0592,
+        "source": "logit_OR.csv[glucose_max]"
+      },
+      {
+        "item": "OR bicarbonate_min",
+        "value": -0.0902,
+        "source": "logit_OR.csv[bicarbonate_min]"
+      },
+      {
+        "item": "OR inr_max",
+        "value": 0.1229,
+        "source": "logit_OR.csv[inr_max]"
+      },
+      {
+        "item": "OR mech_vent",
+        "value": 0.9285,
+        "source": "logit_OR.csv[mech_vent]"
+      },
+      {
+        "item": "OR vasopressor",
+        "value": 0.1489,
+        "source": "logit_OR.csv[vasopressor]"
+      },
+      {
+        "item": "OR rrt",
+        "value": 0.2236,
+        "source": "logit_OR.csv[rrt]"
+      }
+    ],
+    "fig5_xgb_importance.png": [
+      {
+        "item": "gain hemoglobin_min",
+        "value": 0.02017926052212715,
+        "source": "models.joblib['xgb'].feature_importances_[hemoglobin_min]"
+      },
+      {
+        "item": "gain seizure",
+        "value": 0.02270624414086342,
+        "source": "models.joblib['xgb'].feature_importances_[seizure]"
+      },
+      {
+        "item": "gain temperature_mean",
+        "value": 0.02522457204759121,
+        "source": "models.joblib['xgb'].feature_importances_[temperature_mean]"
+      },
+      {
+        "item": "gain spo2_mean",
+        "value": 0.02552781254053116,
+        "source": "models.joblib['xgb'].feature_importances_[spo2_mean]"
+      },
+      {
+        "item": "gain ais",
+        "value": 0.026934176683425903,
+        "source": "models.joblib['xgb'].feature_importances_[ais]"
+      },
+      {
+        "item": "gain glucose_max",
+        "value": 0.02762090228497982,
+        "source": "models.joblib['xgb'].feature_importances_[glucose_max]"
+      },
+      {
+        "item": "gain resp_rate_mean",
+        "value": 0.028155729174613953,
+        "source": "models.joblib['xgb'].feature_importances_[resp_rate_mean]"
+      },
+      {
+        "item": "gain inr_max",
+        "value": 0.02863331139087677,
+        "source": "models.joblib['xgb'].feature_importances_[inr_max]"
+      },
+      {
+        "item": "gain bun_max",
+        "value": 0.03565077856183052,
+        "source": "models.joblib['xgb'].feature_importances_[bun_max]"
+      },
+      {
+        "item": "gain age",
+        "value": 0.03792335093021393,
+        "source": "models.joblib['xgb'].feature_importances_[age]"
+      },
+      {
+        "item": "gain ich",
+        "value": 0.041949715465307236,
+        "source": "models.joblib['xgb'].feature_importances_[ich]"
+      },
+      {
+        "item": "gain vasopressor",
+        "value": 0.056317176669836044,
+        "source": "models.joblib['xgb'].feature_importances_[vasopressor]"
+      },
+      {
+        "item": "gain mech_vent",
+        "value": 0.12598437070846558,
+        "source": "models.joblib['xgb'].feature_importances_[mech_vent]"
+      },
+      {
+        "item": "gain charlson_comorbidity_index",
+        "value": 0.13669785857200623,
+        "source": "models.joblib['xgb'].feature_importances_[charlson_comorbidity_index]"
+      },
+      {
+        "item": "gain anoxic",
+        "value": 0.14834068715572357,
+        "source": "models.joblib['xgb'].feature_importances_[anoxic]"
+      }
+    ]
+  },
+  "note": "figR2_inhosp_parallel.png is written by both 12 and 59 from different data vintages; 59 (external_current.json) is authoritative and is the current file. figR2 is not used by any of the 8 V8 figures."
+}

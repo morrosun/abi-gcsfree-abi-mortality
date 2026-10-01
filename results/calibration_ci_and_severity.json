@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01 14:51:41",
+  "generated_at": "2026-10-02 07:12:56",
   "ece_definition": "ECE = sum over 10 equal-width probability bins of (n_b/N) * |mean(observed in bin b) - mean(predicted in bin b)|",
   "bootstrap": {
     "B": 1000,
@@ -419,24 +419,24 @@
         "auc_alone": 0.7018649644587185
       },
       "oasis": {
-        "median": 26.0,
-        "IQR": [
-          21.0,
-          31.0
-        ],
-        "min": 9.0,
-        "max": 59.0,
-        "auc_alone": 0.717599216899278
-      },
-      "saps2": {
-        "median": 34.0,
+        "median": 31.0,
         "IQR": [
           26.0,
-          44.0
+          37.0
+        ],
+        "min": 10.0,
+        "max": 67.0,
+        "auc_alone": 0.7202132309970938
+      },
+      "saps2": {
+        "median": 33.0,
+        "IQR": [
+          24.0,
+          42.0
         ],
         "min": 6.0,
-        "max": 100.0,
-        "auc_alone": 0.7845076474911714
+        "max": 98.0,
+        "auc_alone": 0.7799970845151217
       }
     },
     "comparison": {
@@ -467,50 +467,74 @@
       "oasis": {
         "Logistic": {
           "auc_model": 0.8161221120796217,
-          "auc_score": 0.717599216899278,
-          "dAUC": 0.09852289518034374,
-          "z": 13.245989883234092,
+          "auc_score": 0.720213230997094,
+          "dAUC": 0.09590888108252771,
+          "z": 12.710405349232968,
           "p": 0.0
         },
         "XGBoost": {
           "auc_model": 0.8464648540338015,
-          "auc_score": 0.717599216899278,
-          "dAUC": 0.12886563713452348,
-          "z": 17.42338737779303,
+          "auc_score": 0.720213230997094,
+          "dAUC": 0.12625162303670745,
+          "z": 16.923605116989023,
           "p": 0.0
         },
         "logistic_on_score": {
-          "auc": 0.717599216899278,
-          "brier": 0.18934248014821362,
-          "slope": 0.9989565780183289,
-          "intercept": -0.0004926399288413363,
-          "oe": 1.0000276274801556,
-          "ece": 0.011945012136073364
+          "auc": 0.7202132309970938,
+          "brier": 0.18877820652541738,
+          "slope": 0.9989958151452479,
+          "intercept": -0.0004793865246026088,
+          "oe": 1.0000346371526874,
+          "ece": 0.01380944376556282
         }
       },
       "saps2": {
         "Logistic": {
           "auc_model": 0.8161221120796217,
-          "auc_score": 0.7845076474911715,
-          "dAUC": 0.031614464588450186,
-          "z": 5.2337514935945775,
-          "p": 1.661e-07
+          "auc_score": 0.7799970845151217,
+          "dAUC": 0.03612502756449998,
+          "z": 5.757005078620304,
+          "p": 8.562e-09
         },
         "XGBoost": {
           "auc_model": 0.8464648540338015,
-          "auc_score": 0.7845076474911715,
-          "dAUC": 0.06195720654262993,
-          "z": 10.41566104568836,
+          "auc_score": 0.7799970845151217,
+          "dAUC": 0.06646776951867972,
+          "z": 10.747616367042877,
           "p": 0.0
         },
         "logistic_on_score": {
-          "auc": 0.7845076474911714,
-          "brier": 0.17058678365432925,
-          "slope": 0.9998525263005323,
-          "intercept": -3.252655793898598e-06,
-          "oe": 1.0000306177608809,
-          "ece": 0.014745240573115801
+          "auc": 0.7799970845151217,
+          "brier": 0.17217629274644447,
+          "slope": 0.9991714445350115,
+          "intercept": -0.0004642824654411985,
+          "oe": 0.9999908474124068,
+          "ece": 0.016487533497456696
         }
+      }
+    },
+    "score_source": {
+      "sofa": "mimiciv_derived.first_day_sofa (via mimic_abi_cohort.sofa_day1)",
+      "oasis": "mimiciv_derived.oasis (MIT-LCP mimic-code)",
+      "saps2": "mimiciv_derived.sapsii (MIT-LCP mimic-code)",
+      "official_csv": "data/mimic_severity_official.csv",
+      "changed_on": "2026-10-02",
+      "note": "Hand-written oasis()/saps2() were replaced by the official derived tables; the hand-written versions are retained in the script for audit only and no longer enter the reported results."
+    },
+    "handwritten_vs_official": {
+      "oasis": {
+        "pearson_r": 0.8531453747619369,
+        "mean_abs_diff": 5.55863453815261,
+        "n_differ": 4866,
+        "auc_alone_hand": 0.717599216899278,
+        "auc_alone_official": 0.7202132309970938
+      },
+      "saps2": {
+        "pearson_r": 0.9805130164280828,
+        "mean_abs_diff": 2.0716867469879516,
+        "n_differ": 3384,
+        "auc_alone_hand": 0.7845076474911714,
+        "auc_alone_official": 0.7799970845151217
       }
     }
   },

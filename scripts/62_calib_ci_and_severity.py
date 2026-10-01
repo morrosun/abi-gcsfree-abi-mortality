@@ -404,6 +404,14 @@ def part_b(pred_internal):
                               'bilirubin_total_max', 'aids', 'mets', 'hem_malign', 'n_proc',
                               'pre_icu_los_hours'])
     mim = mim.merge(sv, on='stay_id', how='left')
+    # ★ 第八轮（2026-10-02）：OASIS / SAPS-II 改用 MIMIC-IV 官方派生表
+    #   mimiciv_derived.oasis / mimiciv_derived.sapsii（MIT-LCP mimic-code 实现）。
+    #   手写版会漏掉 HR<33（官方 4 分 vs 手写 0 分，86 例）与高收缩压分支（347 例）；
+    #   SOFA 本就取自 first_day_sofa（sql/01_mimic_cohort.sql:72），此处不变。
+    off = pd.read_csv(DATA / "mimic_severity_official.csv")
+    mim = mim.merge(off, on='stay_id', how='left', validate='one_to_one')
+    assert mim['oasis_official'].notna().all(), "official OASIS 存在缺失"
+    assert mim['sapsii_official'].notna().all(), "official SAPS-II 存在缺失"
     # 与 PART A 完全同一个切分
     idx = np.arange(len(mim))
     _, te_idx = train_test_split(idx, test_size=0.30, stratify=mim['death_365'].values,
@@ -411,8 +419,11 @@ def part_b(pred_internal):
     te = mim.iloc[te_idx].copy()
 
     te['sofa'] = te['sofa_day1'].fillna(te['sofa_day1'].median())
-    te['oasis'] = oasis(te)
-    te['saps2'] = saps2(te)
+    te['oasis'] = te['oasis_official'].values
+    te['saps2'] = te['sapsii_official'].values
+    # 手写版保留为对照，仅供留痕，不再进入报告结果
+    te['oasis_hand'] = oasis(te)
+    te['saps2_hand'] = saps2(te)
     yte = te['death_365'].values.astype(int)
 
     p_lr, p_xg = pred_internal['Logistic'], pred_internal['XGBoost']
@@ -456,6 +467,26 @@ def part_b(pred_internal):
         RES['comparison'][score]['logistic_on_score'] = {
             # ★ 第五轮终审：全精度，避免双重舍入
             k: float(v) for k, v in mt.items()}
+
+    # ---------- 来源与"手写版 vs 官方版"对照（留痕，可独立复核） ----------
+    RES['score_source'] = {
+        'sofa': 'mimiciv_derived.first_day_sofa (via mimic_abi_cohort.sofa_day1)',
+        'oasis': 'mimiciv_derived.oasis (MIT-LCP mimic-code)',
+        'saps2': 'mimiciv_derived.sapsii (MIT-LCP mimic-code)',
+        'official_csv': 'data/mimic_severity_official.csv',
+        'changed_on': '2026-10-02',
+        'note': ('Hand-written oasis()/saps2() were replaced by the official derived '
+                 'tables; the hand-written versions are retained in the script for '
+                 'audit only and no longer enter the reported results.'),
+    }
+    RES['handwritten_vs_official'] = {
+        k: {'pearson_r': float(np.corrcoef(te[k + '_hand'].values, te[k].values)[0, 1]),
+            'mean_abs_diff': float(np.abs(te[k + '_hand'].values - te[k].values).mean()),
+            'n_differ': int((te[k + '_hand'].values != te[k].values).sum()),
+            'auc_alone_hand': float(roc_auc_score(yte, te[k + '_hand'].values)),
+            'auc_alone_official': float(roc_auc_score(yte, te[k].values))}
+        for k in ['oasis', 'saps2']
+    }
     return RES
 
 
@@ -518,6 +549,14 @@ def main():
         good = lo <= med <= hi
         ok &= good
         log(f"  [{'OK ' if good else 'FAIL'}] {k:<6} median {med} within [{lo},{hi}]")
+    # ★ 第八轮：官方评分必须已生效，且与手写版确实不同（证明替换有实质影响）
+    for k in ['oasis', 'saps2']:
+        hv = B['handwritten_vs_official'][k]
+        good = hv['n_differ'] > 0
+        ok &= good
+        log(f"  [{'OK ' if good else 'FAIL'}] {k:<6} 官方版 vs 手写版 不同 {hv['n_differ']:>5} 例 "
+            f"(r={hv['pearson_r']:.4f}; AUC {hv['auc_alone_hand']:.4f} -> "
+            f"{hv['auc_alone_official']:.4f})")
     log("=" * 78)
     log("ALL CHECKS PASSED" if ok else "!!! SELF-CHECK FAILED")
     return 0 if ok else 1

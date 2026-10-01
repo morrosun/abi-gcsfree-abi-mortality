@@ -249,23 +249,26 @@ def part1():
         px = xg.predict_proba(Mxg[uf])[:, 1]
         preds[tag] = {'Logistic': pl, 'XGBoost': px}
         res['variants'][tag] = {'desc': desc,
-                                'Logistic': {k: round(float(v), 4) for k, v in all_metrics(y, pl).items()},
-                                'XGBoost': {k: round(float(v), 4) for k, v in all_metrics(y, px).items()}}
+                                # ★ 第八轮：全精度导出（呈现层只舍一次）
+                                'Logistic': {k: float(v) for k, v in all_metrics(y, pl).items()},
+                                'XGBoost': {k: float(v) for k, v in all_metrics(y, px).items()}}
         log("  %-18s LR AUC %.3f | XGB AUC %.3f" % (tag, roc_auc_score(y, pl), roc_auc_score(y, px)))
 
     for tag in ('unit_discordant', 'scale_discordant'):
         res['delta'][tag] = {}
         for mn in ('Logistic', 'XGBoost'):
             a_ref, a_alt, z, p = delong_test(y, preds['harmonised'][mn], preds[tag][mn])
-            res['delta'][tag][mn] = {'auc_ref': round(a_ref, 4), 'auc_alt': round(a_alt, 4),
-                                     'dAUC': round(a_alt - a_ref, 4), 'z': round(z, 3), 'p': p}
+            # ★ 第八轮：全精度导出（呈现层只舍一次）
+            res['delta'][tag][mn] = {'auc_ref': float(a_ref), 'auc_alt': float(a_alt),
+                                     'dAUC': float(a_alt - a_ref), 'z': float(z), 'p': p}
             log("  Δ %-18s %-8s %+.3f (%.3f→%.3f, DeLong p=%.3g)"
                 % (tag, mn, a_alt - a_ref, a_ref, a_alt, p))
 
     # ---- 淮安校准指标（ε=1e-6 统一口径）----
     huaian = {'n': int(len(y)), 'events': int(y.sum()), 'eps': EPS}
     for mn, p in preds['harmonised'].items():
-        huaian[mn] = {k: round(float(v), 4) for k, v in all_metrics(y, p, EPS).items()}
+        # ★ 第八轮：全精度导出（呈现层只舍一次）
+        huaian[mn] = {k: float(v) for k, v in all_metrics(y, p, EPS).items()}
     res['huaian_eps1e6'] = huaian
     log("  Huaian (ε=1e-6) LR slope %.3f int %.3f O:E %.3f | XGB slope %.3f int %.3f O:E %.3f"
         % (huaian['Logistic']['slope'], huaian['Logistic']['intercept'], huaian['Logistic']['oe'],
@@ -741,8 +744,17 @@ def verify(res, inv, srcs, lk, se, cc, aud):
         "leakage 院内 ΔAUC(Logistic) = -0.0192（源 %.6f）" % _lk_b)
     chk(abs(se['results']['Huaian_inhosp']['Logistic']['slope_range'] - 0.3473) < 1e-3,
         "淮安斜率 ε 跨度 = 0.347")
-    chk(abs(cc['severity_headtohead']['score_descriptives']['saps2']['auc_alone'] - 0.7845) < 1e-4,
-        "SAPS-II AUC = 0.785")
+    # ★ 第八轮（2026-10-02）：OASIS/SAPS-II 改用 mimiciv_derived 官方表后重算
+    chk(abs(cc['severity_headtohead']['score_descriptives']['saps2']['auc_alone'] - 0.7800) < 1e-4,
+        "SAPS-II AUC = 0.780（官方 mimiciv_derived.sapsii；手写版为 0.7845）")
+    chk(abs(cc['severity_headtohead']['score_descriptives']['oasis']['auc_alone'] - 0.7202) < 1e-4,
+        "OASIS AUC = 0.720（官方 mimiciv_derived.oasis；手写版为 0.7176）")
+    _src = cc['severity_headtohead'].get('score_source', {})
+    chk('mimiciv_derived.oasis' in _src.get('oasis', '')
+        and 'mimiciv_derived.sapsii' in _src.get('saps2', ''),
+        "严重度评分来源已标记为 mimiciv_derived 官方表（不再使用手写实现）")
+    chk('handwritten_vs_official' in cc['severity_headtohead'],
+        "JSON 保留 handwritten_vs_official 对照（可复核替换的实质影响）")
     chk(abs(aud['gcs_increment_decisionE']['Logistic']['plus_motor_gcs']['dAUC'] - 0.0154) < 1e-4,
         "运动项 GCS ΔAUC = +0.0154")
 

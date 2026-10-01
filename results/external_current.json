@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01 06:40:33",
+  "generated_at": "2026-10-02 07:20:29",
   "rule": "eICU / Huaian = same-outcome in-hospital parallel model; NWICU / INSPIRE = frozen 1-year model",
   "source_artifacts": {
     "preproc.joblib": "2026-07-29 17:37:16",

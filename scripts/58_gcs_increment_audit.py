@@ -151,17 +151,19 @@ inc = {}
 for learner in ['Logistic', 'XGBoost']:
     inc[learner] = {}
     pb = preds['base'][learner]
-    inc[learner]['base_auc'] = round(float(roc_auc_score(yte, pb)), 4)
+    # ★ 第八轮：全精度导出（下游呈现层只舍一次，避免双重舍入）
+    inc[learner]['base_auc'] = float(roc_auc_score(yte, pb))
     inc[learner]['base_ci'] = boot_ci(yte, pb)
     for tag in ['plus_total_gcs', 'plus_motor_gcs']:
         pg = preds[tag][learner]
         a_new, a_old, z, pv = delong_test(yte, pg, pb)
         cnri, nrie, nrine, idi = nri_idi(yte, pb, pg)
-        d = {'auc': round(float(roc_auc_score(yte, pg)), 4),
-             'dAUC': round(float(roc_auc_score(yte, pg) - roc_auc_score(yte, pb)), 4),
-             'delong_z': round(float(z), 3), 'delong_p': float(pv),
-             'cNRI': round(cnri, 4), 'NRI_event': round(nrie, 4),
-             'NRI_nonevent': round(nrine, 4), 'IDI': round(idi, 4),
+        # ★ 第八轮：全精度导出（下游呈现层只舍一次，避免双重舍入）
+        d = {'auc': float(roc_auc_score(yte, pg)),
+             'dAUC': float(roc_auc_score(yte, pg) - roc_auc_score(yte, pb)),
+             'delong_z': float(z), 'delong_p': float(pv),
+             'cNRI': float(cnri), 'NRI_event': float(nrie),
+             'NRI_nonevent': float(nrine), 'IDI': float(idi),
              'ci': boot_ci(yte, pg)}
         inc[learner][tag] = d
         log(f"    {learner:8s} {tag:16s} AUC {d['auc']:.4f}  dAUC {d['dAUC']:+.4f}  "
@@ -178,7 +180,7 @@ gmed = float(df.loc[np.arange(len(df))[:int(len(df) * 0.7)], 'gcs_min'].median()
 def alone_auc(col):
     Xtr, Xte, _, _, ytr, yte, _ = prep_split(col)
     p = LogisticRegression(max_iter=1000).fit(Xtr[[col]], ytr).predict_proba(Xte[[col]])[:, 1]
-    return round(float(roc_auc_score(yte, p)), 4)
+    return float(roc_auc_score(yte, p))
 inc['alone_AUC_logit'] = {'gcs_total': alone_auc('gcs_min'), 'gcs_motor': alone_auc('gcs_motor')}
 log(f"  单独判别力(Logistic 单变量): 总分 {inc['alone_AUC_logit']['gcs_total']} | "
     f"运动项 {inc['alone_AUC_logit']['gcs_motor']}")
@@ -193,8 +195,17 @@ log("=" * 78)
 log("[2] Single-centre (Huaian) cohort audit — n / aetiology / single-flag AUC")
 log("=" * 78)
 
-P = BASE / "ABI3" / "output" / "ABI本地数据采集模板_已录入检验结果.xlsx"
-raw = pd.read_excel(P, sheet_name='数据录入', header=0, skiprows=[1, 2, 3, 4, 5])
+# ★ 第八轮（2026-10-02）：优先读取**已公开**的去标识 CSV，使第三方可复现；
+#   已验证二者逐项等价（n=225 / events=55 / 24.4% / 各病因计数全同）。
+#   仅当 CSV 缺失时才回退到本地未公开 Excel。
+CSV = BASE / "data" / "huaian_local_cohort_deidentified.csv"
+XLSX = BASE / "ABI3" / "output" / "ABI本地数据采集模板_已录入检验结果.xlsx"
+if CSV.exists():
+    raw = pd.read_csv(CSV)
+    log(f"  数据源：已公开去标识 CSV -> {CSV.name}（{len(raw)} 行）")
+else:
+    raw = pd.read_excel(XLSX, sheet_name='数据录入', header=0, skiprows=[1, 2, 3, 4, 5])
+    log(f"  数据源：本地未公开 Excel（公开 CSV 缺失）-> {XLSX.name}（{len(raw)} 行）")
 raw = raw.dropna(how='all').reset_index(drop=True)
 num = lambda c: pd.to_numeric(raw[c], errors='coerce')
 d = pd.DataFrame(index=raw.index)
@@ -245,7 +256,7 @@ def auc_ci(p):
         if len(np.unique(yv[i])) < 2: continue
         bs.append(roc_auc_score(yv[i], p[i]))
     lo, hi = np.percentile(bs, [2.5, 97.5])
-    return round(float(a), 4), [round(float(lo), 4), round(float(hi), 4)]
+    return float(a), [float(lo), float(hi)]
 rep['single_centre']['model_AUC'] = {'Logistic': auc_ci(p_lr), 'XGBoost': auc_ci(p_xg)}
 log(f"  冻结模型 AUC: Logistic {rep['single_centre']['model_AUC']['Logistic'][0]} "
     f"{rep['single_centre']['model_AUC']['Logistic'][1]} | "
@@ -259,7 +270,7 @@ for c in ufeats:
         single[c] = {'auc': None, 'note': 'constant in this cohort'}
         continue
     a = roc_auc_score(yv, v)
-    single[c] = {'auc': round(float(a), 4), 'abs_from_050': round(abs(float(a) - 0.5), 4)}
+    single[c] = {'auc': float(a), 'abs_from_050': float(abs(float(a) - 0.5))}
 rep['single_centre']['single_predictor_AUC'] = single
 top = sorted([(k, v['auc']) for k, v in single.items() if v.get('auc') is not None],
              key=lambda t: abs(t[1] - 0.5), reverse=True)[:8]
@@ -273,7 +284,7 @@ rep['single_centre']['editor_claim_anoxic_reproduces_model'] = {
     'anoxic_alone_auc': anx,
     'model_logistic_auc': rep['single_centre']['model_AUC']['Logistic'][0],
     'model_xgb_auc': rep['single_centre']['model_AUC']['XGBoost'][0],
-    'gap_logistic': (round(rep['single_centre']['model_AUC']['Logistic'][0] - anx, 4) if anx else None),
+    'gap_logistic': (float(rep['single_centre']['model_AUC']['Logistic'][0] - anx) if anx else None),
     'verdict': ('anoxic 单独远低于模型 → 编辑该子条不成立' if anx and
                 rep['single_centre']['model_AUC']['Logistic'][0] - anx > 0.1 else
                 '需人工判读：anoxic 单独接近模型')}
