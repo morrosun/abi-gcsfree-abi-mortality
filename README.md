@@ -220,10 +220,15 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 Archived on Zenodo — cite the **version-specific DOI** of the release you used:
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.1.0).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23077740](https://doi.org/10.5281/zenodo.23077740)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.2.0).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23092310](https://doi.org/10.5281/zenodo.23092310)**
 
-- v1.1.0 (current): `10.5281/zenodo.23077740` — adds the transportability/harmonisation audit layer,
+- v1.2.0 (current): `10.5281/zenodo.23092310` — recomputes the SOFA / OASIS / SAPS-II head-to-head
+  from the official `mimiciv_derived` tables (OASIS-alone AUC 0.718 → 0.720, SAPS-II-alone
+  0.785 → 0.780), adds panel provenance and number manifests for the internal panels, removes the
+  remaining intermediate rounding, and makes the single-centre analysis reproducible from the
+  published de-identified cohort
+- v1.1.0 (previous): `10.5281/zenodo.23077740` — adds the transportability/harmonisation audit layer,
   the machine-readable `results/` directory, and the figure-number manifests
 - v1.0.1 (previous): `10.5281/zenodo.22820024` — development and first validation round only
 - Concept DOI (always resolves to the latest version): `10.5281/zenodo.22820023`
