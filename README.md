@@ -264,10 +264,15 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 Archived on Zenodo — cite the **version-specific DOI** of the release you used:
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.2.0).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23092310](https://doi.org/10.5281/zenodo.23092310)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.3.0).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23112164](https://doi.org/10.5281/zenodo.23112164)**
 
-- v1.2.0 (current): `10.5281/zenodo.23092310` — recomputes the SOFA / OASIS / SAPS-II head-to-head
+- v1.3.0 (current): `10.5281/zenodo.23112164` — adds pixel-level reproducibility evidence for every
+  panel and all eight composite figures (`results/panel_pixel_repro.json`), provenance for the
+  official SOFA / OASIS / SAPS-II tables with the explicit statement that the local build commit
+  cannot be recovered (`results/official_score_provenance.json`), and a comparability assertion
+  for the two reported GCS AUC increments (`results/gcs_increment_audit.json`, key `comparability`)
+- v1.2.0 (previous): `10.5281/zenodo.23092310` — recomputes the SOFA / OASIS / SAPS-II head-to-head
   from the official `mimiciv_derived` tables (OASIS-alone AUC 0.718 → 0.720, SAPS-II-alone
   0.785 → 0.780), adds panel provenance and number manifests for the internal panels, removes the
   remaining intermediate rounding, and makes the single-centre analysis reproducible from the
