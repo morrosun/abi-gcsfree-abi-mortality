@@ -1,0 +1,498 @@
+{
+  "generated_at": "2026-10-02 07:58:19",
+  "method": "backup -> regenerate (04/12/59 already rerun; 66 rerun this round) -> byte compare + decoded-pixel compare (PIL RGB ndarray, sha256)",
+  "note": "pixel_sha256 is computed on the decoded RGB ndarray and is therefore independent of PNG compression and metadata; bytes_identical is reported for transparency but is the weaker criterion",
+  "known_exceptions": {
+    "figR2_inhosp_parallel.png": "被 12 与 59 同时生成，数据源年代不同；取 59（当前真源）。未被 V8 的 8 张图使用。"
+  },
+  "n_compared": 27,
+  "n_pixel_identical": 26,
+  "records": [
+    {
+      "tag": "04/12/59",
+      "file": "fig1_roc.png",
+      "backup": "output/_panel_backup_20261002/fig1_roc.png",
+      "current": "output/fig1_roc.png",
+      "bytes_identical": true,
+      "sha256_backup": "33948c799ce86340",
+      "sha256_current": "33948c799ce86340",
+      "pixel_sha256_backup": "0c526821fae1a35f",
+      "pixel_sha256_current": "0c526821fae1a35f",
+      "pixel_shape": [
+        1000,
+        1040,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig2_calibration.png",
+      "backup": "output/_panel_backup_20261002/fig2_calibration.png",
+      "current": "output/fig2_calibration.png",
+      "bytes_identical": true,
+      "sha256_backup": "97b175c5f1c991b2",
+      "sha256_current": "97b175c5f1c991b2",
+      "pixel_sha256_backup": "6c94b9f7d6f94c9f",
+      "pixel_sha256_current": "6c94b9f7d6f94c9f",
+      "pixel_shape": [
+        1000,
+        1040,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig3_dca.png",
+      "backup": "output/_panel_backup_20261002/fig3_dca.png",
+      "current": "output/fig3_dca.png",
+      "bytes_identical": true,
+      "sha256_backup": "e2b6b9ff50b1f2d6",
+      "sha256_current": "e2b6b9ff50b1f2d6",
+      "pixel_sha256_backup": "79eb37e6a33bbaf5",
+      "pixel_sha256_current": "79eb37e6a33bbaf5",
+      "pixel_shape": [
+        919,
+        1120,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig4_forest.png",
+      "backup": "output/_panel_backup_20261002/fig4_forest.png",
+      "current": "output/fig4_forest.png",
+      "bytes_identical": true,
+      "sha256_backup": "21631ff7010ff780",
+      "sha256_current": "21631ff7010ff780",
+      "pixel_sha256_backup": "f220a638f9290f75",
+      "pixel_sha256_current": "f220a638f9290f75",
+      "pixel_shape": [
+        1400,
+        1240,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig5_xgb_importance.png",
+      "backup": "output/_panel_backup_20261002/fig5_xgb_importance.png",
+      "current": "output/fig5_xgb_importance.png",
+      "bytes_identical": true,
+      "sha256_backup": "245a21d94225b972",
+      "sha256_current": "245a21d94225b972",
+      "pixel_sha256_backup": "c48aeffda8cf4f0b",
+      "pixel_sha256_current": "c48aeffda8cf4f0b",
+      "pixel_shape": [
+        1200,
+        1160,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig6_ext_roc.png",
+      "backup": "output/_panel_backup_20261002/fig6_ext_roc.png",
+      "current": "output/fig6_ext_roc.png",
+      "bytes_identical": true,
+      "sha256_backup": "3ecb3f3973a247a9",
+      "sha256_current": "3ecb3f3973a247a9",
+      "pixel_sha256_backup": "e71a4469dc06a947",
+      "pixel_sha256_current": "e71a4469dc06a947",
+      "pixel_shape": [
+        1040,
+        1040,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig7_ext_roc_bymodel.png",
+      "backup": "output/_panel_backup_20261002/fig7_ext_roc_bymodel.png",
+      "current": "output/fig7_ext_roc_bymodel.png",
+      "bytes_identical": true,
+      "sha256_backup": "a0a0dfa8955fbb65",
+      "sha256_current": "a0a0dfa8955fbb65",
+      "pixel_sha256_backup": "5fbd8058812c7e50",
+      "pixel_sha256_current": "5fbd8058812c7e50",
+      "pixel_shape": [
+        860,
+        2600,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig8_ext_calibration.png",
+      "backup": "output/_panel_backup_20261002/fig8_ext_calibration.png",
+      "current": "output/fig8_ext_calibration.png",
+      "bytes_identical": true,
+      "sha256_backup": "9125a2ea9790d7aa",
+      "sha256_current": "9125a2ea9790d7aa",
+      "pixel_sha256_backup": "38489b9857960078",
+      "pixel_sha256_current": "38489b9857960078",
+      "pixel_shape": [
+        1040,
+        1040,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig9_recal_calibration.png",
+      "backup": "output/_panel_backup_20261002/fig9_recal_calibration.png",
+      "current": "output/fig9_recal_calibration.png",
+      "bytes_identical": true,
+      "sha256_backup": "2736142d8d3573f6",
+      "sha256_current": "2736142d8d3573f6",
+      "pixel_sha256_backup": "80f16836de6b51c7",
+      "pixel_sha256_current": "80f16836de6b51c7",
+      "pixel_shape": [
+        1798,
+        2674,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "fig10_recal_ece.png",
+      "backup": "output/_panel_backup_20261002/fig10_recal_ece.png",
+      "current": "output/fig10_recal_ece.png",
+      "bytes_identical": true,
+      "sha256_backup": "442d73aa355b8cad",
+      "sha256_current": "442d73aa355b8cad",
+      "pixel_sha256_backup": "d74ed6b443d2f306",
+      "pixel_sha256_current": "d74ed6b443d2f306",
+      "pixel_shape": [
+        1012,
+        2174,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "figR1_gcs_increment.png",
+      "backup": "output/_panel_backup_20261002/figR1_gcs_increment.png",
+      "current": "output/figR1_gcs_increment.png",
+      "bytes_identical": true,
+      "sha256_backup": "cc0e2a329d7bfc17",
+      "sha256_current": "cc0e2a329d7bfc17",
+      "pixel_sha256_backup": "6e5c406084e81670",
+      "pixel_sha256_current": "6e5c406084e81670",
+      "pixel_shape": [
+        670,
+        1031,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "figR2_inhosp_parallel.png",
+      "backup": "output/_panel_backup_20261002/figR2_inhosp_parallel.png",
+      "current": "output/figR2_inhosp_parallel.png",
+      "bytes_identical": false,
+      "sha256_backup": "af61938deea49329",
+      "sha256_current": "1ec0e4f10219c00d",
+      "pixel_sha256_backup": "76ff12322524e92c",
+      "pixel_sha256_current": "5f78a65d71e6007c",
+      "pixel_shape": [
+        446,
+        733,
+        3
+      ],
+      "pixel_identical": false,
+      "verdict": "DIFFERS"
+    },
+    {
+      "tag": "04/12/59",
+      "file": "figR3_rootcause.png",
+      "backup": "output/_panel_backup_20261002/figR3_rootcause.png",
+      "current": "output/figR3_rootcause.png",
+      "bytes_identical": true,
+      "sha256_backup": "48785e13cf8885a8",
+      "sha256_current": "48785e13cf8885a8",
+      "pixel_sha256_backup": "06388c1c89d43086",
+      "pixel_sha256_current": "06388c1c89d43086",
+      "pixel_shape": [
+        640,
+        1491,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66",
+      "file": "gcs_components_v8.png",
+      "backup": "output/_fig_backup_20261002/v8_panels/gcs_components_v8.png",
+      "current": "output/v8_panels/gcs_components_v8.png",
+      "bytes_identical": true,
+      "sha256_backup": "d39301778d6bf2ca",
+      "sha256_current": "d39301778d6bf2ca",
+      "pixel_sha256_backup": "d753cb95611043c3",
+      "pixel_sha256_current": "d753cb95611043c3",
+      "pixel_shape": [
+        960,
+        2400,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66",
+      "file": "leakage_dauc_v8.png",
+      "backup": "output/_fig_backup_20261002/v8_panels/leakage_dauc_v8.png",
+      "current": "output/v8_panels/leakage_dauc_v8.png",
+      "bytes_identical": true,
+      "sha256_backup": "d831560497c15f9e",
+      "sha256_current": "d831560497c15f9e",
+      "pixel_sha256_backup": "073e2c332a4b136c",
+      "pixel_sha256_current": "073e2c332a4b136c",
+      "pixel_shape": [
+        960,
+        2400,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66",
+      "file": "slope_eps_v8.png",
+      "backup": "output/_fig_backup_20261002/v8_panels/slope_eps_v8.png",
+      "current": "output/v8_panels/slope_eps_v8.png",
+      "bytes_identical": true,
+      "sha256_backup": "d537bdd109a2ff71",
+      "sha256_current": "d537bdd109a2ff71",
+      "pixel_sha256_backup": "29952271027094aa",
+      "pixel_sha256_current": "29952271027094aa",
+      "pixel_shape": [
+        960,
+        2400,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66",
+      "file": "calib_ci_v8.png",
+      "backup": "output/_fig_backup_20261002/v8_panels/calib_ci_v8.png",
+      "current": "output/v8_panels/calib_ci_v8.png",
+      "bytes_identical": true,
+      "sha256_backup": "e22e59d54ffd56c2",
+      "sha256_current": "e22e59d54ffd56c2",
+      "pixel_sha256_backup": "303867d461b09218",
+      "pixel_sha256_current": "303867d461b09218",
+      "pixel_shape": [
+        1000,
+        2400,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66",
+      "file": "harmonisation_v8.png",
+      "backup": "output/_fig_backup_20261002/v8_panels/harmonisation_v8.png",
+      "current": "output/v8_panels/harmonisation_v8.png",
+      "bytes_identical": true,
+      "sha256_backup": "39bda60a6deb344a",
+      "sha256_current": "39bda60a6deb344a",
+      "pixel_sha256_backup": "e5b2f66d8fefe832",
+      "pixel_sha256_current": "e5b2f66d8fefe832",
+      "pixel_shape": [
+        960,
+        2400,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66",
+      "file": "huaian_panel_v8.png",
+      "backup": "output/_fig_backup_20261002/v8_panels/huaian_panel_v8.png",
+      "current": "output/v8_panels/huaian_panel_v8.png",
+      "bytes_identical": true,
+      "sha256_backup": "eea7e34995b68793",
+      "sha256_current": "eea7e34995b68793",
+      "pixel_sha256_backup": "763d97af2cc81d84",
+      "pixel_sha256_current": "763d97af2cc81d84",
+      "pixel_shape": [
+        960,
+        2300,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66-composite",
+      "file": "Figure1.png",
+      "backup": "output/_fig_backup_20261002/figures/Figure1.png",
+      "current": "output/submission_v8/figures/Figure1.png",
+      "bytes_identical": true,
+      "sha256_backup": "451abd77a77f6ae8",
+      "sha256_current": "451abd77a77f6ae8",
+      "pixel_sha256_backup": "08d5604da2827f06",
+      "pixel_sha256_current": "08d5604da2827f06",
+      "pixel_shape": [
+        613,
+        1200,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66-composite",
+      "file": "Figure2.png",
+      "backup": "output/_fig_backup_20261002/figures/Figure2.png",
+      "current": "output/submission_v8/figures/Figure2.png",
+      "bytes_identical": true,
+      "sha256_backup": "0c8336ffd7b0d4c2",
+      "sha256_current": "0c8336ffd7b0d4c2",
+      "pixel_sha256_backup": "aaaa3b3f0817e1e1",
+      "pixel_sha256_current": "aaaa3b3f0817e1e1",
+      "pixel_shape": [
+        732,
+        1199,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66-composite",
+      "file": "Figure3.png",
+      "backup": "output/_fig_backup_20261002/figures/Figure3.png",
+      "current": "output/submission_v8/figures/Figure3.png",
+      "bytes_identical": true,
+      "sha256_backup": "5ea9f27e0f8a7f03",
+      "sha256_current": "5ea9f27e0f8a7f03",
+      "pixel_sha256_backup": "5b369f433bc83989",
+      "pixel_sha256_current": "5b369f433bc83989",
+      "pixel_shape": [
+        526,
+        1200,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66-composite",
+      "file": "Figure4.png",
+      "backup": "output/_fig_backup_20261002/figures/Figure4.png",
+      "current": "output/submission_v8/figures/Figure4.png",
+      "bytes_identical": true,
+      "sha256_backup": "92573ed7aaeb9046",
+      "sha256_current": "92573ed7aaeb9046",
+      "pixel_sha256_backup": "9ab5b94a890b51ac",
+      "pixel_sha256_current": "9ab5b94a890b51ac",
+      "pixel_shape": [
+        1200,
+        576,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66-composite",
+      "file": "Figure5.png",
+      "backup": "output/_fig_backup_20261002/figures/Figure5.png",
+      "current": "output/submission_v8/figures/Figure5.png",
+      "bytes_identical": true,
+      "sha256_backup": "9077817140e4e5ba",
+      "sha256_current": "9077817140e4e5ba",
+      "pixel_sha256_backup": "c725494870dbcb1b",
+      "pixel_sha256_current": "c725494870dbcb1b",
+      "pixel_shape": [
+        1199,
+        1130,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66-composite",
+      "file": "Figure6.png",
+      "backup": "output/_fig_backup_20261002/figures/Figure6.png",
+      "current": "output/submission_v8/figures/Figure6.png",
+      "bytes_identical": true,
+      "sha256_backup": "9f31df931d270944",
+      "sha256_current": "9f31df931d270944",
+      "pixel_sha256_backup": "c200f2177f98e3ae",
+      "pixel_sha256_current": "c200f2177f98e3ae",
+      "pixel_shape": [
+        884,
+        1200,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66-composite",
+      "file": "Figure7.png",
+      "backup": "output/_fig_backup_20261002/figures/Figure7.png",
+      "current": "output/submission_v8/figures/Figure7.png",
+      "bytes_identical": true,
+      "sha256_backup": "5fe988285c0f9724",
+      "sha256_current": "5fe988285c0f9724",
+      "pixel_sha256_backup": "23123d2e29c0a91d",
+      "pixel_sha256_current": "23123d2e29c0a91d",
+      "pixel_shape": [
+        1060,
+        1200,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    },
+    {
+      "tag": "66-composite",
+      "file": "Figure8.png",
+      "backup": "output/_fig_backup_20261002/figures/Figure8.png",
+      "current": "output/submission_v8/figures/Figure8.png",
+      "bytes_identical": true,
+      "sha256_backup": "ddec266384bb84a8",
+      "sha256_current": "ddec266384bb84a8",
+      "pixel_sha256_backup": "09b4b565b721d5e6",
+      "pixel_sha256_current": "09b4b565b721d5e6",
+      "pixel_shape": [
+        1040,
+        1200,
+        3
+      ],
+      "pixel_identical": true,
+      "verdict": "PIXEL_IDENTICAL"
+    }
+  ]
+}

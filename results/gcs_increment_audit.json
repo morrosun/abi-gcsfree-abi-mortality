@@ -77,6 +77,30 @@
     "missingness_pct": {
       "gcs_min_pct": 0.34,
       "gcs_motor_pct": 1.01
+    },
+    "comparability": {
+      "verified": true,
+      "n_test": 4980,
+      "events_test": 1591,
+      "checks": {
+        "plus_total_gcs": {
+          "same_test_size": true,
+          "same_test_rows": true,
+          "same_labels": true,
+          "same_imputation_medians": true,
+          "same_scaler": true,
+          "n_shared_continuous": 17
+        },
+        "plus_motor_gcs": {
+          "same_test_size": true,
+          "same_test_rows": true,
+          "same_labels": true,
+          "same_imputation_medians": true,
+          "same_scaler": true,
+          "n_shared_continuous": 17
+        }
+      },
+      "test_index_fp": "fe8b48cbd71fd823"
     }
   },
   "single_centre": {

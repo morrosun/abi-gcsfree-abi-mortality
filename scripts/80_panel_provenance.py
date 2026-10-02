@@ -15,13 +15,23 @@ ABI_BASE = _os.environ.get("ABI_BASE", r"D:/BaiduSyncdisk/MIMIC/ABI/ABI1")
 **新的时间戳**，所以"Figure 晚于结果文件"无法证明图内内容来自最新分析。
 本脚本改用两种更强的证据：
 
-  1) 可复现性（决定性）：备份 -> 重跑生成器 -> 逐字节比对。
-     2026-10-02 实测：04（fig1/2/4/5）、12（figR1/R3）、59（fig6-10）重跑后
-     全部 `cmp` IDENTICAL —— 即这些面板虽生成于 07-29/10-01，内容仍可从当前输入
-     精确复现，不是"旧分析残留"。
+  1) 可复现性（决定性）：备份 -> **重跑生成器** -> 逐字节 + **逐像素**比对。
+     结果由 `82_panel_pixel_repro.py` 产出（output/panel_pixel_repro.json），
+     本脚本只**消费**它，不再自行硬编码结论。
+
+     ⚠️ 2026-10-02 修正：本脚本上一版对 66 现画的 6 张 `*_v8.png` 写了
+     "同批生成，构造上不可能陈旧" —— **该判据不成立**（文件名后缀证明不了生成过程，
+     同批运行也不排除读旧输入/命中缓存/走错分支）。现已改为**对全部 15 张面板一律要求
+     独立重跑后的比对结论**，其中 6 张由 82 在本轮重跑 66 后实测（PIXEL_IDENTICAL）。
 
   2) 溯源 + 时效：每个面板记录生成脚本、依赖结果文件、sha256、mtime，
      并断言 panel.mtime >= max(dep.mtime)、figure.mtime >= max(panel.mtime)。
+
+  ★ 另显式区分两个**不同的集合**，避免"11 张实测"与"9 张实测"这类自相矛盾的表述：
+
+     - `used_by_v8`：V8 的 8 张合成图实际用到的面板（15 张）——这是判定对象；
+     - `tested_not_used`：做过实测但不被 V8 使用的面板（figR1 / fig10 等）——
+       它们是历史产物，**不计入** 15 张的判定。
 
 另补齐数字覆盖的洞：
   此前"图内数字清单"只覆盖 59 的外验面板（figure_number_manifest.json，36 项）与
@@ -32,7 +42,9 @@ ABI_BASE = _os.environ.get("ABI_BASE", r"D:/BaiduSyncdisk/MIMIC/ABI/ABI1")
   Table 2/3 报告值一致。
 
 产出：output/v8_panel_provenance.json
+      output/_panel_repro_table.md        逐文件对照表（面板 × 是否用于 V8 × 判定）
       output/_80_panel_provenance.log
+前置：output/panel_pixel_repro.json（脚本 82 产出；缺失则直接退出，不静默放行）
 """
 import hashlib
 import json
@@ -100,18 +112,22 @@ GEN = {
 }
 PANEL_DIR = {k: (PAN if k.endswith("_v8.png") else OUT) for k in GEN}
 
-# 2026-10-02 实测的可复现性结果（备份 -> 重跑 -> cmp）
-REPRO = {
-    "fig1_roc.png": "IDENTICAL", "fig2_calibration.png": "IDENTICAL",
-    "fig4_forest.png": "IDENTICAL", "fig5_xgb_importance.png": "IDENTICAL",
-    "fig6_ext_roc.png": "IDENTICAL", "fig7_ext_roc_bymodel.png": "IDENTICAL",
-    "fig8_ext_calibration.png": "IDENTICAL", "fig9_recal_calibration.png": "IDENTICAL",
-    "fig10_recal_ece.png": "IDENTICAL", "figR1_gcs_increment.png": "IDENTICAL",
-    "figR3_rootcause.png": "IDENTICAL",
-    "figR2_inhosp_parallel.png": ("DIFFERS —— 该文件同时被 12 与 59 生成，"
-                                  "两者数据源年代不同（revision_*.json vs external_current.json）；"
-                                  "59 基于当前真源，现取 59 输出。figR2 未被 V8 的 8 张图使用。"),
-}
+# 可复现性结论的**唯一真源**：由 82 产出（备份 -> 重跑生成器 -> 字节比对 + 像素比对）。
+# 本脚本不再硬编码任何结论，避免"结论写在两个地方、各自漂移"。
+_REPRO_JSON = OUT / "panel_pixel_repro.json"
+if not _REPRO_JSON.exists():
+    raise SystemExit("缺少 %s —— 请先重跑生成器（04/12/59/66）并运行 "
+                     "82_panel_pixel_repro.py" % _REPRO_JSON)
+_PIX = json.load(open(_REPRO_JSON, encoding="utf-8"))
+REPRO = {r["file"]: r["verdict"] for r in _PIX["records"]}
+_PIXNOTE = _PIX.get("known_exceptions", {})
+# ★ 只有"被 V8 使用"的面板参与判定；做过实测但未被使用的面板另列。
+#   注意 8 张 `Figure*.png` 是**合成图**（本身就是 V8 的正文图），不是面板，
+#   故在集合清点中单列，不混入面板恒等式。
+REPRO_USED = {n: v for n, v in REPRO.items() if n in GEN}
+REPRO_TESTED_NOT_USED = {n: v for n, v in REPRO.items()
+                         if n not in GEN and not n.startswith("Figure")}
+REPRO_COMPOSITES = {n: v for n, v in REPRO.items() if n.startswith("Figure")}
 
 
 def main():
@@ -144,7 +160,10 @@ def main():
         t_p, t_d = mt(src), max(mt(d) for d in dep_paths)
         fresh = t_p >= t_d
         prov[name] = {
-            "panel": name, "dir": str(PANEL_DIR[name]), "generator": gen,
+            "panel": name,
+            # 相对路径：公开归档不得写入开发机绝对路径
+            "dir": str(PANEL_DIR[name].relative_to(BASE)).replace("\\", "/"),
+            "generator": gen,
             "depends_on": deps, "sha256": sha(src)[:16],
             "panel_mtime": ftime(src), "newest_dep_mtime": ftime(max(dep_paths, key=mt)),
             "panel_newer_than_deps": bool(fresh),
@@ -164,6 +183,43 @@ def main():
         t_f, t_p = mt(fp), max(mt(p) for p in ps)
         chk(t_f >= t_p, "Figure %d %s >= 其面板最新 %s"
             % (g["figure"], ftime(fp), ftime(max(ps, key=mt))))
+
+    # ---------------- 集合清点：两个集合必须显式区分，不得混用 ----------------
+    log("\n== 集合清点与可复现性判定 ==")
+    used_v8 = sorted(GEN)              # 被 V8 的 8 张合成图实际使用的面板
+    tested = sorted(REPRO)             # 实际做过独立重跑比对的全集
+    chk(len(used_v8) == 15, "被 V8 使用的面板 %d 张（应 15）" % len(used_v8))
+    chk(used_v8 == used,
+        "声明表与被 figure_inventory.json 实际使用的面板集合一致（差集 %r）"
+        % sorted(set(used_v8) ^ set(used)))
+    chk(set(used_v8) <= set(tested),
+        "被 V8 使用的面板全部已做独立重跑比对（缺 %r）" % sorted(set(used_v8) - set(tested)))
+    _okv = ("PIXEL_IDENTICAL", "BYTE_IDENTICAL")
+    untested = [n for n in used_v8 if REPRO.get(n) not in _okv and n not in _PIXNOTE]
+    chk(not untested, "被 V8 使用的面板不存在 'NOT TESTED' 或未解释的 DIFFERS（%r）" % untested)
+    _n_pan_tested = len(used_v8) + len(REPRO_TESTED_NOT_USED)
+    chk(_n_pan_tested == len([n for n in tested if not n.startswith("Figure")]),
+        "面板计数恒等式：使用 %d + 实测未使用 %d == 实测面板 %d"
+        % (len(used_v8), len(REPRO_TESTED_NOT_USED), _n_pan_tested))
+    log("  被 V8 使用（判定对象）：%d 张面板" % len(used_v8))
+    log("  实测但未被 V8 使用的面板：%d 张 %s"
+        % (len(REPRO_TESTED_NOT_USED), sorted(REPRO_TESTED_NOT_USED)))
+    log("  另实测合成图（即 V8 正文图本身）：%d 张，全部 %s"
+        % (len(REPRO_COMPOSITES), sorted(set(REPRO_COMPOSITES.values()))))
+    _np = sum(1 for n in used_v8 if REPRO.get(n) in _okv)
+    chk(_np == len(used_v8), "被 V8 使用的 %d 张全部像素级一致（实际 %d）" % (len(used_v8), _np))
+
+    # 逐文件对照表（人可读，避免口径再次混用）
+    _tbl = ["| 面板 | 用于V8 | 生成器 | 独立重跑比对 | 判定 |",
+            "|---|---|---|---|---|"]
+    for n in sorted(set(used_v8) | set(REPRO_TESTED_NOT_USED)):
+        _tbl.append("| `%s` | %s | %s | %s | %s |"
+                    % (n, "是" if n in GEN else "否（历史产物）",
+                       GEN.get(n, ("—", []))[0],
+                       "是" if n in tested else "否",
+                       REPRO.get(n, "NOT TESTED")))
+    (OUT / "_panel_repro_table.md").write_text("\n".join(_tbl) + "\n", encoding="utf-8")
+    log("  wrote output/_panel_repro_table.md")
 
     # ---------------- 补齐：04 的 4 张内部面板此前无数字清单 ----------------
     log("\n== 内部面板图内数字清单（此前无覆盖，现从输入派生） ==")
@@ -205,15 +261,31 @@ def main():
 
     payload = {
         "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "method": ("provenance (generator + deps + sha256 + mtime) and byte-level "
-                   "reproducibility (backup -> regenerate -> cmp)"),
+        "method": ("provenance (generator + deps + sha256 + mtime) and "
+                   "reproducibility by independent regeneration: backup -> rerun generator "
+                   "-> byte compare + decoded-pixel compare (see panel_pixel_repro.json)"),
+        "reproducibility_source": "output/panel_pixel_repro.json (script 82)",
         "panels": prov,
         "figures": [{"figure": g["figure"], "file": g["file"], "panels": g["panels"]}
                     for g in inv],
+        "set_accounting": {
+            "used_by_v8": used_v8,
+            "n_used_by_v8": len(used_v8),
+            "panels_tested_by_regeneration": tested,
+            "n_panels_tested": _n_pan_tested,
+            "panels_tested_but_not_used_by_v8": sorted(REPRO_TESTED_NOT_USED),
+            "n_panels_tested_but_not_used": len(REPRO_TESTED_NOT_USED),
+            "identity": "n_used_by_v8 + n_panels_tested_but_not_used == n_panels_tested",
+            "composites_tested": sorted(REPRO_COMPOSITES),
+            "n_composites_tested": len(REPRO_COMPOSITES),
+            "n_pixel_identical_among_used": _np,
+        },
         "internal_panel_numbers": nums,
         "note": ("figR2_inhosp_parallel.png is written by both 12 and 59 from different "
                  "data vintages; 59 (external_current.json) is authoritative and is the "
-                 "current file. figR2 is not used by any of the 8 V8 figures."),
+                 "current file. figR2 is not used by any of the 8 V8 figures, so it is "
+                 "outside the judged set. All 15 panels that V8 does use were independently "
+                 "regenerated and compared at pixel level; no panel is left untested."),
     }
     json.dump(payload, open(OUT / "v8_panel_provenance.json", "w", encoding="utf-8"),
               indent=2, ensure_ascii=False)

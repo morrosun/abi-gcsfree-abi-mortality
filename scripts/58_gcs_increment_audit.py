@@ -22,7 +22,7 @@ ABI_BASE = _os.environ.get("ABI_BASE", r"D:/BaiduSyncdisk/MIMIC/ABI/ABI1")
 
 只做计算与取证，不改任何稿件。产物 output/gcs_increment_audit.json
 """
-import pandas as pd, numpy as np, json, sys, os
+import pandas as pd, numpy as np, json, sys, os, hashlib
 from pathlib import Path
 from scipy import stats
 from sklearn.model_selection import train_test_split
@@ -114,6 +114,11 @@ miss = {'gcs_min_pct': round(100 * float(df['gcs_min'].isna().mean()), 2),
         'gcs_motor_pct': round(100 * float(df['gcs_motor'].isna().mean()), 2)}
 log(f"  缺失率: gcs_min {miss['gcs_min_pct']}% | gcs_motor {miss['gcs_motor_pct']}%")
 
+# ★ 可比性诊断：证明 base / +总分GCS / +运动项GCS 三项分析用的是
+#   同一样本、同一 train/test 划分、同一插补与标度 —— 否则 ΔAUC 之间不可比。
+_DIAG = {}
+
+
 def prep_split(extra=None):
     cols = feats + ([extra] if extra else [])
     X = df[cols].copy()
@@ -125,6 +130,17 @@ def prep_split(extra=None):
     sc = StandardScaler().fit(Xtr[imp_cols])
     Xtr_s = Xtr.copy(); Xte_s = Xte.copy()
     Xtr_s[imp_cols] = sc.transform(Xtr[imp_cols]); Xte_s[imp_cols] = sc.transform(Xte[imp_cols])
+    _idx = np.asarray(Xte.index, dtype=np.int64)
+    _DIAG[extra or 'base'] = {
+        'n_test': int(len(Xte)),
+        'events_test': int(np.asarray(yte).sum()),
+        'test_index_fp': hashlib.sha1(_idx.tobytes()).hexdigest()[:16],
+        'yte_fp': hashlib.sha1(np.asarray(yte).tobytes()).hexdigest()[:16],
+        'med_cont': {c: float(med[c]) for c in cont},
+        'mean_cont': {c: float(sc.mean_[i]) for i, c in enumerate(cont)},
+        'scale_cont': {c: float(sc.scale_[i]) for i, c in enumerate(cont)},
+        'Xte_s_cont': Xte_s[cont].to_numpy(dtype=float),
+    }
     return Xtr, Xte, Xtr_s, Xte_s, np.asarray(ytr), np.asarray(yte), cols
 
 def fit_lr(Xtr_s, ytr, Xte_s, cols):
@@ -146,6 +162,37 @@ for tag, extra in variants.items():
     log(f"  fitted {tag:16s} n_feat={len(cols)}  "
         f"LR={roc_auc_score(yte, preds[tag]['Logistic']):.4f}  "
         f"XGB={roc_auc_score(yte, preds[tag]['XGBoost']):.4f}")
+
+# ★★ 可比性硬断言：三项必须同一样本 / 同一划分 / 同一插补与标度。
+#    "运动项是总分的三倍"这一比较只在可比时成立 —— 不成立就必须 assert 失败，
+#    而不是让一个未经验证的前提流进正文。
+_b = _DIAG['base']
+_CMP = {'verified': True, 'n_test': _b['n_test'], 'events_test': _b['events_test'],
+        'checks': {}}
+for _tag in ['gcs_min', 'gcs_motor']:
+    _d = _DIAG[_tag]
+    _lab = {'gcs_min': 'plus_total_gcs', 'gcs_motor': 'plus_motor_gcs'}[_tag]
+    assert _d['n_test'] == _b['n_test'], f"COMPARABILITY FAIL: {_lab} 测试集大小不同"
+    assert _d['test_index_fp'] == _b['test_index_fp'], \
+        f"COMPARABILITY FAIL: {_lab} 测试行不是同一批（划分不同）"
+    assert _d['yte_fp'] == _b['yte_fp'], f"COMPARABILITY FAIL: {_lab} 测试标签不同"
+    assert _d['events_test'] == _b['events_test'], f"COMPARABILITY FAIL: {_lab} 事件数不同"
+    for c in cont:
+        assert _d['med_cont'][c] == _b['med_cont'][c], \
+            f"COMPARABILITY FAIL: {_lab} 共有连续列 {c} 的插补中位数不同"
+        assert _d['mean_cont'][c] == _b['mean_cont'][c], \
+            f"COMPARABILITY FAIL: {_lab} 共有连续列 {c} 的标度均值不同"
+        assert _d['scale_cont'][c] == _b['scale_cont'][c], \
+            f"COMPARABILITY FAIL: {_lab} 共有连续列 {c} 的标度尺度不同"
+    assert np.array_equal(_d['Xte_s_cont'], _b['Xte_s_cont']), \
+        f"COMPARABILITY FAIL: {_lab} 共有连续列标准化后的测试矩阵不同"
+    _CMP['checks'][_lab] = {
+        'same_test_size': True, 'same_test_rows': True, 'same_labels': True,
+        'same_imputation_medians': True, 'same_scaler': True,
+        'n_shared_continuous': len(cont)}
+    log(f"  [comparability OK] {_lab:16s} 与 base 同一测试集（n={_b['n_test']}, "
+        f"events={_b['events_test']}）；{len(cont)} 个共有连续列的插补中位数与标度完全一致")
+_CMP['test_index_fp'] = _b['test_index_fp']
 
 inc = {}
 for learner in ['Logistic', 'XGBoost']:
@@ -185,6 +232,7 @@ inc['alone_AUC_logit'] = {'gcs_total': alone_auc('gcs_min'), 'gcs_motor': alone_
 log(f"  单独判别力(Logistic 单变量): 总分 {inc['alone_AUC_logit']['gcs_total']} | "
     f"运动项 {inc['alone_AUC_logit']['gcs_motor']}")
 inc['missingness_pct'] = miss
+inc['comparability'] = _CMP   # ★ 三项 GCS 分析的样本/划分/插补/标度一致性证据
 rep['gcs_increment_decisionE'] = inc
 
 # ==================================================================

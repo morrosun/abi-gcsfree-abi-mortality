@@ -49,6 +49,10 @@ scripts/                              Python analysis pipeline
   68_internal_learners.py             Internal learner comparison
   69_cohort_descriptives.py           Cohort descriptives
   74_recover_nwicu_vasopressor.py     Forensic audit + recovery of the NWICU vasopressor variable
+  79_extract_official_scores.py       Extract the **official** OASIS / SAPS-II / SOFA scores from mimiciv_derived
+  80_panel_provenance.py              Provenance of every figure panel + number manifests for the internal panels
+  81_official_score_provenance.py     Provenance of the official severity-score tables (equivalence, not a commit)
+  82_panel_pixel_repro.py             Pixel-level reproducibility of panels/composites vs an independent regeneration
 results/                              Machine-readable output of the audit scripts (+ INDEX.md)
 data/
   huaian_local_cohort_deidentified.csv   De-identified local validation cohort (n = 239 rows)
@@ -127,8 +131,18 @@ python scripts/59_rebuild_external_figures.py         # writes results/external_
 python scripts/66_v8_audit_figures.py                 # writes the figure-number manifest
 python scripts/68_internal_learners.py
 python scripts/69_cohort_descriptives.py
-# 80 needs the figure inventory written by 66, so it runs last.
+# 81 checks the provenance of the official severity-score tables (needs PostgreSQL).
+# It records that the local database carries NO build metadata, and therefore proves
+# equivalence to the official formulas row by row instead of naming a commit.
+python scripts/81_official_score_provenance.py        # needs PostgreSQL
+# 80 needs the figure inventory written by 66, and it consumes the pixel-level
+# reproducibility report produced by 82, so it runs after 82.
 python scripts/80_panel_provenance.py
+# 82 is a *verification* step, not a generator: it compares each panel and each of the
+# eight composite figures against the version produced by an INDEPENDENT regeneration of
+# the same generator. Procedure: copy the artefacts aside, re-run 04 / 12 / 59 / 66,
+# then run 82. It refuses to report a pass if the backup is missing.
+python scripts/82_panel_pixel_repro.py
 ```
 
 Two things worth knowing before you run the audits:
@@ -140,8 +154,38 @@ Two things worth knowing before you run the audits:
 - `62` computes the SOFA / OASIS / SAPS-II head-to-head from the **official** `mimiciv_derived`
   tables (`first_day_sofa`, `oasis`, `sapsii`) rather than from a re-implementation. A
   hand-written version is still in the script for comparison; it assigns 0 points where the
-  official score assigns 4 (heart rate < 33, 86 patients) and misses the high-systolic-blood-pressure
-  branch entirely (347 patients), so it is **not** used for the reported numbers.
+  official score assigns 4 (heart rate < 33: 86 of the 16,597 included stays, 389 of all
+  94,458 stays in the table) and misses the high-systolic-blood-pressure branch entirely
+  (347 of the included stays, 1,186 of all stays), so it is **not** used for the reported
+  numbers. Counts are given both within the included cohort and table-wide because the two
+  differ by more than four-fold and the scope matters when reproducing them.
+
+### How the provenance claims are verified
+
+Two claims in the accompanying manuscript are about provenance rather than about results, and
+each is checked by a dedicated script so that a reader can re-run the check:
+
+- **The figures come from the current analysis, not from an earlier run.** Composite figures
+  are assembled from PNG panels, so a composite is always *newer* than the panels it was built
+  from even when those panels are stale — a timestamp proves nothing. `82` therefore compares
+  every panel and every composite against the output of an independent regeneration, at the
+  level of **decoded pixels** (and records a pixel hash that is independent of PNG metadata).
+  In the reference run, 26 of 27 compared files were pixel-identical; the single exception,
+  `figR2_inhosp_parallel.png`, is written by two scripts from different data vintages, is
+  documented as such, and is not used by any of the eight composite figures.
+  `80` restricts its verdict to the 15 panels the figures actually use and emits a
+  per-file table (`output/_panel_repro_table.md`) plus an explicit count identity, so the
+  "panels used" and "panels tested" sets cannot be confused with each other.
+- **The severity scores come from the official pipeline.** `81` first records that the local
+  PostgreSQL database stores no DDL provenance at all (no table comments, no `reloptions`, no
+  metadata table), so *the build commit cannot be recovered from the database* and is not
+  claimed. It then establishes equivalence instead: the published total is exactly
+  `SUM(COALESCE(component, 0))` and the published probability exactly follows the official
+  logistic formula (SAPS-II includes its `ln` term) for all 94,458 rows of both tables, and the
+  two branch behaviours that a re-implementation typically gets wrong are confirmed. The
+  upstream revision compared against is pinned by blob SHA in
+  `results/official_score_provenance.json`.
+
 
 Every script reads its workspace root from the `ABI_BASE` environment variable; if the variable is unset the
 original development path is used as a fallback. Extracted cohort CSVs are expected under `$ABI_BASE/data/`

@@ -1,23 +1,24 @@
 {
-  "generated_at": "2026-10-02 07:27:29",
-  "method": "provenance (generator + deps + sha256 + mtime) and byte-level reproducibility (backup -> regenerate -> cmp)",
+  "generated_at": "2026-10-02 07:58:21",
+  "method": "provenance (generator + deps + sha256 + mtime) and reproducibility by independent regeneration: backup -> rerun generator -> byte compare + decoded-pixel compare (see panel_pixel_repro.json)",
+  "reproducibility_source": "output/panel_pixel_repro.json (script 82)",
   "panels": {
     "calib_ci_v8.png": {
       "panel": "calib_ci_v8.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "dir": "output/v8_panels",
       "generator": "66_v8_audit_figures.py",
       "depends_on": [
         "calibration_ci_and_severity.json"
       ],
       "sha256": "e22e59d54ffd56c2",
-      "panel_mtime": "2026-10-02 07:27:20",
+      "panel_mtime": "2026-10-02 07:55:44",
       "newest_dep_mtime": "2026-10-02 07:12:56",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "NOT TESTED"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "fig1_roc.png": {
       "panel": "fig1_roc.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "04_figures.py",
       "depends_on": [
         "model_performance.csv",
@@ -28,11 +29,11 @@
       "panel_mtime": "2026-10-02 07:19:26",
       "newest_dep_mtime": "2026-07-29 17:37:47",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "fig2_calibration.png": {
       "panel": "fig2_calibration.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "04_figures.py",
       "depends_on": [
         "model_performance.csv",
@@ -43,11 +44,11 @@
       "panel_mtime": "2026-10-02 07:19:26",
       "newest_dep_mtime": "2026-07-29 17:37:47",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "fig4_forest.png": {
       "panel": "fig4_forest.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "04_figures.py",
       "depends_on": [
         "logit_OR.csv",
@@ -58,11 +59,11 @@
       "panel_mtime": "2026-10-02 07:19:26",
       "newest_dep_mtime": "2026-07-29 17:37:47",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "fig5_xgb_importance.png": {
       "panel": "fig5_xgb_importance.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "04_figures.py",
       "depends_on": [
         "models.joblib",
@@ -72,11 +73,11 @@
       "panel_mtime": "2026-10-02 07:19:28",
       "newest_dep_mtime": "2026-07-29 17:37:47",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "fig6_ext_roc.png": {
       "panel": "fig6_ext_roc.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "59_rebuild_external_figures.py",
       "depends_on": [
         "external_current.json"
@@ -85,11 +86,11 @@
       "panel_mtime": "2026-10-02 07:20:29",
       "newest_dep_mtime": "2026-10-02 07:20:29",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "fig7_ext_roc_bymodel.png": {
       "panel": "fig7_ext_roc_bymodel.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "59_rebuild_external_figures.py",
       "depends_on": [
         "external_current.json"
@@ -98,11 +99,11 @@
       "panel_mtime": "2026-10-02 07:20:29",
       "newest_dep_mtime": "2026-10-02 07:20:29",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "fig8_ext_calibration.png": {
       "panel": "fig8_ext_calibration.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "59_rebuild_external_figures.py",
       "depends_on": [
         "external_current.json"
@@ -111,11 +112,11 @@
       "panel_mtime": "2026-10-02 07:20:29",
       "newest_dep_mtime": "2026-10-02 07:20:29",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "fig9_recal_calibration.png": {
       "panel": "fig9_recal_calibration.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "59_rebuild_external_figures.py",
       "depends_on": [
         "external_current.json"
@@ -124,11 +125,11 @@
       "panel_mtime": "2026-10-02 07:20:30",
       "newest_dep_mtime": "2026-10-02 07:20:29",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "figR3_rootcause.png": {
       "panel": "figR3_rootcause.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output",
+      "dir": "output",
       "generator": "12_revision_figures.py",
       "depends_on": [
         "revision_internal.json",
@@ -138,72 +139,72 @@
       "panel_mtime": "2026-10-02 07:20:06",
       "newest_dep_mtime": "2026-10-01 06:37:23",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "IDENTICAL"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "gcs_components_v8.png": {
       "panel": "gcs_components_v8.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "dir": "output/v8_panels",
       "generator": "66_v8_audit_figures.py",
       "depends_on": [
         "audit_decisionE.json"
       ],
       "sha256": "d39301778d6bf2ca",
-      "panel_mtime": "2026-10-02 07:27:20",
-      "newest_dep_mtime": "2026-10-02 07:26:57",
+      "panel_mtime": "2026-10-02 07:55:44",
+      "newest_dep_mtime": "2026-10-02 07:53:53",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "NOT TESTED"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "harmonisation_v8.png": {
       "panel": "harmonisation_v8.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "dir": "output/v8_panels",
       "generator": "66_v8_audit_figures.py",
       "depends_on": [
         "v8_harmonisation.json"
       ],
       "sha256": "39bda60a6deb344a",
-      "panel_mtime": "2026-10-02 07:27:20",
-      "newest_dep_mtime": "2026-10-02 07:27:20",
+      "panel_mtime": "2026-10-02 07:55:44",
+      "newest_dep_mtime": "2026-10-02 07:55:43",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "NOT TESTED"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "huaian_panel_v8.png": {
       "panel": "huaian_panel_v8.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "dir": "output/v8_panels",
       "generator": "66_v8_audit_figures.py",
       "depends_on": [
         "v8_harmonisation.json"
       ],
       "sha256": "eea7e34995b68793",
-      "panel_mtime": "2026-10-02 07:27:21",
-      "newest_dep_mtime": "2026-10-02 07:27:20",
+      "panel_mtime": "2026-10-02 07:55:44",
+      "newest_dep_mtime": "2026-10-02 07:55:43",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "NOT TESTED"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "leakage_dauc_v8.png": {
       "panel": "leakage_dauc_v8.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "dir": "output/v8_panels",
       "generator": "66_v8_audit_figures.py",
       "depends_on": [
         "leakage_sensitivity.json"
       ],
       "sha256": "d831560497c15f9e",
-      "panel_mtime": "2026-10-02 07:27:20",
+      "panel_mtime": "2026-10-02 07:55:44",
       "newest_dep_mtime": "2026-10-01 15:14:17",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "NOT TESTED"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     },
     "slope_eps_v8.png": {
       "panel": "slope_eps_v8.png",
-      "dir": "D:\\BaiduSyncdisk\\MIMIC\\ABI\\ABI1\\output\\v8_panels",
+      "dir": "output/v8_panels",
       "generator": "66_v8_audit_figures.py",
       "depends_on": [
         "slope_epsilon_audit.json"
       ],
       "sha256": "d537bdd109a2ff71",
-      "panel_mtime": "2026-10-02 07:27:20",
+      "panel_mtime": "2026-10-02 07:55:44",
       "newest_dep_mtime": "2026-10-01 06:44:47",
       "panel_newer_than_deps": true,
-      "reproducibility_20261002": "NOT TESTED"
+      "reproducibility_20261002": "PIXEL_IDENTICAL"
     }
   },
   "figures": [
@@ -271,6 +272,76 @@
       ]
     }
   ],
+  "set_accounting": {
+    "used_by_v8": [
+      "calib_ci_v8.png",
+      "fig1_roc.png",
+      "fig2_calibration.png",
+      "fig4_forest.png",
+      "fig5_xgb_importance.png",
+      "fig6_ext_roc.png",
+      "fig7_ext_roc_bymodel.png",
+      "fig8_ext_calibration.png",
+      "fig9_recal_calibration.png",
+      "figR3_rootcause.png",
+      "gcs_components_v8.png",
+      "harmonisation_v8.png",
+      "huaian_panel_v8.png",
+      "leakage_dauc_v8.png",
+      "slope_eps_v8.png"
+    ],
+    "n_used_by_v8": 15,
+    "panels_tested_by_regeneration": [
+      "Figure1.png",
+      "Figure2.png",
+      "Figure3.png",
+      "Figure4.png",
+      "Figure5.png",
+      "Figure6.png",
+      "Figure7.png",
+      "Figure8.png",
+      "calib_ci_v8.png",
+      "fig10_recal_ece.png",
+      "fig1_roc.png",
+      "fig2_calibration.png",
+      "fig3_dca.png",
+      "fig4_forest.png",
+      "fig5_xgb_importance.png",
+      "fig6_ext_roc.png",
+      "fig7_ext_roc_bymodel.png",
+      "fig8_ext_calibration.png",
+      "fig9_recal_calibration.png",
+      "figR1_gcs_increment.png",
+      "figR2_inhosp_parallel.png",
+      "figR3_rootcause.png",
+      "gcs_components_v8.png",
+      "harmonisation_v8.png",
+      "huaian_panel_v8.png",
+      "leakage_dauc_v8.png",
+      "slope_eps_v8.png"
+    ],
+    "n_panels_tested": 19,
+    "panels_tested_but_not_used_by_v8": [
+      "fig10_recal_ece.png",
+      "fig3_dca.png",
+      "figR1_gcs_increment.png",
+      "figR2_inhosp_parallel.png"
+    ],
+    "n_panels_tested_but_not_used": 4,
+    "identity": "n_used_by_v8 + n_panels_tested_but_not_used == n_panels_tested",
+    "composites_tested": [
+      "Figure1.png",
+      "Figure2.png",
+      "Figure3.png",
+      "Figure4.png",
+      "Figure5.png",
+      "Figure6.png",
+      "Figure7.png",
+      "Figure8.png"
+    ],
+    "n_composites_tested": 8,
+    "n_pixel_identical_among_used": 15
+  },
   "internal_panel_numbers": {
     "fig1_roc.png": [
       {
@@ -551,5 +622,5 @@
       }
     ]
   },
-  "note": "figR2_inhosp_parallel.png is written by both 12 and 59 from different data vintages; 59 (external_current.json) is authoritative and is the current file. figR2 is not used by any of the 8 V8 figures."
+  "note": "figR2_inhosp_parallel.png is written by both 12 and 59 from different data vintages; 59 (external_current.json) is authoritative and is the current file. figR2 is not used by any of the 8 V8 figures, so it is outside the judged set. All 15 panels that V8 does use were independently regenerated and compared at pixel level; no panel is left untested."
 }
