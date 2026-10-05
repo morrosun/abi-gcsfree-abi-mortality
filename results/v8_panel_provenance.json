@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02 07:58:21",
+  "generated_at": "2026-10-04 06:20:27",
   "method": "provenance (generator + deps + sha256 + mtime) and reproducibility by independent regeneration: backup -> rerun generator -> byte compare + decoded-pixel compare (see panel_pixel_repro.json)",
   "reproducibility_source": "output/panel_pixel_repro.json (script 82)",
   "panels": {
