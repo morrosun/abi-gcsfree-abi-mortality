@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02 07:12:56",
+  "generated_at": "2026-10-07 13:43:26",
   "ece_definition": "ECE = sum over 10 equal-width probability bins of (n_b/N) * |mean(observed in bin b) - mean(predicted in bin b)|",
   "bootstrap": {
     "B": 1000,

@@ -34,7 +34,7 @@ PART 4  自检：数字 vs JSON、像素/体积/通道、mtime、旧值残留（
   output/v8_harmonisation.json
   output/v8_panels/{5 张新面板}.png
   output/submission_v8/figures/Figure1..8.png
-  output/submission_v8/figure_inventory.json
+  output/submission_v8/figure_inventory_V8.json
   output/v8_figure_number_manifest.json
 """
 import json
@@ -65,6 +65,9 @@ OUT = BASE / "output"
 PAN = OUT / "v8_panels"
 V8DIR = OUT / "submission_v8"
 FIGDIR = V8DIR / "figures"
+# ★ 版本化文件名（2026-10-07）：66 只产 V8，清单落 figure_inventory_V8.json；
+#   V9 的清单由脚本 99 落 figure_inventory_V9.json。
+MANIFEST = V8DIR / "figure_inventory_V8.json"
 
 AET = ['tbi', 'sah', 'ich', 'ais', 'cns_inf', 'seizure', 'anoxic']
 BINV = ['mech_vent', 'vasopressor', 'rrt']
@@ -678,7 +681,7 @@ def compose():
                         size_mb=round(mb, 3), layout=g['layout'],
                         panels=[s[1] for s in g['panels']], panel_labels=labels,
                         caption=g['cap'], short_caption=g['short']))
-    json.dump(inv, open(V8DIR / "figure_inventory.json", "w", encoding="utf-8"),
+    json.dump(inv, open(MANIFEST, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     return inv
 

@@ -49,6 +49,8 @@ scripts/                              Python analysis pipeline
   68_internal_learners.py             Internal learner comparison
   69_cohort_descriptives.py           Cohort descriptives
   74_recover_nwicu_vasopressor.py     Forensic audit + recovery of the NWICU vasopressor variable
+  91_leakage_sensitivity_v9.py        Leakage-sensitivity grid for the **current** analysis run (adds the joint
+                                       deletion of the seven aetiology indicators **with the Charlson index**)
   79_extract_official_scores.py       Extract the **official** OASIS / SAPS-II / SOFA scores from mimiciv_derived
   80_panel_provenance.py              Provenance of every figure panel + number manifests for the internal panels
   81_official_score_provenance.py     Provenance of the official severity-score tables (equivalence, not a commit)
@@ -60,6 +62,13 @@ data/
 ```
 
 `results/INDEX.md` maps every result file to the script that produced it and to the table it supports.
+
+The leakage-sensitivity grid for the **current** analysis run — the five feature sets and three scenarios
+of `leakage_sensitivity.json`, plus the joint deletion of the seven aetiology indicators **with the Charlson
+comorbidity index** (28 → 20 predictors) — is archived as **`results/leakage_sensitivity_v9.json`**
+(produced by `scripts/91_leakage_sensitivity_v9.py`) and indexed in `results/INDEX.md`. The manuscript
+summarizes only its internal one-year cell; the remaining scenarios and the external cohorts are in that
+file.
 
 ## Data availability and access
 
@@ -125,6 +134,7 @@ python scripts/79_extract_official_scores.py          # needs PostgreSQL
 python scripts/61_extract_severity_inputs.py          # needs PostgreSQL
 python scripts/58_gcs_increment_audit.py
 python scripts/60_leakage_sensitivity.py
+python scripts/91_leakage_sensitivity_v9.py           # writes results/leakage_sensitivity_v9.json
 python scripts/62_calib_ci_and_severity.py            # reads the CSV written by 79
 python scripts/63_check_slope_epsilon.py
 python scripts/59_rebuild_external_figures.py         # writes results/external_current.json

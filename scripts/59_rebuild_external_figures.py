@@ -24,8 +24,12 @@ the tables" 根因即此。
   STAGE 1  用冻结产物重算全部外验 + 重校准，落盘 external_current.json（唯一真源）
            —— eICU 用「院内平行模型」(model_inhosp.joblib)
            —— NWICU / INSPIRE 用「1 年模型」(preproc.joblib + models.joblib)
-  STAGE 2  从 external_current.json **重新读回**再画图，落盘 figure_number_manifest.json
+  STAGE 2  从 external_current.json **重新读回**再画图，落盘图内数字登记清单
            （图内每一个被打印出来的数字都登记在册），并与 Table 4 / 正文数字断言对齐。
+           ⚠ 2026-10-07 起该清单写入 output/_archive_20261007/
+             figure_number_manifest_v8legacy.json —— 它只反映 **V8 冻结口径**
+             （本脚本读的是 output/external_current.json，含标签修正前的数字），
+             V9 的数字基准是 output/v9_number_master.json。详见该目录 README_ARCHIVE.md。
 
 不覆盖：本脚本只重写 output/fig*.png（旧版已备份到 output/_fig_backup_20260729/），
          不碰 output/submission_v7/ 下任何已交付文件。
@@ -57,7 +61,21 @@ FEATS = ['age', 'female'] + AET + ['charlson_comorbidity_index'] + \
 
 EPS = 1e-6
 JSON_PATH = OUT / "external_current.json"
-MANIFEST_PATH = OUT / "figure_number_manifest.json"
+
+# ★★ 2026-10-07 归档：本清单原写为 output/figure_number_manifest.json，
+#   现已移入 output/_archive_20261007/figure_number_manifest_v8legacy.json。
+#   归档原因：它**不带版本标记**，却承载两处结果标签修正之前的外验数字
+#   （NWICU 1 年 Logistic AUC 0.6971 / 事件 635 / 原始斜率 0.039 —— V9 权威值是
+#   0.7652 / 701 / 0.878）；且没有任何校验覆盖它（78 号的 G5 只管
+#   v8_figure_number_manifest.json 与 v9_number_master.json），也不属于任何构建链，
+#   于是永远停在旧值却最像"当前那一份"。实测代价：111 号一致性扫描初版以它为基准，
+#   36 项数字全部被误报为"无出处"。
+#   → V9 的数字基准是 output/v9_number_master.json；V8 的是
+#     output/v8_figure_number_manifest.json。详见
+#     output/_archive_20261007/README_ARCHIVE.md。
+#   本脚本读的仍是 V8 冻结口径的 external_current.json，故其产物只能是 V8 回溯件。
+ARCHIVE_DIR = OUT / "_archive_20261007"
+MANIFEST_PATH = ARCHIVE_DIR / "figure_number_manifest_v8legacy.json"
 
 # ============================================================================ #
 #  通用统计函数
@@ -539,8 +557,11 @@ def main_stage2():
     fig.savefig(OUT / "figR4_external_dca.png", dpi=145, bbox_inches='tight', facecolor='white')
     plt.close()
 
+    ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
     json.dump(MAN, open(MANIFEST_PATH, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
     log(f"  wrote {MANIFEST_PATH.name}  ({sum(len(v) for v in MAN.values())} numbers registered)")
+    log(f"  ⚠ 该清单是 **V8 冻结口径**（读 {JSON_PATH.name}），仅供 V8 回溯；"
+        f"V9 的数字基准请用 output/v9_number_master.json")
     return MAN
 
 

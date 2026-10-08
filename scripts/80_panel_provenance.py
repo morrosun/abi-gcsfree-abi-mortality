@@ -34,7 +34,8 @@ ABI_BASE = _os.environ.get("ABI_BASE", r"D:/BaiduSyncdisk/MIMIC/ABI/ABI1")
        它们是历史产物，**不计入** 15 张的判定。
 
 另补齐数字覆盖的洞：
-  此前"图内数字清单"只覆盖 59 的外验面板（figure_number_manifest.json，36 项）与
+  此前"图内数字清单"只覆盖 59 的外验面板（36 项；该清单 2026-10-07 已归档为
+  output/_archive_20261007/figure_number_manifest_v8legacy.json，仅 V8 口径）与
   66 的新审计面板（v8_figure_number_manifest.json，26 项）；
   **04 生成的 4 张内部面板（fig1_roc / fig2_calibration / fig4_forest /
   fig5_xgb_importance）此前完全没有数字清单**。本脚本从它们的输入 CSV / joblib
@@ -135,7 +136,7 @@ def main():
     log("# 80_panel_provenance.py | 面板溯源 + 图内数字覆盖补齐")
     log("#" * 78)
 
-    inv = json.load(open(V8 / "figure_inventory.json", encoding="utf-8"))
+    inv = json.load(open(V8 / "figure_inventory_V8.json", encoding="utf-8"))
     used = sorted({p for g in inv for p in g["panels"]})
     log("V8 合成图共使用面板 %d 张" % len(used))
 
