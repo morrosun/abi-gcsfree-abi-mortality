@@ -274,10 +274,18 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 Archived on Zenodo — cite the **version-specific DOI** of the release you used:
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.3.0).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23112164](https://doi.org/10.5281/zenodo.23112164)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.4.0).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23240062](https://doi.org/10.5281/zenodo.23240062)**
 
-- v1.3.0 (current): `10.5281/zenodo.23112164` — adds pixel-level reproducibility evidence for every
+- v1.4.0 (current): `10.5281/zenodo.23240062` — adds the leakage-sensitivity grid of the **current**
+  analysis run (`scripts/91_leakage_sensitivity_v9.py`, `results/leakage_sensitivity_v9.json`), which
+  extends the five feature sets and three label-timing scenarios with the joint deletion of the seven
+  aetiology indicators **together with the Charlson index** (28 → 20 predictors), refits the reduced
+  models in MIMIC-IV and applies them without refitting to the external cohorts, and records the paired
+  DeLong comparison for every scenario × database × learner cell; also syncs four files that had drifted
+  behind the local source (the versioned `figure_inventory_V8.json` name and the archived status of the
+  unversioned figure-number manifest)
+- v1.3.0 (previous): `10.5281/zenodo.23112164` — adds pixel-level reproducibility evidence for every
   panel and all eight composite figures (`results/panel_pixel_repro.json`), provenance for the
   official SOFA / OASIS / SAPS-II tables with the explicit statement that the local build commit
   cannot be recovered (`results/official_score_provenance.json`), and a comparability assertion
