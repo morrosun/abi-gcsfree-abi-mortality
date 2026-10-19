@@ -1,259 +1,247 @@
 {
-  "gcs_increment_decisionE": {
-    "Logistic": {
-      "base_auc": 0.8161221120796217,
-      "base_ci": [
-        0.8046736824519292,
-        0.8291474341450789
-      ],
-      "plus_total_gcs": {
-        "auc": 0.8212577794947569,
-        "dAUC": 0.005135667415135159,
-        "delong_z": 4.181660769922367,
-        "delong_p": 2.8938751630791515e-05,
-        "cNRI": 0.19653632236063762,
-        "NRI_event": -0.28472658705216847,
-        "NRI_nonevent": 0.4812629094128061,
-        "IDI": 0.008218842733185766,
-        "ci": [
-          0.8095532484038075,
-          0.8343074277093181
-        ]
-      },
-      "plus_motor_gcs": {
-        "auc": 0.8314768136420952,
-        "dAUC": 0.015354701562473538,
-        "delong_z": 6.42741174498966,
-        "delong_p": 1.297948415412975e-10,
-        "cNRI": 0.6071512096202099,
-        "NRI_event": 0.032055311125078534,
-        "NRI_nonevent": 0.5750958984951313,
-        "IDI": 0.028902641726990197,
-        "ci": [
-          0.819648220151908,
-          0.8436794951359292
-        ]
-      }
+ "gcs_increment_decisionE": {
+  "comparability": {
+   "verified": true,
+   "n_test": 4980,
+   "events_test": 1591,
+   "test_index_fp": "ffcb7431578422b3",
+   "checks": {
+    "plus_total_gcs": {
+     "same_test_rows": true,
+     "same_labels": true,
+     "same_imputation_medians": true,
+     "same_scaler": true,
+     "n_shared_continuous": 17
     },
-    "XGBoost": {
-      "base_auc": 0.8464648540338015,
-      "base_ci": [
-        0.8361996945707612,
-        0.8571866667011244
-      ],
-      "plus_total_gcs": {
-        "auc": 0.8522077286685081,
-        "dAUC": 0.005742874634706685,
-        "delong_z": 3.4676741842676746,
-        "delong_p": 0.0005249833842226881,
-        "cNRI": 0.12486287298779147,
-        "NRI_event": -0.05719673161533628,
-        "NRI_nonevent": 0.18205960460312776,
-        "IDI": 0.012967199087142944,
-        "ci": [
-          0.8418716203437236,
-          0.8629340464454881
-        ]
-      },
-      "plus_motor_gcs": {
-        "auc": 0.8616631172060158,
-        "dAUC": 0.015198263172214399,
-        "delong_z": 6.532130658877108,
-        "delong_p": 6.484057735178794e-11,
-        "cNRI": 0.44225717136022025,
-        "NRI_event": 0.11502199874292901,
-        "NRI_nonevent": 0.32723517261729124,
-        "IDI": 0.03384830057621002,
-        "ci": [
-          0.8517780698285008,
-          0.8719558594030061
-        ]
-      }
-    },
-    "alone_AUC_logit": {
-      "gcs_total": 0.5512553183952444,
-      "gcs_motor": 0.6807925185542236
-    },
-    "missingness_pct": {
-      "gcs_min_pct": 0.34,
-      "gcs_motor_pct": 1.01
-    },
-    "comparability": {
-      "verified": true,
-      "n_test": 4980,
-      "events_test": 1591,
-      "checks": {
-        "plus_total_gcs": {
-          "same_test_size": true,
-          "same_test_rows": true,
-          "same_labels": true,
-          "same_imputation_medians": true,
-          "same_scaler": true,
-          "n_shared_continuous": 17
-        },
-        "plus_motor_gcs": {
-          "same_test_size": true,
-          "same_test_rows": true,
-          "same_labels": true,
-          "same_imputation_medians": true,
-          "same_scaler": true,
-          "n_shared_continuous": 17
-        }
-      },
-      "test_index_fp": "fe8b48cbd71fd823"
+    "plus_motor_gcs": {
+     "same_test_rows": true,
+     "same_labels": true,
+     "same_imputation_medians": true,
+     "same_scaler": true,
+     "n_shared_continuous": 17
     }
+   }
   },
-  "single_centre": {
-    "n": 225,
-    "events": 55,
-    "event_rate_pct": 24.4,
-    "aetiology_counts": {
-      "tbi": 224,
-      "sah": 0,
-      "ich": 0,
-      "ais": 40,
-      "cns_inf": 39,
-      "seizure": 15,
-      "anoxic": 48
-    },
-    "tbi_pct": 99.6,
-    "anoxic_pct": 21.3,
-    "model_AUC": {
-      "Logistic": [
-        0.8645989304812834,
-        [
-          0.7984774061833579,
-          0.9220454137174983
-        ]
-      ],
-      "XGBoost": [
-        0.8001069518716577,
-        [
-          0.732607693137502,
-          0.8602614270800435
-        ]
-      ]
-    },
-    "single_predictor_AUC": {
-      "age": {
-        "auc": 0.4989839572192514,
-        "abs_from_050": 0.0010160427807486272
-      },
-      "female": {
-        "auc": 0.5347593582887701,
-        "abs_from_050": 0.03475935828877008
-      },
-      "tbi": {
-        "auc": 0.5029411764705882,
-        "abs_from_050": 0.002941176470588225
-      },
-      "sah": {
-        "auc": null,
-        "note": "constant in this cohort"
-      },
-      "ich": {
-        "auc": null,
-        "note": "constant in this cohort"
-      },
-      "ais": {
-        "auc": 0.5026737967914439,
-        "abs_from_050": 0.002673796791443861
-      },
-      "cns_inf": {
-        "auc": 0.4935828877005347,
-        "abs_from_050": 0.0064171122994652885
-      },
-      "seizure": {
-        "auc": 0.47994652406417115,
-        "abs_from_050": 0.020053475935828846
-      },
-      "anoxic": {
-        "auc": 0.8762032085561496,
-        "abs_from_050": 0.37620320855614964
-      },
-      "charlson_comorbidity_index": {
-        "auc": 0.4880213903743316,
-        "abs_from_050": 0.01197860962566838
-      },
-      "heart_rate_mean": {
-        "auc": 0.551283422459893,
-        "abs_from_050": 0.051283422459893035
-      },
-      "mbp_mean": {
-        "auc": 0.5059893048128342,
-        "abs_from_050": 0.0059893048128342175
-      },
-      "resp_rate_mean": {
-        "auc": 0.4302139037433155,
-        "abs_from_050": 0.06978609625668453
-      },
-      "temperature_mean": {
-        "auc": 0.44064171122994655,
-        "abs_from_050": 0.05935828877005345
-      },
-      "spo2_mean": {
-        "auc": 0.4788235294117647,
-        "abs_from_050": 0.021176470588235297
-      },
-      "wbc_max": {
-        "auc": 0.5520320855614973,
-        "abs_from_050": 0.0520320855614973
-      },
-      "hemoglobin_min": {
-        "auc": 0.4337967914438502,
-        "abs_from_050": 0.0662032085561498
-      },
-      "platelets_min": {
-        "auc": 0.39283422459893047,
-        "abs_from_050": 0.10716577540106953
-      },
-      "sodium_min": {
-        "auc": 0.5658823529411765,
-        "abs_from_050": 0.0658823529411765
-      },
-      "potassium_max": {
-        "auc": 0.44229946524064173,
-        "abs_from_050": 0.05770053475935827
-      },
-      "creatinine_max": {
-        "auc": 0.5576470588235294,
-        "abs_from_050": 0.057647058823529385
-      },
-      "bun_max": {
-        "auc": 0.5138502673796792,
-        "abs_from_050": 0.013850267379679204
-      },
-      "glucose_max": {
-        "auc": 0.59475935828877,
-        "abs_from_050": 0.09475935828877002
-      },
-      "bicarbonate_min": {
-        "auc": 0.46925133689839565,
-        "abs_from_050": 0.030748663101604345
-      },
-      "inr_max": {
-        "auc": 0.6697860962566845,
-        "abs_from_050": 0.1697860962566845
-      },
-      "mech_vent": {
-        "auc": 0.5147058823529411,
-        "abs_from_050": 0.014705882352941124
-      },
-      "vasopressor": {
-        "auc": 0.6224598930481283,
-        "abs_from_050": 0.12245989304812832
-      },
-      "rrt": {
-        "auc": 0.5612299465240642,
-        "abs_from_050": 0.061229946524064216
-      }
-    },
-    "editor_claim_anoxic_reproduces_model": {
-      "anoxic_alone_auc": 0.8762032085561496,
-      "model_logistic_auc": 0.8645989304812834,
-      "model_xgb_auc": 0.8001069518716577,
-      "gap_logistic": -0.011604278074866192,
-      "verdict": "需人工判读：anoxic 单独接近模型"
-    }
+  "missingness_pct": {
+   "gcs_min_pct": 0.34,
+   "gcs_motor_pct": 1.01
+  },
+  "Logistic": {
+   "base_auc": 0.8176366063236719,
+   "base_ci": [
+    0.8059333244740792,
+    0.830712004673153
+   ],
+   "plus_total_gcs": {
+    "auc": 0.8230081832022447,
+    "dAUC": 0.005371576878572815,
+    "delong_z": 4.353787374334186,
+    "delong_p": 1.3380549203523273e-05,
+    "cNRI": 0.1901215137746461,
+    "NRI_event": -0.2834695160276555,
+    "NRI_nonevent": 0.4735910298023016,
+    "IDI": 0.008764087546029586,
+    "ci": [
+     0.8113034608085136,
+     0.8359159045903265
+    ]
+   },
+   "plus_motor_gcs": {
+    "auc": 0.8338310862276908,
+    "dAUC": 0.0161944799040189,
+    "delong_z": 7.056592538931783,
+    "delong_p": 1.7064127888488656e-12,
+    "cNRI": 0.5877094507890448,
+    "NRI_event": -0.015713387806411072,
+    "NRI_nonevent": 0.6034228385954559,
+    "IDI": 0.029255285593181135,
+    "ci": [
+     0.822313624468989,
+     0.8463156345549626
+    ]
+   },
+   "motor_over_total_ratio": 3.014846528329246
+  },
+  "XGBoost": {
+   "base_auc": 0.8458528247654491,
+   "base_ci": [
+    0.8353112201636729,
+    0.8566117019060911
+   ],
+   "plus_total_gcs": {
+    "auc": 0.8543072672540788,
+    "dAUC": 0.008454442488629699,
+    "delong_z": 4.884893567273273,
+    "delong_p": 1.0348473873378339e-06,
+    "cNRI": 0.11684640235286303,
+    "NRI_event": 0.014456316781898126,
+    "NRI_nonevent": 0.1023900855709649,
+    "IDI": 0.01522970199584961,
+    "ci": [
+     0.8439611603972963,
+     0.8650945856865754
+    ]
+   },
+   "plus_motor_gcs": {
+    "auc": 0.8607536973522687,
+    "dAUC": 0.014900872586819602,
+    "delong_z": 5.830701953249099,
+    "delong_p": 5.519469326031867e-09,
+    "cNRI": 0.4637809424842713,
+    "NRI_event": 0.1389063482086738,
+    "NRI_nonevent": 0.3248745942755975,
+    "IDI": 0.03392885625362396,
+    "ci": [
+     0.8505779183973395,
+     0.8714299275074514
+    ]
+   },
+   "motor_over_total_ratio": 1.7624902655449661
+  },
+  "alone_AUC_logit": {
+   "gcs_total": 0.5463702120533044,
+   "gcs_motor": 0.6838441335789116
+  },
+  "gcs_alone_by_ventilation": {
+   "ventilated": {
+    "n": 1956,
+    "events": 818,
+    "auc_raw": 0.5190942158206607,
+    "auc": 0.48090578417933927
+   },
+   "nonventilated": {
+    "n": 3024,
+    "events": 773,
+    "auc_raw": 0.36033747829770063,
+    "auc": 0.6396625217022993
+   },
+   "full_test": {
+    "n": 4980,
+    "events": 1591,
+    "auc_raw": 0.4536297879466956,
+    "note": "auc = 1 − raw AUC (lower GCS ⇒ higher risk)",
+    "auc": 0.5463702120533044
+   }
   }
+ },
+ "single_centre": {
+  "n": 225,
+  "events": 55,
+  "event_rate_pct": 24.4,
+  "aetiology_counts": {
+   "tbi": 224,
+   "sah": 0,
+   "ich": 0,
+   "ais": 40,
+   "cns_inf": 39,
+   "seizure": 15,
+   "anoxic": 48
+  },
+  "tbi_pct": 99.6,
+  "anoxic_pct": 21.3,
+  "model_AUC": {
+   "Logistic": [
+    0.8645989304812834,
+    [
+     0.7984774061833579,
+     0.9220454137174983
+    ]
+   ],
+   "XGBoost": [
+    0.8001069518716577,
+    [
+     0.732607693137502,
+     0.8602614270800435
+    ]
+   ]
+  },
+  "single_predictor_AUC": {
+   "age": {
+    "auc": 0.5010160427807486
+   },
+   "female": {
+    "auc": 0.5347593582887701
+   },
+   "tbi": {
+    "auc": 0.5029411764705882
+   },
+   "ais": {
+    "auc": 0.5026737967914439
+   },
+   "cns_inf": {
+    "auc": 0.5064171122994653
+   },
+   "seizure": {
+    "auc": 0.5200534759358288
+   },
+   "anoxic": {
+    "auc": 0.8762032085561496
+   },
+   "charlson_comorbidity_index": {
+    "auc": 0.5119786096256684
+   },
+   "heart_rate_mean": {
+    "auc": 0.551283422459893
+   },
+   "mbp_mean": {
+    "auc": 0.5059893048128342
+   },
+   "resp_rate_mean": {
+    "auc": 0.5697860962566845
+   },
+   "temperature_mean": {
+    "auc": 0.5593582887700534
+   },
+   "spo2_mean": {
+    "auc": 0.5211764705882354
+   },
+   "wbc_max": {
+    "auc": 0.5520320855614973
+   },
+   "hemoglobin_min": {
+    "auc": 0.5662032085561498
+   },
+   "platelets_min": {
+    "auc": 0.6071657754010695
+   },
+   "sodium_min": {
+    "auc": 0.5658823529411765
+   },
+   "potassium_max": {
+    "auc": 0.5577005347593582
+   },
+   "creatinine_max": {
+    "auc": 0.5576470588235294
+   },
+   "bun_max": {
+    "auc": 0.5138502673796792
+   },
+   "glucose_max": {
+    "auc": 0.59475935828877
+   },
+   "bicarbonate_min": {
+    "auc": 0.5307486631016043
+   },
+   "inr_max": {
+    "auc": 0.6697860962566845
+   },
+   "mech_vent": {
+    "auc": 0.5147058823529411
+   },
+   "vasopressor": {
+    "auc": 0.6224598930481283
+   },
+   "rrt": {
+    "auc": 0.5612299465240642
+   }
+  },
+  "editor_claim_anoxic_reproduces_model": {
+   "anoxic_alone_auc": 0.8762032085561496,
+   "model_logistic_auc": 0.8645989304812834,
+   "model_xgb_auc": 0.8001069518716577,
+   "gap_logistic": -0.011604278074866192,
+   "verdict": "需人工判读：anoxic 单独接近模型"
+  }
+ },
+ "_v9_note": "gcs_increment_decisionE 与 single_centre 的病因计数/AUC 来自 downstream_severity_gcs_v9.json（90）；其余键沿用 V8（与治疗窗/标签无关）。"
 }

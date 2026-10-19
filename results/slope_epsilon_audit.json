@@ -1,269 +1,462 @@
 {
-  "generated_at": "2026-10-01 06:44:47",
-  "eps_list": [
-    1e-09,
-    1e-06,
-    0.0001,
-    0.001,
-    0.01
-  ],
-  "conclusion": "Calibration slope is insensitive to the clipping constant in the large cohorts (range <=0.01) but NOT in the 225-patient Huaian cohort; the manuscript must state the epsilon used.",
-  "results": {
-    "NWICU_1yr": {
-      "n": 3420,
-      "events": 635,
-      "Logistic": {
-        "pred_min": 0.0,
-        "pred_max": 1.0,
-        "pred_p01": 0.014802,
-        "pred_p99": 1.0,
-        "by_eps": {
-          "1e-09": {
-            "slope": 0.0231,
-            "intercept": -1.5462
-          },
-          "1e-06": {
-            "slope": 0.0395,
-            "intercept": -1.5408
-          },
-          "0.0001": {
-            "slope": 0.0671,
-            "intercept": -1.5239
-          },
-          "0.001": {
-            "slope": 0.0963,
-            "intercept": -1.5002
-          },
-          "0.01": {
-            "slope": 0.1543,
-            "intercept": -1.4438
-          }
-        },
-        "slope_range": 0.1312,
-        "grade": "FRAGILE"
-      },
-      "XGBoost": {
-        "pred_min": 0.003825,
-        "pred_max": 0.987481,
-        "pred_p01": 0.009622,
-        "pred_p99": 0.914593,
-        "by_eps": {
-          "1e-09": {
-            "slope": 0.838,
-            "intercept": -0.2889
-          },
-          "1e-06": {
-            "slope": 0.838,
-            "intercept": -0.2889
-          },
-          "0.0001": {
-            "slope": 0.838,
-            "intercept": -0.2889
-          },
-          "0.001": {
-            "slope": 0.838,
-            "intercept": -0.2889
-          },
-          "0.01": {
-            "slope": 0.8386,
-            "intercept": -0.2885
-          }
-        },
-        "slope_range": 0.0006,
-        "grade": "STABLE"
-      }
+ "generated_at": "2026-10-19 22:39:01",
+ "eps_list": [
+  1e-06,
+  0.0001,
+  0.001,
+  0.01
+ ],
+ "scope_note": "Only the calibration slope and the logit-based calibration intercept pass through a logit transform and therefore depend on the clipping constant. The observed:expected ratio and the ECE are computed on the probability scale and do not depend on epsilon.",
+ "results": {
+  "MIMIC_internal_1yr": {
+   "n": 4980,
+   "events": 1591,
+   "Logistic": {
+    "slope_eta": 0.9786953128748628,
+    "intercept_eta": -0.02008195656154711,
+    "eta_min": -4.9072677449145035,
+    "eta_max": 6.331237229979911,
+    "eta_sd": 1.5071390964961329,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.9786953128748628,
+      "intercept": -0.020081956561547085,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.9786953128748628,
+      "intercept": -0.020081956561547085,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.9786953128748628,
+      "intercept": -0.020081956561547085,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.01": {
+      "slope": 0.9807427472900583,
+      "intercept": -0.018841770390522823,
+      "n_clipped": 13,
+      "pct_clipped": 0.26
+     }
     },
-    "INSPIRE_1yr": {
-      "n": 1543,
-      "events": 262,
-      "Logistic": {
-        "pred_min": 0.004895,
-        "pred_max": 0.878971,
-        "pred_p01": 0.014002,
-        "pred_p99": 0.728779,
-        "by_eps": {
-          "1e-09": {
-            "slope": 0.8068,
-            "intercept": -0.5151
-          },
-          "1e-06": {
-            "slope": 0.8068,
-            "intercept": -0.5151
-          },
-          "0.0001": {
-            "slope": 0.8068,
-            "intercept": -0.5151
-          },
-          "0.001": {
-            "slope": 0.8068,
-            "intercept": -0.5151
-          },
-          "0.01": {
-            "slope": 0.807,
-            "intercept": -0.515
-          }
-        },
-        "slope_range": 0.0002,
-        "grade": "STABLE"
-      },
-      "XGBoost": {
-        "pred_min": 0.006542,
-        "pred_max": 0.915284,
-        "pred_p01": 0.01145,
-        "pred_p99": 0.796805,
-        "by_eps": {
-          "1e-09": {
-            "slope": 0.8019,
-            "intercept": -0.612
-          },
-          "1e-06": {
-            "slope": 0.8019,
-            "intercept": -0.612
-          },
-          "0.0001": {
-            "slope": 0.8019,
-            "intercept": -0.612
-          },
-          "0.001": {
-            "slope": 0.8019,
-            "intercept": -0.612
-          },
-          "0.01": {
-            "slope": 0.8021,
-            "intercept": -0.612
-          }
-        },
-        "slope_range": 0.0002,
-        "grade": "STABLE"
-      }
+    "grade": "STABLE",
+    "slope_range": 0.002
+   },
+   "XGBoost": {
+    "slope_eta": 0.9880545868752233,
+    "intercept_eta": -0.00790443204515984,
+    "eta_min": -5.303793430328369,
+    "eta_max": 5.158766269683838,
+    "eta_sd": 1.7492551803588867,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.988054590898777,
+      "intercept": -0.007904433650521714,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.988054590898777,
+      "intercept": -0.007904433650521714,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.988054590898777,
+      "intercept": -0.007904433650521714,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.01": {
+      "slope": 0.9887917774053125,
+      "intercept": -0.007641929494754877,
+      "n_clipped": 52,
+      "pct_clipped": 1.04
+     }
     },
-    "eICU_inhosp": {
-      "n": 14852,
-      "events": 1894,
-      "Logistic": {
-        "pred_min": 0.000904,
-        "pred_max": 0.999958,
-        "pred_p01": 0.003228,
-        "pred_p99": 0.950678,
-        "by_eps": {
-          "1e-09": {
-            "slope": 0.6745,
-            "intercept": -0.749
-          },
-          "1e-06": {
-            "slope": 0.6745,
-            "intercept": -0.749
-          },
-          "0.0001": {
-            "slope": 0.6746,
-            "intercept": -0.7489
-          },
-          "0.001": {
-            "slope": 0.6754,
-            "intercept": -0.7478
-          },
-          "0.01": {
-            "slope": 0.6846,
-            "intercept": -0.7415
-          }
-        },
-        "slope_range": 0.0101,
-        "grade": "FRAGILE"
-      },
-      "XGBoost": {
-        "pred_min": 0.001206,
-        "pred_max": 0.999021,
-        "pred_p01": 0.004109,
-        "pred_p99": 0.977518,
-        "by_eps": {
-          "1e-09": {
-            "slope": 0.7032,
-            "intercept": -1.1806
-          },
-          "1e-06": {
-            "slope": 0.7032,
-            "intercept": -1.1806
-          },
-          "0.0001": {
-            "slope": 0.7032,
-            "intercept": -1.1806
-          },
-          "0.001": {
-            "slope": 0.7032,
-            "intercept": -1.1806
-          },
-          "0.01": {
-            "slope": 0.7086,
-            "intercept": -1.1801
-          }
-        },
-        "slope_range": 0.0054,
-        "grade": "STABLE"
-      }
+    "grade": "STABLE",
+    "slope_range": 0.0007
+   }
+  },
+  "NWICU_1yr": {
+   "n": 3420,
+   "events": 699,
+   "Logistic": {
+    "slope_eta": 0.8718832652577455,
+    "intercept_eta": -0.1557951842666266,
+    "eta_min": -4.915831866790813,
+    "eta_max": 8.091784012080511,
+    "eta_sd": 1.2315876233888998,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.8718832652577447,
+      "intercept": -0.1557951842666275,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.8718832652577447,
+      "intercept": -0.1557951842666275,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.8742066420463306,
+      "intercept": -0.1530812870377133,
+      "n_clipped": 1,
+      "pct_clipped": 0.03
+     },
+     "0.01": {
+      "slope": 0.879232264020062,
+      "intercept": -0.1474882680272001,
+      "n_clipped": 6,
+      "pct_clipped": 0.18
+     }
     },
-    "Huaian_inhosp": {
-      "n": 225,
-      "events": 55,
-      "Logistic": {
-        "pred_min": 0.0,
-        "pred_max": 0.993189,
-        "pred_p01": 0.023857,
-        "pred_p99": 0.861771,
-        "by_eps": {
-          "1e-09": {
-            "slope": 0.7997,
-            "intercept": -0.0802
-          },
-          "1e-06": {
-            "slope": 0.8986,
-            "intercept": 0.0327
-          },
-          "0.0001": {
-            "slope": 1.0084,
-            "intercept": 0.1563
-          },
-          "0.001": {
-            "slope": 1.0692,
-            "intercept": 0.224
-          },
-          "0.01": {
-            "slope": 1.147,
-            "intercept": 0.3099
-          }
-        },
-        "slope_range": 0.3473,
-        "grade": "FRAGILE"
-      },
-      "XGBoost": {
-        "pred_min": 0.008078,
-        "pred_max": 0.956952,
-        "pred_p01": 0.013613,
-        "pred_p99": 0.911304,
-        "by_eps": {
-          "1e-09": {
-            "slope": 0.8496,
-            "intercept": -0.2163
-          },
-          "1e-06": {
-            "slope": 0.8496,
-            "intercept": -0.2163
-          },
-          "0.0001": {
-            "slope": 0.8496,
-            "intercept": -0.2163
-          },
-          "0.001": {
-            "slope": 0.8496,
-            "intercept": -0.2163
-          },
-          "0.01": {
-            "slope": 0.8498,
-            "intercept": -0.2162
-          }
-        },
-        "slope_range": 0.0002,
-        "grade": "STABLE"
-      }
-    }
+    "grade": "STABLE",
+    "slope_range": 0.0073
+   },
+   "XGBoost": {
+    "slope_eta": 0.8627517603027305,
+    "intercept_eta": -0.1452635552270832,
+    "eta_min": -4.958195686340332,
+    "eta_max": 4.372157096862793,
+    "eta_sd": 1.4444938898086548,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.8627517613937599,
+      "intercept": -0.1452635546349504,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.8627517613937599,
+      "intercept": -0.1452635546349504,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.8627517613937599,
+      "intercept": -0.1452635546349504,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.01": {
+      "slope": 0.8628500739461928,
+      "intercept": -0.14520144760416961,
+      "n_clipped": 13,
+      "pct_clipped": 0.38
+     }
+    },
+    "grade": "STABLE",
+    "slope_range": 0.0001
+   }
+  },
+  "INSPIRE_1yr": {
+   "n": 1543,
+   "events": 265,
+   "Logistic": {
+    "slope_eta": 0.7864737290742567,
+    "intercept_eta": -0.5799852939825588,
+    "eta_min": -5.352106667524616,
+    "eta_max": 2.183121823392807,
+    "eta_sd": 1.1043855344666336,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.7864737290742567,
+      "intercept": -0.5799852939825588,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.7864737290742567,
+      "intercept": -0.5799852939825588,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.7864737290742567,
+      "intercept": -0.5799852939825588,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.01": {
+      "slope": 0.7866821371775211,
+      "intercept": -0.5798543780900356,
+      "n_clipped": 5,
+      "pct_clipped": 0.32
+     }
+    },
+    "grade": "STABLE",
+    "slope_range": 0.0002
+   },
+   "XGBoost": {
+    "slope_eta": 0.7737497001346905,
+    "intercept_eta": -0.6970397833869179,
+    "eta_min": -5.191353797912598,
+    "eta_max": 2.0361294746398926,
+    "eta_sd": 1.315482258796692,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.7737497001476135,
+      "intercept": -0.6970397828791026,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.7737497001476135,
+      "intercept": -0.6970397828791026,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.7737497001476135,
+      "intercept": -0.6970397828791026,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.01": {
+      "slope": 0.7738392080448094,
+      "intercept": -0.6970090855519712,
+      "n_clipped": 3,
+      "pct_clipped": 0.19
+     }
+    },
+    "grade": "STABLE",
+    "slope_range": 0.0001
+   }
+  },
+  "MIMIC_internal_inhosp": {
+   "n": 4980,
+   "events": 858,
+   "Logistic": {
+    "slope_eta": 1.0125809836595019,
+    "intercept_eta": 0.04778510465335006,
+    "eta_min": -5.733570985117099,
+    "eta_max": 8.668342967697763,
+    "eta_sd": 1.5335769252259668,
+    "by_eps": {
+     "1e-06": {
+      "slope": 1.0125809836595017,
+      "intercept": 0.04778510465335002,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 1.0125809836595017,
+      "intercept": 0.04778510465335002,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 1.0125877669594825,
+      "intercept": 0.047795149621213485,
+      "n_clipped": 1,
+      "pct_clipped": 0.02
+     },
+     "0.01": {
+      "slope": 1.0143736197455968,
+      "intercept": 0.04929957093024711,
+      "n_clipped": 162,
+      "pct_clipped": 3.25
+     }
+    },
+    "grade": "STABLE",
+    "slope_range": 0.0018
+   },
+   "XGBoost": {
+    "slope_eta": 0.9805602857997007,
+    "intercept_eta": 0.07446287533590802,
+    "eta_min": -6.630362033843994,
+    "eta_max": 4.6559906005859375,
+    "eta_sd": 1.8408715724945068,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.9805602819214175,
+      "intercept": 0.07446286829671346,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.9805602819214175,
+      "intercept": 0.07446286829671346,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.9805602819214175,
+      "intercept": 0.07446286829671346,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.01": {
+      "slope": 0.9888117113226648,
+      "intercept": 0.07859035672234553,
+      "n_clipped": 596,
+      "pct_clipped": 11.97
+     }
+    },
+    "grade": "STABLE",
+    "slope_range": 0.0083
+   }
+  },
+  "eICU_inhosp": {
+   "n": 14852,
+   "events": 1894,
+   "Logistic": {
+    "slope_eta": 0.5377757648187466,
+    "intercept_eta": -1.2154627434356802,
+    "eta_min": -6.842944830385815,
+    "eta_max": 10.14872681297354,
+    "eta_sd": 1.9841473722294496,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.5377757648187461,
+      "intercept": -1.2154627434356804,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.537945928140153,
+      "intercept": -1.2153098634192088,
+      "n_clipped": 5,
+      "pct_clipped": 0.03
+     },
+     "0.001": {
+      "slope": 0.5388844941160634,
+      "intercept": -1.2143089672201313,
+      "n_clipped": 10,
+      "pct_clipped": 0.07
+     },
+     "0.01": {
+      "slope": 0.5471703593132223,
+      "intercept": -1.209230798075478,
+      "n_clipped": 1208,
+      "pct_clipped": 8.13
+     }
+    },
+    "grade": "STABLE",
+    "slope_range": 0.0094
+   },
+   "XGBoost": {
+    "slope_eta": 0.7990521323727142,
+    "intercept_eta": -0.9841377172427709,
+    "eta_min": -6.419774532318115,
+    "eta_max": 5.630078315734863,
+    "eta_sd": 1.8397302627563477,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.7990521236235643,
+      "intercept": -0.9841377250409273,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.7990521236235643,
+      "intercept": -0.9841377250409273,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.7990521236235643,
+      "intercept": -0.9841377250409273,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.01": {
+      "slope": 0.802044371188892,
+      "intercept": -0.9842325191179514,
+      "n_clipped": 921,
+      "pct_clipped": 6.2
+     }
+    },
+    "grade": "STABLE",
+    "slope_range": 0.003
+   }
+  },
+  "Huaian_inhosp": {
+   "n": 225,
+   "events": 55,
+   "Logistic": {
+    "slope_eta": 0.8434304927139729,
+    "intercept_eta": -0.2676375313573267,
+    "eta_min": -18.349606295846563,
+    "eta_max": 4.876225003857465,
+    "eta_sd": 1.7403465702925898,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.9399317245040408,
+      "intercept": -0.18607135375853762,
+      "n_clipped": 1,
+      "pct_clipped": 0.44
+     },
+     "0.0001": {
+      "slope": 1.0518311346032474,
+      "intercept": -0.09174193311475051,
+      "n_clipped": 1,
+      "pct_clipped": 0.44
+     },
+     "0.001": {
+      "slope": 1.1137037498070599,
+      "intercept": -0.04067115835100317,
+      "n_clipped": 1,
+      "pct_clipped": 0.44
+     },
+     "0.01": {
+      "slope": 1.1884903977809247,
+      "intercept": 0.020481503996371903,
+      "n_clipped": 2,
+      "pct_clipped": 0.89
+     }
+    },
+    "grade": "FRAGILE",
+    "slope_range": 0.2486
+   },
+   "XGBoost": {
+    "slope_eta": 0.9624533438812463,
+    "intercept_eta": -0.1652436216195848,
+    "eta_min": -4.525738716125488,
+    "eta_max": 2.907818555831909,
+    "eta_sd": 1.4617986679077148,
+    "by_eps": {
+     "1e-06": {
+      "slope": 0.9624532779690245,
+      "intercept": -0.16524369630182276,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.0001": {
+      "slope": 0.9624532779690245,
+      "intercept": -0.16524369630182276,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.001": {
+      "slope": 0.9624532779690245,
+      "intercept": -0.16524369630182276,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     },
+     "0.01": {
+      "slope": 0.9624532779690245,
+      "intercept": -0.16524369630182276,
+      "n_clipped": 0,
+      "pct_clipped": 0.0
+     }
+    },
+    "grade": "STABLE",
+    "slope_range": 0.0
+   }
   }
+ },
+ "fragile": [
+  [
+   "Huaian_inhosp",
+   "Logistic"
+  ]
+ ]
 }

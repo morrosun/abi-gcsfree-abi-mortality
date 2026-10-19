@@ -25,8 +25,10 @@ ABI_BASE = _os.environ.get("ABI_BASE", r"D:/BaiduSyncdisk/MIMIC/ABI/ABI1")
   A 1 年死亡（全人群）  B 院内死亡（出院码必然在结局之后，泄漏最严重）
   C 出院存活者的 1 年死亡（出院码必然早于结局，最干净）
 
-★ 对账：场景 A 的 FULL_28 内部 AUC 必须等于 87 的主结果（0.8176 / 0.8445），
-  场景 B 的 FULL_28 内部 AUC 必须等于 87 的院内模型（0.8474 / 0.8772）。
+★ 对账：场景 A 的 FULL_28 内部 AUC 必须等于主结果（118 重训后 = 0.8176 / 0.8459），
+  场景 B 的 FULL_28 内部 AUC 必须等于院内模型（0.8474 / 0.8768）。
+  ★ 2026-10-19：XGBoost 超参改读 tuned_hyperparameters_v1.json（当前训练划分内
+    5 折 CV 选中值），FULL_28 场景借此与 calibration_ci_and_severity_v2.json 逐位对齐。
 
 产出：output/leakage_sensitivity_v9.json + _91_leakage_sensitivity.md
 """
@@ -156,10 +158,16 @@ def prep(df, cols, y, seed=SEED):
 
 
 def fit_models(P):
+    # ★ 2026-10-19（118 号脚本）：XGBoost 超参改读 output/tuned_hyperparameters_v1.json
+    #   的 one_year 选中值。剔除病因指标等场景是**敏感性分析**，沿用主分析的选中值
+    #   （不为每个场景重新调参，否则场景间 AUC 不可比）；FULL_28 场景借此复现
+    #   calibration_ci_and_severity_v2.json 的主结果，下面有 <1e-9 的对账断言。
+    HP = json.load(open(OUT / "tuned_hyperparameters_v1.json",
+                        encoding="utf-8"))["one_year"]["XGBoost"]["best_params"]
     lr = LogisticRegression(max_iter=2000, C=1e6).fit(P['Xtr_s'][P['cols']], P['ytr'])
-    xg_ = xgb.XGBClassifier(n_estimators=400, max_depth=4, learning_rate=0.05, subsample=0.8,
-                            colsample_bytree=0.8, eval_metric='logloss', random_state=SEED,
-                            tree_method='hist', n_jobs=-1).fit(P['Xtr'][P['cols']], P['ytr'])
+    xg_ = xgb.XGBClassifier(subsample=0.8, colsample_bytree=0.8, eval_metric='logloss',
+                            random_state=SEED, tree_method='hist', n_jobs=-1,
+                            **HP).fit(P['Xtr'][P['cols']], P['ytr'])
     return lr, xg_
 
 
@@ -214,7 +222,7 @@ def main():
     log("#" * 78)
     mim = pd.read_csv(DATA / "mimic_abi_cohort_v2.csv")
     mim['female'] = (mim['gender'] == 'F').astype(int)
-    nw = pd.read_csv(DATA / "nwicu_abi_final_v5.csv")
+    nw = pd.read_csv(DATA / "nwicu_abi_final_v6.csv")
     ins = pd.read_csv(DATA / "inspire_abi_final_v3.csv")
     e = pd.read_csv(DATA / "eicu_abi_final_v3.csv")
     log(f"  MIMIC n={len(mim):,}  NWICU n={len(nw):,}  INSPIRE n={len(ins):,}  eICU n={len(e):,}")
@@ -349,7 +357,7 @@ def main():
                    'prediction time cannot be verified. What is quantified here is the '
                    'dependence of model performance on discharge-coded predictors, NOT an '
                    'upper bound on bias attributable to temporal leakage.'),
-               'datasets': {'MIMIC': 'mimic_abi_cohort_v2.csv', 'NWICU': 'nwicu_abi_final_v5.csv',
+               'datasets': {'MIMIC': 'mimic_abi_cohort_v2.csv', 'NWICU': 'nwicu_abi_final_v6.csv',
                             'INSPIRE': 'inspire_abi_final_v3.csv', 'eICU': 'eicu_abi_final_v3.csv'},
                'feature_sets': {k: len(v) for k, v in FEATSETS.items()},
                'results': clean(R), 'delong': DEL, 'summary': summary,

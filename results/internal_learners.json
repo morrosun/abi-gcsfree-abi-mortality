@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-01 06:44:08",
+ "generated_at": "2026-10-19 22:54:18",
  "outcome": "1-year death (MIMIC-IV internal held-out test set)",
  "split": {
   "test_size": 0.3,
@@ -7,7 +7,7 @@
   "seed": 42,
   "n_train": 11617,
   "n_test": 4980,
-  "events_train": 3710,
+  "events_train": 3712,
   "events_test": 1591
  },
  "features": {
@@ -78,7 +78,7 @@
  "preprocessing": {
   "imputation": "training-set median for continuous; 0 for indicators",
   "scaling": "StandardScaler fitted on the training split; applied to the logistic/LASSO inputs only",
-  "frozen_artefacts": "preproc.joblib / models.joblib (1-year)"
+  "frozen_artefacts": "preproc_v2.joblib / models_v2.joblib (1-year)"
  },
  "bootstrap": {
   "B": 1000,
@@ -88,52 +88,52 @@
  },
  "learners": {
   "Logistic": {
-   "auc": 0.8161221120796217,
+   "auc": 0.8176366063236719,
    "ci95": [
-    0.8042144257780187,
-    0.82911622537043
+    0.8050159542908849,
+    0.8292790010854877
    ],
-   "brier": 0.15882893319002295,
+   "brier": 0.15808156635093695,
    "n_nonzero_coef": 28,
    "standardised_input": true
   },
   "LASSO": {
-   "auc": 0.8160994855430342,
+   "auc": 0.8178022251529564,
    "ci95": [
-    0.8040372710179875,
-    0.828938513188937
+    0.8053002401873403,
+    0.8296035031173602
    ],
-   "brier": 0.158705844471574,
+   "brier": 0.15813080544312366,
    "n_nonzero_coef": 26,
    "standardised_input": true
   },
   "RandomForest": {
-   "auc": 0.8316669136421138,
+   "auc": 0.8386208643744996,
    "ci95": [
-    0.820092242838646,
-    0.8429991043689828
+    0.8265066823158587,
+    0.8499724596109275
    ],
-   "brier": 0.15648113046461354,
+   "brier": 0.15230888322599487,
    "n_nonzero_coef": null,
    "standardised_input": false
   },
   "GradientBoosting": {
-   "auc": 0.8405747214478608,
+   "auc": 0.8406813629112859,
    "ci95": [
-    0.8289590345935005,
-    0.8523461392440806
+    0.8289648207610281,
+    0.8521316360953534
    ],
-   "brier": 0.1482704325524016,
+   "brier": 0.14840644781036874,
    "n_nonzero_coef": null,
    "standardised_input": false
   },
   "XGBoost": {
-   "auc": 0.8464648540338015,
+   "auc": 0.8458528247654491,
    "ci95": [
-    0.8354282681982622,
-    0.858123692099628
+    0.8343617754606285,
+    0.856974318160614
    ],
-   "brier": 0.14617790281772614,
+   "brier": 0.14567981660366058,
    "n_nonzero_coef": null,
    "standardised_input": false
   }

@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-01 06:44:10",
+ "generated_at": "2026-10-19 22:54:47",
  "sources": {
-  "MIMIC_IV": "data/mimic_abi_cohort.csv",
-  "eICU": "data/eicu_abi_final.csv",
-  "NWICU": "data/nwicu_abi_final_vp2.csv",
-  "INSPIRE": "data/inspire_abi_final.csv + data/inspire_deathhosp.csv",
+  "MIMIC_IV": "data/mimic_abi_cohort_v2.csv",
+  "eICU": "data/eicu_abi_final_v3.csv",
+  "NWICU": "data/nwicu_abi_final_v6.csv",
+  "INSPIRE": "data/inspire_abi_final_v3.csv",
   "Huaian": "ABI3/output/ABI本地数据采集模板_已录入检验结果.xlsx (sheet 数据录入)"
  },
  "aetiology_indicators": [
@@ -23,16 +23,16 @@
    "outcome": "1-year death",
    "outcome_column": "death_365",
    "n": 16597,
-   "events": 5301,
-   "event_rate_pct": 31.9,
+   "events": 5303,
+   "event_rate_pct": 32.0,
    "age_median": 67.0,
    "age_iqr": [
     53.0,
     79.0
    ],
    "female_pct": 45.0,
-   "mech_vent_pct": 42.4,
-   "vasopressor_pct": 23.3,
+   "mech_vent_pct": 39.0,
+   "vasopressor_pct": 18.8,
    "rrt_pct": 2.7,
    "aetiology_available": {
     "tbi": 5271,
@@ -65,7 +65,7 @@
    ],
    "female_pct": 45.4,
    "mech_vent_pct": 29.8,
-   "vasopressor_pct": 11.8,
+   "vasopressor_pct": 8.8,
    "rrt_pct": 2.1,
    "aetiology_available": {
     "tbi": 4014,
@@ -89,17 +89,17 @@
    "outcome": "1-year death",
    "outcome_column": "death_365",
    "n": 3420,
-   "events": 635,
-   "event_rate_pct": 18.6,
+   "events": 699,
+   "event_rate_pct": 20.4,
    "age_median": 69.0,
    "age_iqr": [
     56.0,
     78.0
    ],
    "female_pct": 46.5,
-   "mech_vent_pct": 19.6,
+   "mech_vent_pct": 16.3,
    "vasopressor_pct": 11.1,
-   "rrt_pct": 3.3,
+   "rrt_pct": 1.8,
    "aetiology_available": {
     "tbi": 859,
     "sah": 348,
@@ -122,8 +122,8 @@
    "outcome": "1-year death",
    "outcome_column": "death_365",
    "n": 1543,
-   "events": 262,
-   "event_rate_pct": 17.0,
+   "events": 265,
+   "event_rate_pct": 17.2,
    "age_median": 65.0,
    "age_iqr": [
     55.0,
