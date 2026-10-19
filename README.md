@@ -295,10 +295,21 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 Archived on Zenodo — cite the **version-specific DOI** of the release you used:
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.4.0).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23240062](https://doi.org/10.5281/zenodo.23240062)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.4.1).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23485896](https://doi.org/10.5281/zenodo.23485896)**
 
-- v1.4.0 (current): `10.5281/zenodo.23240062` — adds the leakage-sensitivity grid of the **current**
+- v1.4.1 (current): `10.5281/zenodo.23485896` — replaces the stale 2026-10-02 result snapshot with the
+  **current analysis run**, and makes the two vintages explicit. Thirteen result files are re-sourced
+  from that run (NWICU one-year events 699 and in-hospital 376 against 635 and 16; logistic AUC
+  0.7652, calibration slope 0.872 and O:E 0.994 against 0.6971 / 0.039 / 0.535), because it rebuilt
+  the NWICU outcome labels as the union of in-stay death time, discharge disposition and the
+  hospital-expiry flag with a lower time bound, re-aggregated the external validation at the source
+  layer as the main analysis, and re-selected the tree learners' hyper-parameters on the current
+  training split. Adds `scripts/98_build_v9_results.py`, the last step of that run, rewrites
+  `sql/11_nwicu_cohort.sql` so the cohort SQL itself reproduces the labels and the recovered
+  vasopressor variable (11.1%), and adds a "Snapshot version" section plus a vintage column to
+  `results/INDEX.md`
+- v1.4.0 (previous): `10.5281/zenodo.23240062` — adds the leakage-sensitivity grid of the **current**
   analysis run (`scripts/91_leakage_sensitivity_v9.py`, `results/leakage_sensitivity_v9.json`), which
   extends the five feature sets and three label-timing scenarios with the joint deletion of the seven
   aetiology indicators **together with the Charlson index** (28 → 20 predictors), refits the reduced
