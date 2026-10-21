@@ -308,15 +308,15 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 Archived on Zenodo — cite the **version-specific DOI** of the release you used:
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.4.1).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23485896](https://doi.org/10.5281/zenodo.23485896)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.4.2).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23535852](https://doi.org/10.5281/zenodo.23535852)**
 
-- v1.4.2 (current): corrects three statements in this README that did not match the analysis files
-  they describe, and adds no new analysis. (i) The feature-scaling example now quotes the
-  `results/v8_harmonisation.json` values that the manuscript reports — logistic AUC 0.869 → 0.567 and
-  XGBoost 0.826 → 0.448, ΔAUC −0.301 and −0.378 — in place of an illustration that mixed an AUC with
-  a calibration slope and could not be reproduced from any file in this repository. (ii) The
-  clipping-constant section now states that the primary calibration slopes are fitted on the
+- v1.4.2 (current): `10.5281/zenodo.23535852` — corrects three statements in this README that did not
+  match the analysis files they describe, and adds no new analysis. (i) The feature-scaling example now
+  quotes the `results/v8_harmonisation.json` values that the manuscript reports — logistic AUC
+  0.869 → 0.567 and XGBoost 0.826 → 0.448, ΔAUC −0.301 and −0.378 — in place of an illustration that
+  mixed an AUC with a calibration slope and could not be reproduced from any file in this repository.
+  (ii) The clipping-constant section now states that the primary calibration slopes are fitted on the
   **unclipped linear predictor** and that the ε-grid is the sensitivity analysis, which is what the
   manuscript reports; the ε values quoted are the four ε actually present in
   `results/slope_epsilon_audit.json`. (iii) The note on the local one-year outcome no longer asserts a
