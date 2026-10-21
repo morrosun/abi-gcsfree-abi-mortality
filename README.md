@@ -6,9 +6,13 @@ Companion repository for the manuscript:
 > patients with acute brain injury: development and multi-scenario external validation across four
 > international databases and an independent single-centre cohort**
 
+The deposit title above (the one recorded on Zenodo) names the contents rather than repeating the
+manuscript title, which is quoted in full in the block above.
+
 The model is deliberately built **without the Glasgow Coma Scale (GCS)**, from routine variables that can be
 harmonised across heterogeneous ICU databases, so that a genuine
-*development → external-validation* loop can be completed across five cohorts.
+*development → external-validation* loop can be completed across five cohorts — one development cohort
+and four validation cohorts, in three countries.
 
 ---
 
@@ -114,8 +118,9 @@ Applying the manuscript's inclusion rule (`n_etiology_flags >= 1`, `age >= 18`, 
 to this file yields **n = 225 with 55 in-hospital deaths**, i.e. the analysis set reported in the paper.
 
 *Note:* `death_365` (one-year mortality) is **incomplete by design** — it is missing for a substantial
-fraction of the cohort and is missing-not-at-random, so it is released as-is with no imputation. The
-manuscript's one-year analyses do **not** use this local cohort.
+fraction of the cohort, and the mechanism behind that incompleteness could not be established from the
+released variables, so it is released as-is with no imputation. The manuscript's one-year analyses do
+**not** use this local cohort.
 
 ## Running the pipeline
 
@@ -244,16 +249,24 @@ produce plausible-looking but wrong numbers:
    creatinine ÷ 88.4, urea nitrogen ÷ 0.357, glucose × 18, haemoglobin ÷ 10.
 2. **Feature scaling.** The two learners in the frozen model were fitted on *different* inputs:
    the **logistic regression expects standardised features**, the **XGBoost expects raw features**.
-   Feeding the wrong one is not harmless — in our cohort it moved XGBoost AUC from 0.800 to 0.876 and
-   logistic AUC from 0.865 to 0.577, with a between-prediction correlation of only 0.54.
+   Feeding the wrong one is not harmless — in the single-centre cohort it moved the logistic AUC from
+   0.869 to 0.567 (ΔAUC −0.301) and the XGBoost AUC from 0.826 to 0.448 (ΔAUC −0.378), both P<.001
+   by DeLong. Both numbers are in `results/v8_harmonisation.json`, under `variants.scale_discordant`
+   and `delta.scale_discordant`, which is also where the audit figure is drawn from.
 
-## ⚠️ A third convention: the calibration slope depends on the clipping constant
+## ⚠️ A third convention: the clipping constant behind any probability-logit calibration slope
 
-Logistic-regression calibration slopes are computed on the log-odds scale and therefore require a clipping
-constant ε on the predicted probabilities. The reported slope **moves materially with ε** — in the local
-cohort, the logistic slope ranges over 0.35 across ε ∈ {1e-9, 1e-6, 1e-2}. The XGBoost slopes are stable
-to within 0.0005. `scripts/63_check_slope_epsilon.py` reproduces the whole grid and writes
-`results/slope_epsilon_audit.json`, so the sensitivity can be checked rather than taken on trust.
+A calibration slope is fitted on the log-odds scale, so a predicted probability of exactly 0 or 1 has
+to be handled by an explicit convention, and that convention is not free. In the single-centre cohort
+the logistic slope computed on the ε-clipped probability path ranges from **0.9399 to 1.1885** across
+ε ∈ {1e-6, 1e-4, 1e-3, 1e-2} — a spread of 0.2486 in the smallest cohort — while the XGBoost slopes
+move by at most 0.0084 in any cohort. **The primary calibration slopes reported in the manuscript are
+therefore fitted on the unclipped linear predictor** (`logit P = α + βm`, with `m` the logistic
+model's decision function or the raw XGBoost margin), and the ε-grid is reported as a sensitivity
+analysis, because an estimate that moves with an arbitrary constant is a property of the convention
+rather than of the model. `scripts/63_check_slope_epsilon.py` reproduces the whole grid and writes
+`results/slope_epsilon_audit.json`, so the sensitivity can be checked rather than taken on trust;
+that file also carries the unclipped `slope_eta` beside the per-ε values.
 
 ## What this repository deliberately does not contain
 
@@ -298,7 +311,19 @@ Archived on Zenodo — cite the **version-specific DOI** of the release you used
 > long-term mortality model in critically ill patients with acute brain injury* (v1.4.1).
 > Zenodo, 2026. **doi: [10.5281/zenodo.23485896](https://doi.org/10.5281/zenodo.23485896)**
 
-- v1.4.1 (current): `10.5281/zenodo.23485896` — replaces the stale 2026-10-02 result snapshot with the
+- v1.4.2 (current): corrects three statements in this README that did not match the analysis files
+  they describe, and adds no new analysis. (i) The feature-scaling example now quotes the
+  `results/v8_harmonisation.json` values that the manuscript reports — logistic AUC 0.869 → 0.567 and
+  XGBoost 0.826 → 0.448, ΔAUC −0.301 and −0.378 — in place of an illustration that mixed an AUC with
+  a calibration slope and could not be reproduced from any file in this repository. (ii) The
+  clipping-constant section now states that the primary calibration slopes are fitted on the
+  **unclipped linear predictor** and that the ε-grid is the sensitivity analysis, which is what the
+  manuscript reports; the ε values quoted are the four ε actually present in
+  `results/slope_epsilon_audit.json`. (iii) The note on the local one-year outcome no longer asserts a
+  missing-not-at-random mechanism, which the released variables cannot establish. The deposit title
+  recorded on Zenodo names the contents rather than repeating the manuscript title, and this is now
+  stated explicitly.
+- v1.4.1 (previous): `10.5281/zenodo.23485896` — replaces the stale 2026-10-02 result snapshot with the
   **current analysis run**, and makes the two vintages explicit. Thirteen result files are re-sourced
   from that run (NWICU one-year events 699 and in-hospital 376 against 635 and 16; logistic AUC
   0.7652, calibration slope 0.872 and O:E 0.994 against 0.6971 / 0.039 / 0.535), because it rebuilt
