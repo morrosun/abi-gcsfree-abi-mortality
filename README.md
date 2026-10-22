@@ -511,10 +511,10 @@ the copy of this file inside a release archive may therefore name the previous v
 the authoritative statement for any given release is the version and DOI shown on its Zenodo record page.
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.4.5).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23562581](https://doi.org/10.5281/zenodo.23562581)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.4.6).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23564574](https://doi.org/10.5281/zenodo.23564574)**
 
-- v1.4.6 (this release): **deposits the fixed-version numeric audit.** `scripts/127_freeze_numeric_audit.py`
+- v1.4.6 (current): `10.5281/zenodo.23564574` — **deposits the fixed-version numeric audit.** `scripts/127_freeze_numeric_audit.py`
   is a read-only auditor of the frozen submission package, and `results/freeze_numeric_audit_v13.json` is
   its output: **304 checks, 300 passed, 4 recorded as *needs a decision*, none failed**, produced by two
   runs with identical verdicts. It pins the SHA256 of the fifteen deliverable files, of the eight analysis
@@ -526,8 +526,11 @@ the authoritative statement for any given release is the version and DOI shown o
   tables. No analysis number changes in this release. Its one substantive fix is naming: three archived
   scripts (`80`, `97`, `98`) and `results/v8_panel_provenance.json` still referred to the GCS-increment
   result file by the codename used while the package was being assembled, and now use the name under which
-  that file is actually deposited. Everything else is the auditor and its output.
-- v1.4.5 (current): `10.5281/zenodo.23562581` — **corrects the calibration slope in the treatment-rule
+  that file is actually deposited. Everything else is the auditor and its output. The fingerprint block of
+  the archived audit records the DOI that the manuscript itself declares, v1.4.5: this release adds the
+  auditor without changing any reported number, so the manuscript goes on citing the version whose scripts
+  regenerate those numbers, and v1.4.6 exists so that the audit can be cited and checked in turn.
+- v1.4.5 (previous): `10.5281/zenodo.23562581` — **corrects the calibration slope in the treatment-rule
   sensitivity analysis.** The archived `126_treatment_rule_sensitivity.py` estimated calibration by
   regressing the outcome on `log(p)` instead of on the linear predictor, so the slopes it reported
   (1.2729 for the NWICU one-year logistic model, 1.1152 for the INSPIRE one-year logistic model,
