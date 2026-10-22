@@ -292,7 +292,10 @@ and they are not all coded by the same rule. Two scripts archive exactly what th
   admission" variants), and reports the pairwise differences in patient counts.
 * `126_treatment_rule_sensitivity.py` re-scores the **frozen** models — no refitting anywhere —
   with the treatment flags switched to the alternative rule, and asserts *first* that the
-  as-coded block reproduces the published external-validation AUCs digit for digit.
+  as-coded block reproduces the published values: AUC, observed:expected ratio, Brier score, ECE,
+  and the calibration slope and intercept (v1.4.5; before that release the slope was taken from a
+  regression on `log(p)` rather than on the linear predictor, which is a different quantity — see
+  the DOI block below).
 
 What the check found, cohort by cohort:
 
@@ -446,10 +449,26 @@ the copy of this file inside a release archive may therefore name the previous v
 the authoritative statement for any given release is the version and DOI shown on its Zenodo record page.
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.4.4).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23557369](https://doi.org/10.5281/zenodo.23557369)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.4.5).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23562581](https://doi.org/10.5281/zenodo.23562581)**
 
-- v1.4.4 (current): `10.5281/zenodo.23557369` — **re-derives the extraction windows and coding rules of
+- v1.4.5 (current): `10.5281/zenodo.23562581` — **corrects the calibration slope in the treatment-rule
+  sensitivity analysis.** The archived `126_treatment_rule_sensitivity.py` estimated calibration by
+  regressing the outcome on `log(p)` instead of on the linear predictor, so the slopes it reported
+  (1.2729 for the NWICU one-year logistic model, 1.1152 for the INSPIRE one-year logistic model,
+  0.8552 for the eICU in-hospital logistic model) were not on the same scale as the slopes in the
+  manuscript, which are fitted on the raw model margin. Slope and intercept are now taken from the
+  same linear predictor used everywhere else in the analysis — `decision_function` for logistic
+  regression, raw margin for XGBoost — and the alternative probability route is documented as
+  `logit(p)`, not `log(p)`. The in-script self-check was widened from AUC alone to AUC,
+  observed:expected ratio, Brier score, ECE, slope and intercept: the as-coded arm now reproduces
+  every published value for all six cohort–outcome combinations, and with an unchanged rule it agrees
+  with the main-analysis slopes to six decimals (the remaining difference is the ~10⁻⁸ precision of a
+  `C = 10¹²` logistic fit, not a difference of estimand). Discrimination, observed:expected ratio,
+  Brier score and ECE are untouched, and no main-analysis number changes; `results/treatment_rule_sensitivity_v1.json`
+  and the corresponding block of `results/v8_appendix_data.json` were regenerated. **Anyone who used
+  the v1.4.4 sensitivity file should take the slopes from v1.4.5.**
+- v1.4.4 (previous): `10.5281/zenodo.23557369` — **re-derives the extraction windows and coding rules of
   the three treatment-intensity indicators, cohort by cohort.** The manuscript used to describe all
   predictors as measured "inside the first 24 hours of the ICU stay", but the five cohorts do not share
   one first-day window for these three indicators, and they are not all coded by the same rule:
