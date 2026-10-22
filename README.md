@@ -382,7 +382,10 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 
 ## Citation / DOI
 
-Archived on Zenodo — cite the **version-specific DOI** of the release you used:
+Archived on Zenodo — cite the **version-specific DOI** of the release you used. A version DOI only
+exists once Zenodo has harvested the tag, so this block is written one commit *after* each release:
+the copy of this file inside a release archive may therefore name the previous version as current, and
+the authoritative statement for any given release is the version and DOI shown on its Zenodo record page.
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
 > long-term mortality model in critically ill patients with acute brain injury* (v1.4.3).
