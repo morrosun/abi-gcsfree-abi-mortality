@@ -446,10 +446,32 @@ the copy of this file inside a release archive may therefore name the previous v
 the authoritative statement for any given release is the version and DOI shown on its Zenodo record page.
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.4.3).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23552843](https://doi.org/10.5281/zenodo.23552843)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.4.4).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23557369](https://doi.org/10.5281/zenodo.23557369)**
 
-- v1.4.3 (current): `10.5281/zenodo.23552843` — **archives the scripts that generate the inputs** of the
+- v1.4.4 (current): `10.5281/zenodo.23557369` — **re-derives the extraction windows and coding rules of
+  the three treatment-intensity indicators, cohort by cohort.** The manuscript used to describe all
+  predictors as measured "inside the first 24 hours of the ICU stay", but the five cohorts do not share
+  one first-day window for these three indicators, and they are not all coded by the same rule:
+  MIMIC-IV and NWICU take the *earliest start time* inside `[intime − 6 h, intime + 24 h]`, INSPIRE
+  takes *any record* inside `[icuin − 60 min, icuin + 1,440 min]` (vasopressors
+  `[icuin, icuin + 1,440 min]`), eICU takes the earliest infusion offset inside `[−360, +1,440]`
+  minutes with ventilation and RRT read from the APACHE first-24 h summary, and the Huaian cohort is
+  a stay-level ledger with no event timestamps at all. v1.4.4 adds `125_treatment_rule_check.py`,
+  which recomputes each indicator under six definitions and reports the pairwise differences in
+  patient counts, and `126_treatment_rule_sensitivity.py`, which re-scores the **frozen** models under
+  the alternative rule after asserting that the as-coded block reproduces the published
+  external-validation AUCs digit for digit. Switching every indicator to the other rule relabels 185,
+  11 and 50 INSPIRE patients, 6 NWICU patients, 1 and 2 MIMIC-IV patients and nobody in eICU or
+  Huaian; on the frozen models the largest AUC change is −0.005 (INSPIRE, one year, both learners) and
+  −0.012 (INSPIRE, in-hospital), with the observed:expected ratio moving from 0.684 to 0.789 and from
+  0.690 to 0.777 there, while the NWICU AUC is unchanged to four decimal places (largest |ΔAUC|
+  4.8 × 10⁻⁵). Both scripts are read-only with respect to the analysis chain — they re-derive the
+  windows and re-score the frozen models, and feed no manuscript number — which is why they are
+  numbered after its last step (98); their results are `results/treatment_rule_check_v1.json` and
+  `results/treatment_rule_sensitivity_v1.json`. The release also refreshes the 92/94/95 figure
+  generators and the pixel-repro report to the versions that produced the figures of this submission.
+- v1.4.3 (previous): `10.5281/zenodo.23552843` — **archives the scripts that generate the inputs** of the
   current analysis run, not only the scripts that consume them. Previously only `98_build_v9_results.py`
   was deposited, so the current-run result files were verbatim snapshots that no reader could rebuild.
   v1.4.3 adds the label cross-check (`84`), the treatment-window audit (`85`), the rebuild of all four
