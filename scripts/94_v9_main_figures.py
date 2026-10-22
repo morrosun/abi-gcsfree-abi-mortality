@@ -206,8 +206,9 @@ def main():
                   'treat_none': 0}).to_csv(OUT / "dca_logistic_v9.csv", index=False)
 
     # ---------------- Fig1: ROC ----------------
-    plt.rcParams.update({'font.size': 10})
-    fig, ax = plt.subplots(figsize=(5.2, 5))
+    plt.rcParams.update({'font.size': 8.5})
+    # 印刷宽 = 6.3/2 ≈ 3.05 in（图 1 左右并排）
+    fig, ax = plt.subplots(figsize=(3.05, 2.95))
     for m, col in [('Logistic', C['lr']), ('RandomForest', C['rf']), ('XGBoost', C['xgb'])]:
         fpr, tpr = roc_store[m]
         ax.plot(fpr, tpr, color=col, lw=2,
@@ -216,44 +217,46 @@ def main():
     ax.plot([0, 1], [0, 1], '--', color='gray', lw=1)
     ax.set_xlabel('1 - Specificity')
     ax.set_ylabel('Sensitivity')
-    ax.set_title('ROC: 1-year mortality (MIMIC-IV internal test)')
-    ax.legend(loc='lower right', fontsize=8.5)
-    ax.set_aspect('equal')
+    ax.set_title('ROC: 1-year mortality', fontsize=8.5)
+    ax.legend(loc='lower right', fontsize=6.5, frameon=False)
+    ax.set_aspect('equal', adjustable='box')
     fig.tight_layout()
-    fig.savefig(PAN / "fig1_roc_v9.png", dpi=200)
+    fig.savefig(PAN / "fig1_roc_v9.png", dpi=300)
     plt.close(fig)
     log("\n  panel -> fig1_roc_v9.png")
 
     # ---------------- Fig2: Calibration ----------------
-    fig, ax = plt.subplots(figsize=(5.2, 5))
+    fig, ax = plt.subplots(figsize=(3.05, 2.95))
     for m, col in [('Logistic', C['lr']), ('XGBoost', C['xgb'])]:
         t, p = calib_store[m]
         ax.plot(p, t, 'o-', color=col, label=m, ms=5)
     ax.plot([0, 1], [0, 1], '--', color='gray', lw=1, label='Ideal')
     ax.set_xlabel('Predicted probability')
     ax.set_ylabel('Observed frequency')
-    ax.set_title('Calibration (10 quantile bins)')
-    ax.legend(fontsize=9)
+    ax.set_title('Calibration (10 quantile bins)', fontsize=8.5)
+    ax.legend(fontsize=6.5, frameon=False)
     fig.tight_layout()
-    fig.savefig(PAN / "fig2_calibration_v9.png", dpi=200)
+    fig.savefig(PAN / "fig2_calibration_v9.png", dpi=300)
     plt.close(fig)
     log("  panel -> fig2_calibration_v9.png")
 
     # ---------------- Fig4: OR forest ----------------
     o = or_tab.drop(index=['const'], errors='ignore').copy()
     o = o[o['p'] < 0.05].sort_values('OR')
-    fig, ax = plt.subplots(figsize=(5.6, max(3.0, 0.34 * len(o) + 1.2)))
+    # 印刷宽 ≈ 3.05 in（图 2 左右并排）
+    fig, ax = plt.subplots(figsize=(3.05, max(1.7, 0.185 * len(o) + 0.7)))
     yy = np.arange(len(o))
     ax.errorbar(o['OR'], yy,
                 xerr=[o['OR'] - o['CI_low'], o['CI_high'] - o['OR']],
                 fmt='o', color=C['lr'], ecolor=C['lr'], capsize=3, ms=4)
     ax.axvline(1.0, color='k', ls=':', lw=1)
     ax.set_yticks(yy)
-    ax.set_yticklabels(o.index, fontsize=8.5)
-    ax.set_xlabel('Adjusted odds ratio (per 1-SD for continuous predictors)')
-    ax.set_title('Predictors with P<.05 (logistic model)')
+    # 3.05 in 宽：长标签必须换行，否则 tight_layout 也救不了（文字直接溢出画布）
+    ax.set_yticklabels(o.index, fontsize=7)
+    ax.set_xlabel('Adjusted odds ratio\n(per 1-SD for\ncontinuous predictors)', fontsize=7.5)
+    ax.set_title('Predictors with P<.05\n(logistic model)', fontsize=8)
     fig.tight_layout()
-    fig.savefig(PAN / "fig4_forest_v9.png", dpi=200)
+    fig.savefig(PAN / "fig4_forest_v9.png", dpi=300)
     plt.close(fig)
     log(f"  panel -> fig4_forest_v9.png  ({len(o)} predictors with P<.05)")
 
@@ -261,14 +264,14 @@ def main():
     imp = xgbm.get_booster().get_score(importance_type='gain')
     s = pd.Series(imp).reindex(FEATS).fillna(0.0).sort_values(ascending=False)
     top = s.head(12)[::-1]
-    fig, ax = plt.subplots(figsize=(5.6, 4.4))
+    fig, ax = plt.subplots(figsize=(3.05, 2.4))
     ax.barh(range(len(top)), top.values, color=C['xgb'])
     ax.set_yticks(range(len(top)))
-    ax.set_yticklabels(top.index, fontsize=8.5)
-    ax.set_xlabel('Gain')
-    ax.set_title('XGBoost feature importance (gain)')
+    ax.set_yticklabels(top.index, fontsize=7)
+    ax.set_xlabel('Gain', fontsize=7.5)
+    ax.set_title('XGBoost feature importance\n(gain)', fontsize=8)
     fig.tight_layout()
-    fig.savefig(PAN / "fig5_xgb_importance_v9.png", dpi=200)
+    fig.savefig(PAN / "fig5_xgb_importance_v9.png", dpi=300)
     plt.close(fig)
     log("  panel -> fig5_xgb_importance_v9.png")
 

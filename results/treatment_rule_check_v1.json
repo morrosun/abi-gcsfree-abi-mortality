@@ -1,0 +1,587 @@
+{
+ "generated_at": "2026-10-22T14:22:21",
+ "generated_by": "scripts/125_treatment_rule_check.py",
+ "databases": {
+  "MIMIC-IV": [
+   {
+    "variable": "mech_vent",
+    "note": "mimiciv_derived.ventilation",
+    "window": "[intime-6h, intime+24h]",
+    "coded_rule": "min(starttime) 落窗",
+    "n": 16597,
+    "counts": {
+     "final": 6473,
+     "as_coded": 6473,
+     "first_win": 6473,
+     "any_start": 6474,
+     "any_over": 6482,
+     "doc_0_24": 5150,
+     "doc_0_24ov": 6479
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 6473,
+      "b_pos": 6473
+     },
+     "first_win": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 6473,
+      "b_pos": 6473
+     },
+     "any_start": {
+      "n_diff": 1,
+      "a_only": 0,
+      "b_only": 1,
+      "a_pos": 6473,
+      "b_pos": 6474
+     },
+     "any_over": {
+      "n_diff": 9,
+      "a_only": 0,
+      "b_only": 9,
+      "a_pos": 6473,
+      "b_pos": 6482
+     },
+     "doc_0_24": {
+      "n_diff": 1325,
+      "a_only": 1324,
+      "b_only": 1,
+      "a_pos": 6473,
+      "b_pos": 5150
+     },
+     "doc_0_24ov": {
+      "n_diff": 12,
+      "a_only": 3,
+      "b_only": 9,
+      "a_pos": 6473,
+      "b_pos": 6479
+     }
+    }
+   },
+   {
+    "variable": "vasopressor",
+    "note": "mimiciv_derived.vasoactive_agent",
+    "window": "[intime-6h, intime+24h]",
+    "coded_rule": "min(starttime) 落窗",
+    "n": 16597,
+    "counts": {
+     "final": 3114,
+     "as_coded": 3114,
+     "first_win": 3114,
+     "any_start": 3116,
+     "any_over": 3116,
+     "doc_0_24": 3101,
+     "doc_0_24ov": 3116
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 3114,
+      "b_pos": 3114
+     },
+     "first_win": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 3114,
+      "b_pos": 3114
+     },
+     "any_start": {
+      "n_diff": 2,
+      "a_only": 0,
+      "b_only": 2,
+      "a_pos": 3114,
+      "b_pos": 3116
+     },
+     "any_over": {
+      "n_diff": 2,
+      "a_only": 0,
+      "b_only": 2,
+      "a_pos": 3114,
+      "b_pos": 3116
+     },
+     "doc_0_24": {
+      "n_diff": 17,
+      "a_only": 15,
+      "b_only": 2,
+      "a_pos": 3114,
+      "b_pos": 3101
+     },
+     "doc_0_24ov": {
+      "n_diff": 2,
+      "a_only": 0,
+      "b_only": 2,
+      "a_pos": 3114,
+      "b_pos": 3116
+     }
+    }
+   },
+   {
+    "variable": "rrt",
+    "note": "mimiciv_derived.first_day_rrt（派生首日表）",
+    "window": "派生首日表（dialysis_present=1）",
+    "coded_rule": "派生表口径，不按事件重算",
+    "n": 16597,
+    "counts": {
+     "final": 443
+    },
+    "vs_final": {}
+   }
+  ],
+  "eICU": [
+   {
+    "variable": "vasopressor",
+    "note": "eicu_crd.infusiondrug（仅 infusionoffset，单时点）",
+    "window": "[-360, +1440] 分钟",
+    "coded_rule": "min(infusionoffset) 落窗",
+    "n": 14852,
+    "counts": {
+     "final": 1309,
+     "as_coded": 1309,
+     "first_win": 1309,
+     "any_start": 1309,
+     "any_over": 1309,
+     "doc_0_24": 1121,
+     "doc_0_24ov": 1121
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 1309,
+      "b_pos": 1309
+     },
+     "first_win": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 1309,
+      "b_pos": 1309
+     },
+     "any_start": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 1309,
+      "b_pos": 1309
+     },
+     "any_over": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 1309,
+      "b_pos": 1309
+     },
+     "doc_0_24": {
+      "n_diff": 188,
+      "a_only": 188,
+      "b_only": 0,
+      "a_pos": 1309,
+      "b_pos": 1121
+     },
+     "doc_0_24ov": {
+      "n_diff": 188,
+      "a_only": 188,
+      "b_only": 0,
+      "a_pos": 1309,
+      "b_pos": 1121
+     }
+    }
+   },
+   {
+    "variable": "mech_vent",
+    "note": "eicu_crd.apacheapsvar（APACHE 入 ICU 首 24h 汇总）",
+    "window": "APACHE 首 24h",
+    "coded_rule": "APACHE 汇总口径，不按事件重算",
+    "n": 14852,
+    "counts": {
+     "final": 4426
+    },
+    "vs_final": {}
+   },
+   {
+    "variable": "rrt",
+    "note": "eicu_crd.apacheapsvar（APACHE 入 ICU 首 24h 汇总）",
+    "window": "APACHE 首 24h",
+    "coded_rule": "APACHE 汇总口径，不按事件重算",
+    "n": 14852,
+    "counts": {
+     "final": 313
+    },
+    "vs_final": {}
+   }
+  ],
+  "NWICU": [
+   {
+    "variable": "mech_vent",
+    "note": "icu.procedureevents (787541,753461)",
+    "window": "[intime-6h, intime+24h]",
+    "coded_rule": "min(starttime) 落窗",
+    "n": 3420,
+    "counts": {
+     "final": 557,
+     "as_coded": 557,
+     "first_win": 557,
+     "any_start": 557,
+     "any_over": 556,
+     "doc_0_24": 557,
+     "doc_0_24ov": 536
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 557,
+      "b_pos": 557
+     },
+     "first_win": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 557,
+      "b_pos": 557
+     },
+     "any_start": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 557,
+      "b_pos": 557
+     },
+     "any_over": {
+      "n_diff": 1,
+      "a_only": 1,
+      "b_only": 0,
+      "a_pos": 557,
+      "b_pos": 556
+     },
+     "doc_0_24": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 557,
+      "b_pos": 557
+     },
+     "doc_0_24ov": {
+      "n_diff": 21,
+      "a_only": 21,
+      "b_only": 0,
+      "a_pos": 557,
+      "b_pos": 536
+     }
+    }
+   },
+   {
+    "variable": "rrt",
+    "note": "icu.procedureevents (704890,772042,724671,798351)",
+    "window": "[intime-6h, intime+24h]",
+    "coded_rule": "min(starttime) 落窗",
+    "n": 3420,
+    "counts": {
+     "final": 60,
+     "as_coded": 60,
+     "first_win": 60,
+     "any_start": 60,
+     "any_over": 60,
+     "doc_0_24": 60,
+     "doc_0_24ov": 60
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 60,
+      "b_pos": 60
+     },
+     "first_win": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 60,
+      "b_pos": 60
+     },
+     "any_start": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 60,
+      "b_pos": 60
+     },
+     "any_over": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 60,
+      "b_pos": 60
+     },
+     "doc_0_24": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 60,
+      "b_pos": 60
+     },
+     "doc_0_24ov": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 60,
+      "b_pos": 60
+     }
+    }
+   },
+   {
+    "variable": "vasopressor",
+    "note": "hosp.prescriptions（74 号药物+路线过滤）",
+    "window": "[intime-6h, intime+24h]",
+    "coded_rule": "窗口内任意处方（处方无 endtime ⇒ any_start=any_over）",
+    "n": 3420,
+    "counts": {
+     "final": 381,
+     "as_coded": 381,
+     "first_win": 375,
+     "any_start": 381,
+     "any_over": 381,
+     "doc_0_24": 282,
+     "doc_0_24ov": 282
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 381,
+      "b_pos": 381
+     },
+     "first_win": {
+      "n_diff": 6,
+      "a_only": 6,
+      "b_only": 0,
+      "a_pos": 381,
+      "b_pos": 375
+     },
+     "any_start": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 381,
+      "b_pos": 381
+     },
+     "any_over": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 381,
+      "b_pos": 381
+     },
+     "doc_0_24": {
+      "n_diff": 99,
+      "a_only": 99,
+      "b_only": 0,
+      "a_pos": 381,
+      "b_pos": 282
+     },
+     "doc_0_24ov": {
+      "n_diff": 99,
+      "a_only": 99,
+      "b_only": 0,
+      "a_pos": 381,
+      "b_pos": 282
+     }
+    }
+   }
+  ],
+  "INSPIRE": [
+   {
+    "variable": "mech_vent",
+    "note": "inspire.ward_vitals（w.item_name = 'vent'）",
+    "window": "[icuin-60, icuin+1440] 分钟",
+    "coded_rule": "窗口内任意记录",
+    "n": 1543,
+    "counts": {
+     "final": 868,
+     "as_coded": 868,
+     "first_win": 683,
+     "any_start": 868,
+     "any_over": 868,
+     "doc_0_24": 867,
+     "doc_0_24ov": 867
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 868,
+      "b_pos": 868
+     },
+     "first_win": {
+      "n_diff": 185,
+      "a_only": 185,
+      "b_only": 0,
+      "a_pos": 868,
+      "b_pos": 683
+     },
+     "any_start": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 868,
+      "b_pos": 868
+     },
+     "any_over": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 868,
+      "b_pos": 868
+     },
+     "doc_0_24": {
+      "n_diff": 1,
+      "a_only": 1,
+      "b_only": 0,
+      "a_pos": 868,
+      "b_pos": 867
+     },
+     "doc_0_24ov": {
+      "n_diff": 1,
+      "a_only": 1,
+      "b_only": 0,
+      "a_pos": 868,
+      "b_pos": 867
+     }
+    }
+   },
+   {
+    "variable": "rrt",
+    "note": "inspire.ward_vitals（w.item_name = 'crrt'）",
+    "window": "[icuin-60, icuin+1440] 分钟",
+    "coded_rule": "窗口内任意记录",
+    "n": 1543,
+    "counts": {
+     "final": 42,
+     "as_coded": 42,
+     "first_win": 31,
+     "any_start": 42,
+     "any_over": 42,
+     "doc_0_24": 42,
+     "doc_0_24ov": 42
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 42,
+      "b_pos": 42
+     },
+     "first_win": {
+      "n_diff": 11,
+      "a_only": 11,
+      "b_only": 0,
+      "a_pos": 42,
+      "b_pos": 31
+     },
+     "any_start": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 42,
+      "b_pos": 42
+     },
+     "any_over": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 42,
+      "b_pos": 42
+     },
+     "doc_0_24": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 42,
+      "b_pos": 42
+     },
+     "doc_0_24ov": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 42,
+      "b_pos": 42
+     }
+    }
+   },
+   {
+    "variable": "vasopressor",
+    "note": "inspire.medications",
+    "window": "[icuin, icuin+1440] 分钟",
+    "coded_rule": "窗口内任意记录",
+    "n": 1543,
+    "counts": {
+     "final": 134,
+     "as_coded": 134,
+     "first_win": 84,
+     "any_start": 134,
+     "any_over": 134,
+     "doc_0_24": 134,
+     "doc_0_24ov": 134
+    },
+    "vs_final": {
+     "as_coded": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 134,
+      "b_pos": 134
+     },
+     "first_win": {
+      "n_diff": 50,
+      "a_only": 50,
+      "b_only": 0,
+      "a_pos": 134,
+      "b_pos": 84
+     },
+     "any_start": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 134,
+      "b_pos": 134
+     },
+     "any_over": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 134,
+      "b_pos": 134
+     },
+     "doc_0_24": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 134,
+      "b_pos": 134
+     },
+     "doc_0_24ov": {
+      "n_diff": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_pos": 134,
+      "b_pos": 134
+     }
+    }
+   }
+  ]
+ }
+}

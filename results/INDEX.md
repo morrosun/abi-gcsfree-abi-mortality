@@ -6,7 +6,7 @@ carries the audit result plus a `generated_by` / `generated_at` field where the 
 ## ⚠️ Snapshot version (read this first)
 
 The analysis behind this repository has been run more than once, so this directory holds **two
-vintages side by side**: fourteen files are snapshots of the **current analysis run**, and eight are
+vintages side by side**: nineteen files are snapshots of the **current analysis run**, and eight are
 snapshots of the **earlier run** that it superseded. Nothing here is hand-edited — every file is a
 verbatim copy of the output directory of the run that produced it, and the *Vintage* column below
 says which. The earlier-run files are kept because they are still the correct reference for the
@@ -62,6 +62,8 @@ Two consequences are worth knowing before comparing a file against the paper:
 | `v9_number_master.json` | current run | `97_v9_vs_v8_diff.py` | **The number master for the figures of this submission.** Every number printed inside every figure of the current run, each entry pointing at the result field it was derived from. This is the file the response letter refers to when it says every figure number is registered machine-readably; the two `*_figure_number_manifest.json` files above cover the audit figures of earlier runs |
 | `figure_inventory.json` | current run | `99_prep_v9_package.py` (inventory written by `92_v9_audit_figures.py`) | Which panels each of the composite figures is assembled from, with the panel list and ordering used for this submission |
 | `v9_panel_pixel_repro.json` | current run | `96_v9_pixel_repro.py` | Pixel-level reproducibility of every panel and composite figure of the current run against an independent regeneration of the same generator |
+| `treatment_rule_check_v1.json` | current run | `125_treatment_rule_check.py` | **The extraction windows and coding rules of the three treatment-intensity indicators, re-derived cohort by cohort.** For each database and each indicator it recomputes six definitions (the value in the analysis file, the rule as coded, earliest start time inside the window, any qualifying record inside the window, overlap with the window, and the wording the manuscript previously used) and reports the pairwise differences in patient counts. Archived since v1.4.4, when the manuscript stopped describing all predictors as measured "inside the first 24 hours of the ICU stay" |
+| `treatment_rule_sensitivity_v1.json` | current run | `126_treatment_rule_sensitivity.py` | What the choice of coding rule does to the **frozen** models: for each cohort where a variant exists, the AUC / O:E / calibration slope / Brier / ECE under the rule as coded and under the alternative rule, with the differences. The `as_coded` block must reproduce the published external-validation AUCs digit for digit; the script asserts this against `external_validation_v9.csv` before it reports anything. Requires the three frozen model artefacts written by `118_v10_retrain.py`, which are derived from credentialed data and are therefore not redistributed |
 
 > **Note on `v8_appendix_data.json`**: it is written by the manuscript's appendix builder, which is *not*
 > deposited because it embeds the unpublished appendix text. It is therefore **the one current-run file

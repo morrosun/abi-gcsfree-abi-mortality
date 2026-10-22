@@ -76,6 +76,15 @@ scripts/                              Python analysis pipeline
   97_v9_vs_v8_diff.py                Cell-by-cell diff against the previous run
   108_split_overlap_sensitivity.py   No-overlap subset analysis (Appendix S11)
   124_death_label_bounds_primary.py  Bounded-label primary analysis and its sensitivity grid
+  ---- treatment-indicator window / rule verification (v1.4.4) ------------
+  125_treatment_rule_check.py        Re-derive the extraction window **and** the coding rule of the three
+                                     treatment-intensity indicators in every database, under six
+                                     definitions, and report the pairwise differences in patient counts
+  126_treatment_rule_sensitivity.py  Recompute AUC / O:E / calibration slope / Brier / ECE on the
+                                     **frozen** models with the treatment flags switched to the alternative
+                                     coding rule; asserts the as-coded block reproduces the published
+                                     external-validation AUCs first. Needs the three model artefacts
+                                     written by `118_v10_retrain.py`
   98_build_v9_results.py              Last step of the **current** analysis run: translates that run's
                                        `*_v2` / `*_v9` outputs into the result schema the rest of the pipeline
                                        reads, and writes the current-run files in `results/`
@@ -243,6 +252,11 @@ python scripts/96_v9_pixel_repro.py                   # pixel-level reproducibil
 python scripts/97_v9_vs_v8_diff.py                    # cell-by-cell diff against the previous run
 # 14   translate into the result schema and write results/
 python scripts/98_build_v9_results.py
+# 15–16 treatment-indicator windows and coding rules (read-only w.r.t. the analysis chain:
+#        they re-derive the windows from the source tables and re-score the frozen models,
+#        so they run after 118 and write results/treatment_rule_*.json)
+python scripts/125_treatment_rule_check.py            # needs PostgreSQL
+python scripts/126_treatment_rule_sensitivity.py      # needs PostgreSQL + the 118 model artefacts
 ```
 
 `results/v9_number_master.json` — the machine-readable record of every number printed inside every figure of
@@ -264,6 +278,50 @@ Two things worth knowing before you run the audits:
   (347 of the included stays, 1,186 of all stays), so it is **not** used for the reported
   numbers. Counts are given both within the included cohort and table-wide because the two
   differ by more than four-fold and the scope matters when reproducing them.
+
+### Treatment-indicator windows and coding rules (v1.4.4)
+
+The three treatment-intensity indicators — mechanical ventilation, vasopressor exposure and renal
+replacement therapy — are the only predictors whose extraction is not shared by all five cohorts,
+and they are not all coded by the same rule. Two scripts archive exactly what that means:
+
+* `125_treatment_rule_check.py` re-derives, for every database and every indicator, the extraction
+  window **and** the coding rule from the source tables, under six definitions (the value in the
+  analysis file; the rule as coded; earliest start time inside the window; any qualifying record
+  inside the window; any interval overlapping the window; and the two "first 24 h after ICU
+  admission" variants), and reports the pairwise differences in patient counts.
+* `126_treatment_rule_sensitivity.py` re-scores the **frozen** models — no refitting anywhere —
+  with the treatment flags switched to the alternative rule, and asserts *first* that the
+  as-coded block reproduces the published external-validation AUCs digit for digit.
+
+What the check found, cohort by cohort:
+
+* **MIMIC-IV** (n = 16,597) — window `[intime − 6 h, intime + 24 h]`, rule: *earliest start time
+  inside the window*. Ventilation 6,473 and vasopressors 3,114 patients; RRT (443) is read from
+  `mimiciv_derived.first_day_rrt` and is not recomputed from dialysis events.
+* **eICU** (n = 14,852) — vasopressors: window `[−360, +1,440]` minutes, rule: *earliest infusion
+  offset*; the `infusiondrug` table carries one timestamp per record, so the two rules coincide
+  there by construction. Ventilation (4,426) and RRT (313) come from the APACHE first-24 h
+  summary, not from event rows. No rule variant exists.
+* **NWICU** (n = 3,420) — ventilation (557) and RRT (60): window `[intime − 6 h, intime + 24 h]`,
+  rule: *earliest start time*. Vasopressors (381): same window, but rule: *any prescription
+  inside the window* — prescriptions carry no end time, so "any record" and "any overlap"
+  coincide. Switching the vasopressor rule changes 6 patients; switching the other two changes
+  nobody.
+* **INSPIRE** (n = 1,543) — ventilation (868) and RRT (42): window `[icuin − 60 min,
+  icuin + 1,440 min]`; vasopressors (134): window `[icuin, icuin + 1,440 min]`; rule for all
+  three: *any record inside the window*. Switching to the earliest-record rule drops 185, 11 and
+  50 patients respectively.
+* **Huaian** (n = 225) — a stay-level ledger with no event timestamps, so no rule variant
+  applies.
+
+On the frozen models the largest AUC change is **−0.005** (INSPIRE, one year, both learners) and
+**−0.012** (INSPIRE, in-hospital); there the observed:expected ratio moves from 0.684 to 0.789
+and from 0.690 to 0.777. In NWICU the AUC is **unchanged to four decimal places** (largest
+|ΔAUC| 4.8 × 10⁻⁵), and in eICU and Huaian no variant exists to compute. The counts, the windows
+and the full metric grid are in `results/treatment_rule_check_v1.json` and
+`results/treatment_rule_sensitivity_v1.json`, indexed in `results/INDEX.md`; the manuscript
+reports them in Appendix Table S3 and the paragraph that follows it.
 
 ### How the provenance claims are verified
 

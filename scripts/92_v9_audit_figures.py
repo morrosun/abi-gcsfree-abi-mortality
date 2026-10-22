@@ -61,8 +61,12 @@ FEATS = ['age', 'female'] + AET + ['charlson_comorbidity_index'] + \
         [c for c in CONT if c not in ('age', 'charlson_comorbidity_index')] + BINV
 EPS = 1e-6
 SEED = 42
-MAX_PX = 1200
-FS = 10
+# ★★ 2026-10-22（第二十二轮）：1200 px 在 6.3 in 印刷宽下只有 190 dpi。
+#   面板画布已按印刷宽设定 ⇒ 1890 px / 6.3 in = **300 dpi**（BMC/JIC 要求）。
+#   高度单独放宽到 2500 px（≈8.3 in），否则整页图（图 4、图 5）会被按长边再缩一次、
+#   宽度回落到 250 dpi 左右。
+MAX_W, MAX_H = 1890, 2500
+FS = 9    # 画布=印刷宽 6.3 in；FS-3 仍 ≥6 pt
 C_LR, C_XG, C_TOT, C_MOT = '#1f77b4', '#d62728', '#7f7f7f', '#2ca02c'
 
 LOG = []
@@ -238,7 +242,7 @@ def part1_harmonisation():
 def _save(fig, name):
     fp = PAN / name
     fig.tight_layout()
-    fig.savefig(fp, dpi=200)
+    fig.savefig(fp, dpi=300)   # 面板按 300 dpi 出图，与印刷宽 6.3 in 对应
     plt.close(fig)
     log("  panel -> %s" % name)
     return fp
@@ -284,7 +288,7 @@ def gcs_vent_stratified():
 
 def panel_gcs(aud, gcs_strat):
     g = aud['gcs_increment']
-    fig, ax = plt.subplots(1, 2, figsize=(12.0, 4.8))
+    fig, ax = plt.subplots(1, 2, figsize=(6.3, 2.52))
     models = ['Logistic', 'XGBoost']
     tot = [g[m_]['plus_total_gcs']['dAUC'] for m_ in models]
     mot = [g[m_]['plus_motor_gcs']['dAUC'] for m_ in models]
@@ -326,7 +330,7 @@ def panel_leakage(lk):
     order = ['A_1yr_full', 'B_inhosp', 'C_survivors']
     lab = ['A  One-year death\n(all patients)', 'B  In-hospital death\n(maximum leakage window)',
            'C  One-year death\n(hospital survivors)']
-    fig, ax = plt.subplots(1, 2, figsize=(12.0, 4.8))
+    fig, ax = plt.subplots(1, 2, figsize=(6.3, 2.52))
     x = np.arange(3)
     w = 0.36
     for j, mn in enumerate(['Logistic', 'XGBoost']):
@@ -338,7 +342,7 @@ def panel_leakage(lk):
     ax[0].set_xticks(x)
     ax[0].set_xticklabels(lab, fontsize=FS - 2)
     ax[0].set_ylabel('Change in AUC after removing\nall 7 discharge-coded aetiology indicators')
-    ax[0].set_title('A  MIMIC-IV (internal, n=4,980)', loc='left')
+    ax[0].set_title('MIMIC-IV (internal, n=4,980)', loc='left')
     ax[0].axhline(0, color='k', lw=0.8)
     ax[0].legend(frameon=False)
     ax[0].set_ylim(-0.032, 0.004)
@@ -362,12 +366,12 @@ def panel_leakage(lk):
     ax[1].axhline(0, color='k', lw=0.8)
     ax[1].set_ylabel('Change in AUC')
     ax[1].set_ylim(-0.045, 0.05)
-    ax[1].set_title('B  External databases', loc='left')
+    ax[1].set_title('External databases', loc='left')
     return _save(fig, "leakage_dauc_v9.png")
 
 
 def panel_slope_eps(se):
-    fig, ax = plt.subplots(1, 2, figsize=(12.0, 4.8))
+    fig, ax = plt.subplots(1, 2, figsize=(6.3, 2.52))
     eps = [float(e) for e in se['eps_list']]
     for j, mn in enumerate(['Logistic', 'XGBoost']):
         for tag, lab, ls in [('Huaian_inhosp', 'Huaian (n=225)', '-'),
@@ -379,11 +383,16 @@ def panel_slope_eps(se):
                        color=C_LR if mn == 'Logistic' else C_XG,
                        alpha=1.0 if 'Huaian' in lab else 0.75, label=lab)
         ax[j].set_xscale('log')
-        ax[j].set_xlabel('Clipping constant ε (predictions clipped to [ε, 1−ε] before logit)')
+        ax[j].set_xlabel('Clipping constant ε')
         ax[j].set_ylabel('Calibration slope')
         ax[j].axhline(1.0, color='k', ls=':', lw=0.8)
-        ax[j].set_title('%s  %s' % ('A' if j == 0 else 'B', mn), loc='left')
-        ax[j].legend(frameon=False, fontsize=FS - 2, loc='center left')
+        ax[j].set_title(mn, loc='left')
+        # ★ 图例放在顶部留白里：给 y 上限预留空间，否则图例压在已经画好的线上
+        _all = [se['results'][t][mn]['by_eps']['%g' % e]['slope']
+                for t in ('Huaian_inhosp', 'NWICU_1yr', 'INSPIRE_1yr', 'eICU_inhosp')
+                for e in eps]
+        ax[j].set_ylim(min(_all) - 0.05, max(_all) + 0.26)
+        ax[j].legend(frameon=False, fontsize=FS - 2, loc='upper left')
     return _save(fig, "slope_eps_v9.png")
 
 
@@ -393,7 +402,7 @@ def panel_calib_ci(cc):
             ('INSPIRE_1yr', 'INSPIRE\n(n=1,543)'),
             ('eICU_inhosp', 'eICU\n(n=14,852)'),
             ('Huaian_inhosp', 'Huaian\n(n=225)')]
-    fig, ax = plt.subplots(1, 2, figsize=(12.0, 5.0))
+    fig, ax = plt.subplots(1, 2, figsize=(6.3, 2.62))
     for j, mn in enumerate(['Logistic', 'XGBoost']):
         yy = np.arange(len(tags))[::-1]
         for i, (t, lab) in enumerate(tags):
@@ -401,39 +410,46 @@ def panel_calib_ci(cc):
             lo, hi = cc[t][mn]['ci95']['slope']
             ax[j].plot([lo, hi], [yy[i], yy[i]], color=C_LR if mn == 'Logistic' else C_XG, lw=2.2)
             ax[j].plot(pt, yy[i], 'o', color=C_LR if mn == 'Logistic' else C_XG, ms=6)
-            ax[j].text(hi + 0.05, yy[i], '%.2f [%.2f–%.2f]' % (pt, lo, hi),
-                       va='center', fontsize=FS - 2)
+            # 数值标在 CI 正上方（原来放在 hi 右侧，会压在自己的 CI 线上）
+            ax[j].text(pt, yy[i] + 0.26, '%.2f [%.2f–%.2f]' % (pt, lo, hi),
+                       va='bottom', ha='center', fontsize=FS - 2)
         ax[j].axvline(1.0, color='k', ls=':', lw=0.9)
         ax[j].axvline(0.0, color='gray', ls=':', lw=0.6)
         ax[j].set_yticks(yy)
         ax[j].set_yticklabels([t for _, t in tags], fontsize=FS - 2)
-        ax[j].set_xlabel('Calibration slope (95% CI, 1,000 bootstrap resamples)')
-        ax[j].set_title('%s  %s' % ('A' if j == 0 else 'B', mn), loc='left')
-        ax[j].set_xlim(-0.15, 2.15)
+        ax[j].set_xlabel('Calibration slope (95% CI)')
+        ax[j].set_title(mn, loc='left')
+        # ★ 上界到 1.39（淮安 XGBoost）时固定 2.15 会把数值标签挤到画布外 ⇒ 按数据取右界
+        _hi = max(cc[t][mn]['ci95']['slope'][1] for t, _ in tags)
+        ax[j].set_xlim(-0.15, _hi + 0.45)
+        ax[j].set_ylim(-0.6, len(tags) - 0.15)
     return _save(fig, "calib_ci_v9.png")
 
 
 def panel_harmonisation(res):
-    fig, ax = plt.subplots(1, 2, figsize=(12.0, 4.8))
+    fig, ax = plt.subplots(1, 2, figsize=(6.3, 2.52))
     tags = ['unit_discordant', 'scale_discordant']
     lab = ['Units not converted\n(SI fed as if conventional)',
            'Scaling convention\nnot respected']
     x = np.arange(2)
     w = 0.36
+    # 供 y 范围与标签偏移共用（必须在画柱之前算）
+    _dmin = min(res['delta'][t][mn]['dAUC'] for t in tags for mn in ['Logistic', 'XGBoost'])
     for j, mn in enumerate(['Logistic', 'XGBoost']):
         v = [res['delta'][t][mn]['dAUC'] for t in tags]
         b = ax[0].bar(x + (j - 0.5) * w, v, w, label=mn, color=C_LR if j == 0 else C_XG)
         for r in b:
-            off = 0.006 if r.get_height() >= 0 else -0.022
+            off = 0.006 if r.get_height() >= 0 else -0.055 * abs(_dmin) / 0.378
             ax[0].text(r.get_x() + r.get_width() / 2, r.get_height() + off,
                        '%+.3f' % r.get_height(), ha='center', fontsize=FS - 1)
     ax[0].axhline(0, color='k', lw=0.8)
     ax[0].set_xticks(x)
     ax[0].set_xticklabels(lab, fontsize=FS - 2)
     ax[0].set_ylabel('Change in AUC')
-    ax[0].set_ylim(-0.36, 0.13)
+    # ★ 范围按数据取：固定 -0.36 会被 -0.378 顶破，标签落到刻度文字上
+    ax[0].set_ylim(_dmin * 1.22, 0.13)
     ax[0].legend(frameon=False, loc='lower left')
-    ax[0].set_title('A  Discrimination', loc='left')
+    ax[0].set_title('Discrimination', loc='left')
 
     # ★ ylim 动态：V9 重训后单位不换算使 LR 的 O:E 达到 6.4（V8 报 1.80），
     #   旧图固定 ylim(0, 2.05) 会把柱子和标签截掉 —— 必须按数据取范围。
@@ -446,17 +462,17 @@ def panel_harmonisation(res):
             ax[1].text(r.get_x() + r.get_width() / 2, r.get_height() + 0.02 * vmax,
                        '%.2f' % r.get_height(), ha='center', fontsize=FS - 1)
     ax[1].axhline(1.0, color='k', ls='--', lw=1)
-    ax[1].text(1.45, 1.02 + 0.02 * vmax, 'perfect calibration', fontsize=FS - 2, ha='right')
+    ax[1].text(-0.42, 1.02 + 0.03 * vmax, 'perfect calibration', fontsize=FS - 2, ha='left')
     ax[1].set_xticks(x)
     ax[1].set_xticklabels(lab, fontsize=FS - 2)
     ax[1].set_ylabel('Observed:expected ratio')
     ax[1].set_ylim(0, vmax * 1.25)
-    ax[1].set_title('B  Calibration', loc='left')
+    ax[1].set_title('Calibration', loc='left')
     return _save(fig, "harmonisation_v9.png")
 
 
 def panel_huaian(res, y, preds):
-    fig, ax = plt.subplots(1, 2, figsize=(11.5, 4.8))
+    fig, ax = plt.subplots(1, 2, figsize=(6.3, 2.63))
     from sklearn.metrics import roc_curve
     for mn, col in [('Logistic', C_LR), ('XGBoost', C_XG)]:
         p = preds['harmonised'][mn]
@@ -480,8 +496,7 @@ def panel_huaian(res, y, preds):
     ax[0].set_xlim(0, 1)
     ax[0].set_ylim(0, 1)
     ax[0].legend(frameon=False, fontsize=FS - 2, loc='upper left')
-    ax[0].set_title('A  Calibration (Huaian, n=%d, %d events; ε=%g)'
-                    % (res['n'], res['events'], EPS), loc='left')
+    ax[0].set_title('Calibration (Huaian, n=%d)' % res['n'], loc='left')
     for mn, col in [('Logistic', C_LR), ('XGBoost', C_XG)]:
         fpr, tpr, _ = roc_curve(y, preds['harmonised'][mn])
         ax[1].plot(fpr, tpr, color=col, lw=1.8,
@@ -490,7 +505,7 @@ def panel_huaian(res, y, preds):
     ax[1].set_xlabel('1 − specificity')
     ax[1].set_ylabel('Sensitivity')
     ax[1].legend(frameon=False, fontsize=FS - 2, loc='lower right')
-    ax[1].set_title('B  Discrimination', loc='left')
+    ax[1].set_title('Discrimination', loc='left')
     return _save(fig, "huaian_panel_v9.png")
 
 
@@ -518,16 +533,24 @@ GROUPS = [
          short="Audit finding 1: what omitting the GCS actually costs"),
     dict(no=4, layout="v", labels=["A", "B"],
          panels=[("v9", "fig6_ext_roc_v9.png"), ("v9", "fig8_ext_calibration_v9.png")],
-         cap="External validation. (A) Receiver operating characteristic curves in NWICU and "
-             "INSPIRE for the one-year outcome. (B) Calibration curves before recalibration, "
-             "in every validation database.",
-         short="External validation: discrimination and initial calibration"),
+         # ★★ 2026-10-22（第二十轮）：图 4 与图 5 的 ROC 曾整块重复（4A 是 5A 的前两格）。
+         #   现在按结局定义分工：4A = 一年结局（只有 NWICU 与 INSPIRE 有一年数据），
+         #   5A = 院内结局四库。图注各加一句互相指向，读者不会以为漏画。
+         cap="External validation. (A) Receiver operating characteristic curves of both models in "
+             "NWICU and INSPIRE for the one-year outcome; in-hospital curves are in Figure 5A. "
+             "(B) Calibration curves before recalibration, in every validation database.",
+         short="External validation: one-year discrimination and initial calibration"),
     dict(no=5, layout="v", labels=["A", "B"],
          panels=[("v9", "fig7_ext_roc_bymodel_v9.png"), ("v9", "fig9_recal_calibration_v9.png")],
+         # ⚠ 正文禁字面 em dash（64 的断言）⇒ 用冒号，不用 "— … —"
+         # ★★ 2026-10-22（第十九轮模拟评审 §六）："the four in-hospital cohorts" 不点名四个队列，
+         #   读者无法判断是否含开发队列。改为直接列出四个队列名（开发队列 MIMIC-IV 不在其内，
+         #   它只提供院内结局的开发模型）。
          cap="Discrimination by model and database, and recalibration. (A) Receiver operating "
-             "characteristic curves of both models in every validation database. (B) Calibration "
-             "curves after logistic recalibration, fitted in each external database.",
-         short="Discrimination by model and post-recalibration calibration"),
+             "characteristic curves of both models in eICU, NWICU, INSPIRE and the Huaian "
+             "cohort; no panel is repeated from Figure 4A. (B) Calibration curves after logistic "
+             "recalibration, fitted in each external database.",
+         short="In-hospital discrimination by database, and post-recalibration calibration"),
     dict(no=6, layout="v", labels=["A", "B"],
          panels=[("v9", "figR3_rootcause_v9.png"), ("v9", "leakage_dauc_v9.png")],
          cap="Audit findings 2 and 3: structural differences between databases, and how much the "
@@ -560,7 +583,7 @@ GROUPS = [
     dict(no=8, layout="v", labels=["A", "B"],
          panels=[("v9", "harmonisation_v9.png"), ("v9", "huaian_panel_v9.png")],
          cap="Audit finding 5: measurement harmonisation at the independent site, and what the "
-             "frozen model achieved there. Upper row: (A) change in AUC and (B) observed:expected "
+             "frozen model achieved there. Upper row: change in AUC (left) and observed:expected "
              "ratio when laboratory units are not converted and when the feature-scaling "
              "convention is not respected (Huaian, n=225). Lower row: calibration and "
              "discrimination of the frozen in-hospital model after harmonisation.",
@@ -577,9 +600,10 @@ def compose():
         ims = [Image.open(PAN / n).convert("RGB") for _, n in g['panels']]
         labels = g['labels'] if len(g['labels']) == len(ims) else [""] * len(ims)
         if g['layout'] == "h":
-            target_w = MAX_PX - 2 * MARGIN - GAP * (len(ims) - 1)
+            # 缩放后总宽恰为 MAX_W（= 6.3 in @300 dpi），行标与页边距已计入
+            target_w = MAX_W - 2 * MARGIN - GAP * (len(ims) - 1)
             scale = min(target_w / sum(i.width for i in ims),
-                        (MAX_PX - 2 * MARGIN - LABEL_H) / max(i.height for i in ims))
+                        (MAX_H - 2 * MARGIN - LABEL_H) / max(i.height for i in ims))
             ims = [i.resize((max(1, int(i.width * scale)), max(1, int(i.height * scale))),
                             Image.LANCZOS) for i in ims]
             W = sum(i.width for i in ims) + GAP * (len(ims) - 1) + 2 * MARGIN
@@ -597,8 +621,8 @@ def compose():
                     dr.text((x + 2, MARGIN + 4), labels[k], fill=(0, 0, 0), font=ft)
                 x += im.width + GAP
         else:
-            target_h = MAX_PX - 2 * MARGIN - LABEL_H * len(ims) - GAP * (len(ims) - 1)
-            scale = min((MAX_PX - 2 * MARGIN) / max(i.width for i in ims),
+            target_h = MAX_H - 2 * MARGIN - LABEL_H * len(ims) - GAP * (len(ims) - 1)
+            scale = min((MAX_W - 2 * MARGIN) / max(i.width for i in ims),
                         target_h / sum(i.height for i in ims))
             ims = [i.resize((max(1, int(i.width * scale)), max(1, int(i.height * scale))),
                             Image.LANCZOS) for i in ims]
@@ -616,8 +640,8 @@ def compose():
                     dr.text((MARGIN + 2, y + 4), labels[k], fill=(0, 0, 0), font=ft)
                 canvas.paste(im, (MARGIN, y + LABEL_H))
                 y += im.height + LABEL_H + GAP
-        if W > MAX_PX or H > MAX_PX:
-            s = MAX_PX / max(W, H)
+        if W > MAX_W or H > MAX_H:
+            s = min(MAX_W / W, MAX_H / H)
             canvas = canvas.resize((int(W * s), int(H * s)), Image.LANCZOS)
         fp = FIGDIR / ("Figure%d.png" % g['no'])
         canvas.save(fp, "PNG", optimize=True)

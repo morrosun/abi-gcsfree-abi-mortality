@@ -204,52 +204,75 @@ def main():
     log("  再校准后 O:E / ECE 落盘 recalibration_v9.csv")
 
     # ---------------- Fig6: 外部 1 年 ROC ----------------
-    plt.rcParams.update({'font.size': 10})
-    fig, ax = plt.subplots(figsize=(5.6, 5))
-    for tag in ['NWICU_1yr', 'INSPIRE_1yr']:
+    # ★★ 2026-10-22（第二十一轮，版面）：原来是**单轴四曲线**，5.6×5 in，而它在图 4 的竖向
+    #   组合里只占 43% 宽 → 与下方 6.3 in 宽的 2×3 校准图并排显得又小又孤。
+    #   改为 **1×2**（每个一年结局队列一格），画布宽 = 最终印刷宽 6.3 in ⇒ 与图 4B 等宽、
+    #   两格与图 5A 的格子同尺寸；字号也随画布回到正常印刷大小。
+    plt.rcParams.update({'font.size': 8.5})
+    fig, axes = plt.subplots(1, 2, figsize=(6.3, 3.30))
+    for j, tag in enumerate(['NWICU_1yr', 'INSPIRE_1yr']):
+        ax = axes[j]
         y = P[tag]['y']
         for nm, ls in [('Logistic', '-'), ('XGBoost', '--')]:
             p = P[tag][nm]
             fpr, tpr, _ = roc_curve(y, p)
-            ax.plot(fpr, tpr, ls, lw=1.8, color=C['lr'] if nm == 'Logistic' else C['xgb'],
-                    label="%s %s: %.3f" % (tag.split('_')[0], nm, roc_auc_score(y, p)))
-    ax.plot([0, 1], [0, 1], '--', color='gray', lw=1)
-    ax.set_xlabel('1 - Specificity')
-    ax.set_ylabel('Sensitivity')
-    ax.set_title('External validation: 1-year outcome')
-    ax.legend(loc='lower right', fontsize=8)
-    ax.set_aspect('equal')
+            ax.plot(fpr, tpr, ls, lw=1.4, color=C['lr'] if nm == 'Logistic' else C['xgb'],
+                    label="%s: %.3f" % (nm, roc_auc_score(y, p)))
+        ax.plot([0, 1], [0, 1], '--', color='gray', lw=0.8)
+        ax.set_xlabel('1 - Specificity')
+        ax.set_ylabel('Sensitivity')
+        ax.set_title("%s\n(one-year, n=%s, %s events)" %
+                     (tag.split('_')[0], "{:,}".format(len(y)), "{:,}".format(int(sum(y)))),
+                     fontsize=8)
+        ax.legend(loc='lower right', fontsize=7, frameon=False)
+        ax.set_aspect('equal', adjustable='box')
     fig.tight_layout()
-    fig.savefig(PAN / "fig6_ext_roc_v9.png", dpi=200)
+    fig.savefig(PAN / "fig6_ext_roc_v9.png", dpi=300)
     plt.close(fig)
     log("  panel -> fig6_ext_roc_v9.png")
 
     # ---------------- Fig7: 各库双模型 ROC ----------------
     order = ['NWICU_1yr', 'INSPIRE_1yr', 'eICU_inhosp', 'NWICU_inhosp',
              'INSPIRE_inhosp', 'Huaian_inhosp']
-    fig, axes = plt.subplots(2, 3, figsize=(13.0, 8.0))
-    for k, tag in enumerate(order):
-        ax = axes[k // 3][k % 3]
+    # ★★ 2026-10-22（第二十轮，Fig 4A/5A 去重）：原来这里画 6 格，含 NWICU_1yr 与 INSPIRE_1yr
+    #   —— 而这两格与 Figure 4A（fig6_ext_roc）的曲线、AUC 完全相同，等于把 4A 整块复制进 5A。
+    #   改为**只画院内结局的四个队列**（eICU / NWICU / INSPIRE / 淮安；这三个库 + 淮安本来
+    #   就只有院内结局），一年结局的外部 ROC 由 Figure 4A 独占。两张图于是按**结局定义**分开，
+    #   不再按"库"混排。
+    # ⚠ `order` 同时被 fig8 / fig9 使用（它们仍要六格：一年结局两库 + 院内四库），
+    #   所以这里**不能**改 order；fig7 取院内子集即可。
+    order7 = [t for t in order if t.endswith('_inhosp')]
+    # 一行四格：与 Figure 5B（13×8）同宽 ⇒ 组合时同比例缩放、不留白；
+    # 2×2 在 13 英寸宽下每格 6.5 英寸，锁 aspect 后中间会空出一大条。
+    # ★★ 2026-10-22（第二十一轮，版面）：画布宽改为印刷宽 6.3 in、2×2 排布 ⇒ 每格约 3.1 in，
+    #   与 fig6（图 4A）的格子同尺寸；字号随画布回到印刷大小。
+    fig, axes = plt.subplots(2, 2, figsize=(6.3, 4.50))
+    for k, tag in enumerate(order7):
+        ax = axes[k // 2][k % 2]
         y = P[tag]['y']
         for nm in ['Logistic', 'XGBoost']:
             p = P[tag][nm]
             fpr, tpr, _ = roc_curve(y, p)
-            ax.plot(fpr, tpr, lw=1.8, color=C['lr'] if nm == 'Logistic' else C['xgb'],
+            ax.plot(fpr, tpr, lw=1.4, color=C['lr'] if nm == 'Logistic' else C['xgb'],
                     label="%s %.3f" % (nm, roc_auc_score(y, p)))
         ax.plot([0, 1], [0, 1], '--', color='gray', lw=0.9)
-        ax.set_title("%s\n(%s, n=%d, %d events)" %
-                     (tag.replace('_', ' '), P[tag]['kind'], len(y), int(np.sum(y))),
-                     fontsize=9)
-        ax.set_xlabel('1 - Specificity', fontsize=8.5)
-        ax.set_ylabel('Sensitivity', fontsize=8.5)
-        ax.legend(fontsize=8, frameon=False, loc='lower right')
+        ax.set_title("%s\n(%s, n=%s, %s events)" %
+                     (tag.replace('_', ' '), P[tag]['kind'],
+                      "{:,}".format(len(y)), "{:,}".format(int(np.sum(y)))),
+                     fontsize=8.5)
+        ax.set_xlabel('1 - Specificity', fontsize=8)
+        ax.set_ylabel('Sensitivity', fontsize=8)
+        ax.legend(fontsize=7, frameon=False, loc='lower right')
+        # 2×2 的格子偏宽，不锁 aspect 会把对角线压平、误导目测判别力
+        ax.set_aspect('equal', adjustable='box')
     fig.tight_layout()
-    fig.savefig(PAN / "fig7_ext_roc_bymodel_v9.png", dpi=200)
+    fig.savefig(PAN / "fig7_ext_roc_bymodel_v9.png", dpi=300)
     plt.close(fig)
     log("  panel -> fig7_ext_roc_bymodel_v9.png")
 
     # ---------------- Fig8: 再校准前校准曲线 ----------------
-    fig, axes = plt.subplots(2, 3, figsize=(13.0, 8.0))
+    # ★★ 2026-10-22（第二十一轮）：画布宽 = 最终印刷宽 6.3 in，2×3 每格约 2.1 in
+    fig, axes = plt.subplots(2, 3, figsize=(6.3, 3.85))
     for k, tag in enumerate(order):
         ax = axes[k // 3][k % 3]
         y = P[tag]['y']
@@ -260,18 +283,19 @@ def main():
                     color=C['lr'] if nm == 'Logistic' else C['xgb'],
                     label="%s (slope %.2f)" % (nm, cal_slope_intercept(y, p)[0]))
         ax.plot([0, 1], [0, 1], '--', color='gray', lw=0.9)
-        ax.set_title(tag.replace('_', ' '), fontsize=9)
-        ax.set_xlabel('Predicted probability', fontsize=8.5)
-        ax.set_ylabel('Observed proportion', fontsize=8.5)
-        ax.legend(fontsize=8, frameon=False)
-    fig.suptitle('Calibration before recalibration', fontsize=11)
+        ax.set_title(tag.replace('_', ' '), fontsize=8)
+        ax.set_xlabel('Predicted probability', fontsize=7)
+        ax.set_ylabel('Observed proportion', fontsize=7)
+        ax.tick_params(labelsize=6.5)
+        ax.legend(fontsize=6, frameon=False, loc='upper left')
+    fig.suptitle('Calibration before recalibration', fontsize=9)
     fig.tight_layout()
-    fig.savefig(PAN / "fig8_ext_calibration_v9.png", dpi=200)
+    fig.savefig(PAN / "fig8_ext_calibration_v9.png", dpi=300)
     plt.close(fig)
     log("  panel -> fig8_ext_calibration_v9.png")
 
     # ---------------- Fig9: 再校准后 ----------------
-    fig, axes = plt.subplots(2, 3, figsize=(13.0, 8.0))
+    fig, axes = plt.subplots(2, 3, figsize=(6.3, 3.20))
     for k, tag in enumerate(order):
         ax = axes[k // 3][k % 3]
         y = P[tag]['y']
@@ -281,14 +305,15 @@ def main():
             ax.plot(pp_, t, 'o-', ms=4, lw=1.4,
                     color=C['lr'] if nm == 'Logistic' else C['xgb'], label=nm)
         ax.plot([0, 1], [0, 1], '--', color='gray', lw=0.9)
-        ax.set_title(tag.replace('_', ' '), fontsize=9)
-        ax.set_xlabel('Predicted probability', fontsize=8.5)
-        ax.set_ylabel('Observed proportion', fontsize=8.5)
-        ax.legend(fontsize=8, frameon=False)
+        ax.set_title(tag.replace('_', ' '), fontsize=8)
+        ax.set_xlabel('Predicted probability', fontsize=7)
+        ax.set_ylabel('Observed proportion', fontsize=7)
+        ax.tick_params(labelsize=6.5)
+        ax.legend(fontsize=6, frameon=False, loc='upper left')
     fig.suptitle('Calibration after logistic recalibration (fitted within each database)',
-                 fontsize=11)
+                 fontsize=9)
     fig.tight_layout()
-    fig.savefig(PAN / "fig9_recal_calibration_v9.png", dpi=200)
+    fig.savefig(PAN / "fig9_recal_calibration_v9.png", dpi=300)
     plt.close(fig)
     log("  panel -> fig9_recal_calibration_v9.png")
 
@@ -298,17 +323,18 @@ def main():
           'eICU': 100 * float(np.nanmean(e['vasopressor'])),
           'NWICU': 100 * float(np.nanmean(nw['vasopressor'])),
           'INSPIRE': 100 * float(np.nanmean(ins['vasopressor']))}
-    fig, axes = plt.subplots(1, 2, figsize=(10.5, 4.4))
+    fig, axes = plt.subplots(1, 2, figsize=(6.3, 2.95))
     dbs = list(vp)
     axes[0].bar(range(len(dbs)), [vp[k] for k in dbs],
                 color=['#4C72B0', '#55A868', '#C44E52', '#DD8452'])
     for i, k in enumerate(dbs):
-        axes[0].text(i, vp[k] + 0.4, '%.1f%%' % vp[k], ha='center', fontsize=9)
+        axes[0].text(i, vp[k] + 0.4, '%.1f%%' % vp[k], ha='center', fontsize=7.5)
     axes[0].set_xticks(range(len(dbs)))
-    axes[0].set_xticklabels(dbs, rotation=15, fontsize=9)
-    axes[0].set_ylabel('Vasopressor use on ICU day 1 (%)')
+    axes[0].set_xticklabels(dbs, rotation=15, fontsize=7.5)
+    axes[0].set_ylabel('Vasopressor use, ICU day 1 (%)', fontsize=7.5)
     axes[0].set_ylim(0, max(vp.values()) * 1.25)
-    axes[0].set_title('(A) Vasopressor recording across databases')
+    # 组合图在左侧另有 A/B 标签，且图注按 left/right 描述 ⇒ 子图标题不再重复编号
+    axes[0].set_title('Vasopressor recording across databases', fontsize=8)
 
     x = np.arange(len(AET))
     nwv = [int(nw[a].sum()) for a in AET]
@@ -317,11 +343,11 @@ def main():
     axes[1].bar(x + 0.2, inv, 0.4, label='INSPIRE', color='#DD8452')
     axes[1].set_xticks(x)
     axes[1].set_xticklabels([a.upper() for a in AET], rotation=40, fontsize=8)
-    axes[1].set_ylabel('Patients (n)')
-    axes[1].legend(fontsize=9, frameon=False)
-    axes[1].set_title('(B) Aetiology mix: NWICU vs INSPIRE')
+    axes[1].set_ylabel('Patients (n)', fontsize=7.5)
+    axes[1].legend(fontsize=7.5, frameon=False)
+    axes[1].set_title('Aetiology mix: NWICU vs INSPIRE', fontsize=8)
     fig.tight_layout()
-    fig.savefig(PAN / "figR3_rootcause_v9.png", dpi=200)
+    fig.savefig(PAN / "figR3_rootcause_v9.png", dpi=300)
     plt.close(fig)
     log("  panel -> figR3_rootcause_v9.png  " +
         ", ".join("%s %.1f%%" % (k, v) for k, v in vp.items()))

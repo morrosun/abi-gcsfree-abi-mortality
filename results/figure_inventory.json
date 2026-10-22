@@ -3,10 +3,10 @@
   "figure": 1,
   "file": "Figure1.png",
   "px": [
-   1200,
-   613
+   1890,
+   950
   ],
-  "size_mb": 0.13,
+  "size_mb": 0.279,
   "layout": "h",
   "panels": [
    "fig1_roc_v9.png",
@@ -23,10 +23,10 @@
   "figure": 2,
   "file": "Figure2.png",
   "px": [
-   1200,
-   848
+   1890,
+   1333
   ],
-  "size_mb": 0.111,
+  "size_mb": 0.281,
   "layout": "h",
   "panels": [
    "fig4_forest_v9.png",
@@ -43,10 +43,10 @@
   "figure": 3,
   "file": "Figure3.png",
   "px": [
-   1200,
-   526
+   1890,
+   802
   ],
-  "size_mb": 0.068,
+  "size_mb": 0.204,
   "layout": "v",
   "panels": [
    "gcs_components_v9.png"
@@ -61,10 +61,10 @@
   "figure": 4,
   "file": "Figure4.png",
   "px": [
-   1124,
-   1199
+   1890,
+   2216
   ],
-  "size_mb": 0.242,
+  "size_mb": 0.78,
   "layout": "v",
   "panels": [
    "fig6_ext_roc_v9.png",
@@ -74,17 +74,17 @@
    "A",
    "B"
   ],
-  "caption": "External validation. (A) Receiver operating characteristic curves in NWICU and INSPIRE for the one-year outcome. (B) Calibration curves before recalibration, in every validation database.",
-  "short_caption": "External validation: discrimination and initial calibration"
+  "caption": "External validation. (A) Receiver operating characteristic curves of both models in NWICU and INSPIRE for the one-year outcome; in-hospital curves are in Figure 5A. (B) Calibration curves before recalibration, in every validation database.",
+  "short_caption": "External validation: one-year discrimination and initial calibration"
  },
  {
   "figure": 5,
   "file": "Figure5.png",
   "px": [
-   918,
-   1200
+   1890,
+   2379
   ],
-  "size_mb": 0.276,
+  "size_mb": 0.817,
   "layout": "v",
   "panels": [
    "fig7_ext_roc_bymodel_v9.png",
@@ -94,17 +94,17 @@
    "A",
    "B"
   ],
-  "caption": "Discrimination by model and database, and recalibration. (A) Receiver operating characteristic curves of both models in every validation database. (B) Calibration curves after logistic recalibration, fitted in each external database.",
-  "short_caption": "Discrimination by model and post-recalibration calibration"
+  "caption": "Discrimination by model and database, and recalibration. (A) Receiver operating characteristic curves of both models in eICU, NWICU, INSPIRE and the Huaian cohort; no panel is repeated from Figure 4A. (B) Calibration curves after logistic recalibration, fitted in each external database.",
+  "short_caption": "In-hospital discrimination by database, and post-recalibration calibration"
  },
  {
   "figure": 6,
   "file": "Figure6.png",
   "px": [
-   1200,
-   1001
+   1890,
+   1719
   ],
-  "size_mb": 0.147,
+  "size_mb": 0.412,
   "layout": "v",
   "panels": [
    "figR3_rootcause_v9.png",
@@ -121,10 +121,10 @@
   "figure": 7,
   "file": "Figure7.png",
   "px": [
-   1200,
-   1060
+   1890,
+   1622
   ],
-  "size_mb": 0.204,
+  "size_mb": 0.493,
   "layout": "v",
   "panels": [
    "slope_eps_v9.png",
@@ -141,10 +141,10 @@
   "figure": 8,
   "file": "Figure8.png",
   "px": [
-   1200,
-   1040
+   1890,
+   1625
   ],
-  "size_mb": 0.164,
+  "size_mb": 0.437,
   "layout": "v",
   "panels": [
    "harmonisation_v9.png",
@@ -154,7 +154,7 @@
    "A",
    "B"
   ],
-  "caption": "Audit finding 5: measurement harmonisation at the independent site, and what the frozen model achieved there. Upper row: (A) change in AUC and (B) observed:expected ratio when laboratory units are not converted and when the feature-scaling convention is not respected (Huaian, n=225). Lower row: calibration and discrimination of the frozen in-hospital model after harmonisation.",
+  "caption": "Audit finding 5: measurement harmonisation at the independent site, and what the frozen model achieved there. Upper row: change in AUC (left) and observed:expected ratio when laboratory units are not converted and when the feature-scaling convention is not respected (Huaian, n=225). Lower row: calibration and discrimination of the frozen in-hospital model after harmonisation.",
   "short_caption": "Audit finding 5: harmonisation effects and independent-site performance"
  }
 ]

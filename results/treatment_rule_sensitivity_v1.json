@@ -1,0 +1,310 @@
+{
+ "generated_at": "2026-10-22T14:32:17",
+ "generated_by": "scripts/126_treatment_rule_sensitivity.py",
+ "cohorts": {
+  "NWICU_1yr": {
+   "note": "NWICU：vasopressor 换'最早开始时间落窗'；mech_vent/rrt 换'窗口内任意记录'（实测 0 差异）",
+   "n": 3420,
+   "events": 699,
+   "as_coded": {
+    "Logistic": {
+     "auc": 0.765158,
+     "brier": 0.136716,
+     "slope": 1.27294,
+     "intercept": 0.783136,
+     "oe": 0.994376,
+     "ece": 0.018141
+    },
+    "XGBoost": {
+     "auc": 0.802437,
+     "brier": 0.127508,
+     "slope": 1.240328,
+     "intercept": 0.812172,
+     "oe": 1.00251,
+     "ece": 0.02099
+    }
+   },
+   "alt": {
+    "Logistic": {
+     "auc": 0.76515,
+     "brier": 0.136716,
+     "slope": 1.272895,
+     "intercept": 0.783004,
+     "oe": 0.994313,
+     "ece": 0.018154
+    },
+    "XGBoost": {
+     "auc": 0.802459,
+     "brier": 0.127515,
+     "slope": 1.240132,
+     "intercept": 0.812046,
+     "oe": 1.002616,
+     "ece": 0.020997
+    }
+   },
+   "alt_flags": {
+    "vasopressor": 375,
+    "mech_vent": 557,
+    "rrt": 60
+   },
+   "delta": {
+    "Logistic": {
+     "auc": -8e-06,
+     "brier": -0.0,
+     "slope": -4.5e-05,
+     "intercept": -0.000132,
+     "oe": -6.3e-05,
+     "ece": 1.3e-05
+    },
+    "XGBoost": {
+     "auc": 2.2e-05,
+     "brier": 7e-06,
+     "slope": -0.000196,
+     "intercept": -0.000126,
+     "oe": 0.000106,
+     "ece": 7e-06
+    }
+   }
+  },
+  "INSPIRE_1yr": {
+   "note": "INSPIRE：三个治疗指标换'最早记录时间落窗'",
+   "n": 1543,
+   "events": 265,
+   "as_coded": {
+    "Logistic": {
+     "auc": 0.724527,
+     "brier": 0.13425,
+     "slope": 1.115219,
+     "intercept": 0.199242,
+     "oe": 0.778033,
+     "ece": 0.048997
+    },
+    "XGBoost": {
+     "auc": 0.750588,
+     "brier": 0.136224,
+     "slope": 1.134382,
+     "intercept": 0.146695,
+     "oe": 0.714887,
+     "ece": 0.068495
+    }
+   },
+   "alt": {
+    "Logistic": {
+     "auc": 0.719782,
+     "brier": 0.13426,
+     "slope": 1.043932,
+     "intercept": 0.184987,
+     "oe": 0.83891,
+     "ece": 0.044193
+    },
+    "XGBoost": {
+     "auc": 0.745438,
+     "brier": 0.134798,
+     "slope": 1.057499,
+     "intercept": 0.12219,
+     "oe": 0.75859,
+     "ece": 0.060687
+    }
+   },
+   "alt_flags": {
+    "mech_vent": 683,
+    "rrt": 31,
+    "vasopressor": 84
+   },
+   "delta": {
+    "Logistic": {
+     "auc": -0.004745,
+     "brier": 1e-05,
+     "slope": -0.071287,
+     "intercept": -0.014255,
+     "oe": 0.060877,
+     "ece": -0.004804
+    },
+    "XGBoost": {
+     "auc": -0.00515,
+     "brier": -0.001426,
+     "slope": -0.076883,
+     "intercept": -0.024505,
+     "oe": 0.043703,
+     "ece": -0.007808
+    }
+   }
+  },
+  "eICU_inhosp": {
+   "note": "eICU：infusiondrug 仅 infusionoffset 单时点 ⇒ 两规则恒等；mech_vent/rrt 来自 APACHE 汇总",
+   "n": 14852,
+   "events": 1894,
+   "as_coded": {
+    "Logistic": {
+     "auc": 0.77856,
+     "brier": 0.11904,
+     "slope": 0.855181,
+     "intercept": -0.364483,
+     "oe": 0.603059,
+     "ece": 0.092257
+    },
+    "XGBoost": {
+     "auc": 0.848439,
+     "brier": 0.094584,
+     "slope": 1.318848,
+     "intercept": 0.247469,
+     "oe": 0.625467,
+     "ece": 0.076363
+    }
+   },
+   "alt": null
+  },
+  "NWICU_inhosp": {
+   "note": "NWICU：同上",
+   "n": 3420,
+   "events": 376,
+   "as_coded": {
+    "Logistic": {
+     "auc": 0.829638,
+     "brier": 0.076978,
+     "slope": 1.402632,
+     "intercept": 1.041917,
+     "oe": 0.985148,
+     "ece": 0.016125
+    },
+    "XGBoost": {
+     "auc": 0.8645,
+     "brier": 0.071284,
+     "slope": 1.267482,
+     "intercept": 1.005941,
+     "oe": 1.092344,
+     "ece": 0.013905
+    }
+   },
+   "alt": {
+    "Logistic": {
+     "auc": 0.829654,
+     "brier": 0.076987,
+     "slope": 1.402868,
+     "intercept": 1.042671,
+     "oe": 0.985442,
+     "ece": 0.016323
+    },
+    "XGBoost": {
+     "auc": 0.864548,
+     "brier": 0.071289,
+     "slope": 1.267515,
+     "intercept": 1.006473,
+     "oe": 1.092748,
+     "ece": 0.013938
+    }
+   },
+   "alt_flags": {
+    "vasopressor": 375,
+    "mech_vent": 557,
+    "rrt": 60
+   },
+   "delta": {
+    "Logistic": {
+     "auc": 1.7e-05,
+     "brier": 9e-06,
+     "slope": 0.000235,
+     "intercept": 0.000753,
+     "oe": 0.000294,
+     "ece": 0.000199
+    },
+    "XGBoost": {
+     "auc": 4.8e-05,
+     "brier": 4e-06,
+     "slope": 3.3e-05,
+     "intercept": 0.000533,
+     "oe": 0.000403,
+     "ece": 3.3e-05
+    }
+   }
+  },
+  "INSPIRE_inhosp": {
+   "note": "INSPIRE：同上",
+   "n": 1543,
+   "events": 126,
+   "as_coded": {
+    "Logistic": {
+     "auc": 0.66295,
+     "brier": 0.075899,
+     "slope": 0.703525,
+     "intercept": -0.819212,
+     "oe": 0.684364,
+     "ece": 0.041682
+    },
+    "XGBoost": {
+     "auc": 0.729893,
+     "brier": 0.077025,
+     "slope": 0.827725,
+     "intercept": -0.508032,
+     "oe": 0.689706,
+     "ece": 0.038724
+    }
+   },
+   "alt": {
+    "Logistic": {
+     "auc": 0.650578,
+     "brier": 0.076022,
+     "slope": 0.606678,
+     "intercept": -0.923109,
+     "oe": 0.789459,
+     "ece": 0.035604
+    },
+    "XGBoost": {
+     "auc": 0.720578,
+     "brier": 0.075465,
+     "slope": 0.766793,
+     "intercept": -0.526459,
+     "oe": 0.777103,
+     "ece": 0.033075
+    }
+   },
+   "alt_flags": {
+    "mech_vent": 683,
+    "rrt": 31,
+    "vasopressor": 84
+   },
+   "delta": {
+    "Logistic": {
+     "auc": -0.012372,
+     "brier": 0.000123,
+     "slope": -0.096847,
+     "intercept": -0.103896,
+     "oe": 0.105095,
+     "ece": -0.006078
+    },
+    "XGBoost": {
+     "auc": -0.009314,
+     "brier": -0.00156,
+     "slope": -0.060931,
+     "intercept": -0.018428,
+     "oe": 0.087397,
+     "ece": -0.00565
+    }
+   }
+  },
+  "Huaian_inhosp": {
+   "note": "淮安：单中心 Excel 台账，无事件层时间来源 ⇒ 规则变体不适用",
+   "n": 225,
+   "events": 55,
+   "as_coded": {
+    "Logistic": {
+     "auc": 0.86877,
+     "brier": 0.11403,
+     "slope": 1.440364,
+     "intercept": 0.972187,
+     "oe": 0.929522,
+     "ece": 0.115254
+    },
+    "XGBoost": {
+     "auc": 0.82631,
+     "brier": 0.133948,
+     "slope": 1.563179,
+     "intercept": 1.106809,
+     "oe": 0.928617,
+     "ece": 0.053116
+    }
+   },
+   "alt": null
+  }
+ }
+}
