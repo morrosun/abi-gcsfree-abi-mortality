@@ -16,6 +16,22 @@ ABI_BASE = _os.environ.get("ABI_BASE", r"D:/BaiduSyncdisk/MIMIC/ABI/ABI1")
 做法：冻结模型不变（不重训），只把受影响队列的治疗标志换成"另一规则"重算，
 与 95 号产出的 external_validation_v9.csv 逐项对比（as-coded 一栏必须逐位复现，作为自检）。
 
+校准口径（★★ 2026-10-22 第二十轮模拟评审 §一，评审正确）：
+  校准斜率/截距 = 把结局对**未裁剪的模型线性预测子 η** 做 logistic 回归
+  （一年 LR：logit_params 系数向量；院内 LR：LogisticRegression.decision_function；
+  XGBoost：predict(output_margin=True) 的 raw margin）—— 与 93 号 ε 审计的
+  slope_eta / intercept_eta、65 号附录 Table S4 表注、主文表 4 脚注
+  "fitted directly on the raw model margin" 完全同路线。
+  ⚠ 旧版误写为 lp = log(clip(p))：那是 log(p) 而不是 logit(p)，把结局对 log(p)
+  回归所得的系数不能标为本文定义的校准斜率（as-coded 因此给出 NWICU 一年 LR
+  1.272940，而表 4 是 0.872）。已改为直接拟合 η。AUC / Brier / O:E / ECE 由
+  概率直接算出，与该路线无关，故这四项数值不变，只有斜率/截距变。
+自检：as_coded 一栏对已发表值核 **六项**（不只是 AUC）——
+  AUC / Brier / O:E / ECE 对 external_validation_v9.csv（<1e-9）；
+  斜率/截距对"同路线"参考（<1e-6，lbfgs 求解精度）：无预测落出裁剪区间时裁剪+logit
+  路线与 η 路线相同，故对 CSV 的 slope/intercept 即可；有裁剪时（淮安 LR 有 1 例）
+  改对 93 号 ε 审计的 slope_eta / intercept_eta（即表 4 所报值）。
+
 口径：
   as_coded : 最终 CSV 的值（= 各库代码真实规则）
   alt      : 该库该变量的"另一规则"
@@ -24,7 +40,9 @@ ABI_BASE = _os.environ.get("ABI_BASE", r"D:/BaiduSyncdisk/MIMIC/ABI/ABI1")
               NWICU      vasopressor           : 窗口内任意处方 → 最早开始时间落窗
                         mech_vent/rrt          : 最早开始时间 → 窗口内任意记录（125 实测=0 差异）
               INSPIRE    mech_vent/rrt/vasopressor : 窗口内任意记录 → 最早开始时间落窗
-              eICU       vasopressor           : infusiondrug 仅单时点 ⇒ 两规则恒等（无变体）
+              eICU       vasopressor           : infusiondrug 仅 infusionoffset 单时点；
+                                                125 号实测本库两规则标签一致（本库观察结果，
+                                                非"by construction"）
               淮安        : 数据来自单中心 Excel，无事件层来源 ⇒ 不适用
 产物：
   output/treatment_rule_sensitivity_v1.json
@@ -60,10 +78,36 @@ def log(s=""):
     LOG.append(str(s))
 
 
-def cal_slope_intercept(y, p):
-    lp = np.log(np.clip(np.asarray(p, float), EPS, 1 - EPS)).reshape(-1, 1)
+def linpredict(art, df, feats, cont):
+    """未裁剪线性预测子 η（两个 learner）。
+
+    路线与 93 号 ε 审计逐字一致：一年 LR 的 artefacts 存的是 logit_params 系数向量
+    （η = const + Zs·β），院内 LR 存的是 sklearn 对象（η = decision_function），
+    XGBoost 走 raw margin（predict(output_margin=True)，即 logistic 变换前的输出）。
+    ★★ 2026-10-22（第二十轮模拟评审 §一）：校准斜率必须在这个量上拟合，而不是在
+       log(p) 上拟合。"""
+    Z, Zs = prep(art, df, feats, cont)
+    if "logit_params" in art:
+        lp = art["logit_params"]
+        eta_lr = lp["const"] + Zs[feats].values @ np.array([lp[f] for f in feats])
+    else:
+        eta_lr = art["lr"].decision_function(Zs[feats])
+    xg_ = art.get("xg", art.get("xgb"))
+    eta_xg = xg_.predict(Z[feats].values, output_margin=True)
+    return eta_lr, eta_xg
+
+
+def cal_slope_intercept(y, eta):
+    """校准斜率/截距：logit Pr(Y=1) = α + γ·η 的 logistic 拟合，η 为未裁剪线性预测子。
+
+    ★★ 2026-10-22（第二十轮模拟评审 §一，评审正确）：旧版写成
+       lp = np.log(np.clip(p, EPS, 1 - EPS)) —— 那是 log(p) 而不是 logit(p)，
+       把结局对 log(p) 回归所得的系数不能标为本文定义的校准斜率（as-coded 基线
+       因此与表 4 差到 1.272940 vs 0.872）。改为直接拟合模型线性预测子本身，
+       与 93 号 ε 审计的 slope_eta/intercept_eta 和表 4 脚注同路线。"""
     m = LogisticRegression(fit_intercept=True, C=1e12, solver="lbfgs",
-                           max_iter=2000).fit(lp, np.asarray(y, int))
+                           max_iter=5000).fit(np.asarray(eta, float).reshape(-1, 1),
+                                              np.asarray(y, int))
     return float(m.coef_[0][0]), float(m.intercept_[0])
 
 
@@ -78,8 +122,9 @@ def ece(y, p, bins=10):
     return float(e)
 
 
-def metrics(y, p):
-    s, i = cal_slope_intercept(y, p)
+def metrics(y, p, eta):
+    """AUC / Brier / O:E / ECE 由概率 p 直接算出；斜率/截距由未裁剪线性预测子 eta 拟合。"""
+    s, i = cal_slope_intercept(y, eta)
     return {"auc": float(roc_auc_score(y, p)), "brier": float(brier_score_loss(y, p)),
             "slope": s, "intercept": i, "oe": float(np.mean(y) / np.mean(p)),
             "ece": ece(y, p)}
@@ -293,6 +338,13 @@ def main():
     FEATS, CONT = pp["feats"], pp["cont"]
     ref = pd.read_csv(os.path.join(OUT, "external_validation_v9.csv"))
     refm = {(r["cohort"], r["model"]): r for _, r in ref.iterrows()}
+    # 斜率/截距的同路线参考：93 号 ε 审计在未裁剪线性预测子 η 上拟合的 slope_eta /
+    #   intercept_eta —— 正是主文表 4 为各队列所报的值（淮安 LR 因 1 例预测落出裁剪
+    #   区间而与裁剪+logit 路线不同，表 4 报 η 路线值）。
+    _eta = json.load(open(os.path.join(OUT, "slope_epsilon_audit_v9.json"),
+                          encoding="utf-8"))
+    etam = {(t, m): v for t, blk in _eta["results"].items()
+            for m, v in blk.items() if m in ("Logistic", "XGBoost")}
 
     payload = dict(generated_at=datetime.now().isoformat(timespec="seconds"),
                    generated_by="scripts/126_treatment_rule_sensitivity.py",
@@ -303,11 +355,41 @@ def main():
         base = {}
         for nm in ("Logistic", "XGBoost"):
             plr, pxg = predict(art, df, FEATS, CONT)
-            base[nm] = metrics(y, plr if nm == "Logistic" else pxg)
+            elr, exg = linpredict(art, df, FEATS, CONT)
+            base[nm] = metrics(y, plr if nm == "Logistic" else pxg,
+                               elr if nm == "Logistic" else exg)
+            # ★★ 2026-10-22（第二十轮模拟评审 §一）：as-coded 自检从"只核 AUC"扩到六项。
+            #   AUC / Brier / O:E / ECE 由概率直接算出，对 CSV 逐位核（<1e-9）；
+            #   斜率/截距对"同路线"参考核（<1e-8）：无预测落出裁剪区间时，裁剪+logit
+            #   路线与未裁剪 η 路线给出同一个斜率，故 CSV 的 slope/intercept 就是同路线
+            #   参考；有裁剪时（淮安 LR 有 1 例，η=−18.3）改对 93 号 ε 审计的
+            #   slope_eta / intercept_eta —— 那正是表 4 为该队列所报的值。
             r = refm.get((tag, nm))
-            if r is not None:
-                d = abs(base[nm]["auc"] - float(r["auc"]))
-                assert d < 1e-9, "自检失败 %s/%s: %.6f vs %.6f" % (tag, nm, base[nm]["auc"], r["auc"])
+            assert r is not None, "自检失败 %s/%s：external_validation_v9.csv 无此行列" % (tag, nm)
+            for k in ("auc", "brier", "oe", "ece"):
+                d = abs(base[nm][k] - float(r[k]))
+                assert d < 1e-9, "自检失败 %s/%s %s：%.10f vs %.10f" % (
+                    tag, nm, k, base[nm][k], float(r[k]))
+            p_ = plr if nm == "Logistic" else pxg
+            nclip = int(((p_ < EPS) | (p_ > 1 - EPS)).sum())
+            er = etam.get((tag, nm))
+            if nclip == 0:
+                rs, ri, src = float(r["slope"]), float(r["intercept"]), "CSV"
+            elif er is not None:
+                rs, ri, src = er["slope_eta"], er["intercept_eta"], "ε审计η"
+            else:
+                rs = ri = None
+                log("      [自检] %s/%s：%d 例预测落出裁剪区间且无 η 路线公开参考"
+                    " ⇒ 斜率/截距仅记录，不与 CSV 混比" % (tag, nm, nclip))
+            if rs is not None:
+                # 容差 1e-6（非 1e-9）：C=1e12 的近无正则 logistic 拟合由 lbfgs 迭代求解，
+                # 收敛存在 ~1e-8 级浮点差异（93 号同为此取舍，见其 ref 比对处注释），属
+                # 求解器精度而不是口径差异；真正要防的是"换路线/换数据/换模型"。
+                for k, rv in (("slope", rs), ("intercept", ri)):
+                    d = abs(base[nm][k] - rv)
+                    assert d < 1e-6, "自检失败 %s/%s %s（%s 路线）：%.10f vs %.10f" % (
+                        tag, nm, k, src, base[nm][k], rv)
+        log("  %-16s as-coded 六项自检通过" % tag)
         entry = dict(note=note, n=int(len(y)), events=int(np.sum(y)),
                      as_coded={k: {kk: round(vv, 6) for kk, vv in v.items()}
                                for k, v in base.items()}, alt=None)
@@ -323,7 +405,9 @@ def main():
             alt = {}
             for nm in ("Logistic", "XGBoost"):
                 plr, pxg = predict(art, df2, FEATS, CONT)
-                alt[nm] = metrics(y, plr if nm == "Logistic" else pxg)
+                elr, exg = linpredict(art, df2, FEATS, CONT)
+                alt[nm] = metrics(y, plr if nm == "Logistic" else pxg,
+                                  elr if nm == "Logistic" else exg)
             entry["alt"] = {k: {kk: round(vv, 6) for kk, vv in v.items()}
                             for k, v in alt.items()}
             entry["delta"] = {k: {kk: round(alt[k][kk] - base[k][kk], 6)
@@ -331,6 +415,7 @@ def main():
             log("  %-16s %s" % (tag, note))
             for nm in ("Logistic", "XGBoost"):
                 log("      %-8s AUC %.4f → %.4f (Δ%+.4f) | O:E %.3f → %.3f | slope %.3f → %.3f"
+                    "（斜率在未裁剪线性预测子 η 上拟合，与表 4 同路线）"
                     % (nm, base[nm]["auc"], alt[nm]["auc"],
                        alt[nm]["auc"] - base[nm]["auc"],
                        base[nm]["oe"], alt[nm]["oe"],
@@ -355,7 +440,7 @@ def main():
         _, out = inspire_alt()
         return {v: out[v]["first_win"] for v in ("mech_vent", "rrt", "vasopressor")}
 
-    log("[2/3] 逐队列计算（as_coded 一栏须与 external_validation_v9.csv 逐位一致）")
+    log("[2/3] 逐队列计算（as_coded 一栏须与 external_validation_v9.csv 及 93 号 η 路线逐位一致）")
     log("")
     run("NWICU_1yr", nw, nw["death_365"].values.astype(int), a1, nw_alt,
         "NWICU：vasopressor 换'最早开始时间落窗'；mech_vent/rrt 换'窗口内任意记录'（实测 0 差异）")

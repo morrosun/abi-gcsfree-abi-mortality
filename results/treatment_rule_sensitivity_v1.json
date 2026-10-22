@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-22T14:32:17",
+ "generated_at": "2026-10-22T18:44:45",
  "generated_by": "scripts/126_treatment_rule_sensitivity.py",
  "cohorts": {
   "NWICU_1yr": {
@@ -10,16 +10,16 @@
     "Logistic": {
      "auc": 0.765158,
      "brier": 0.136716,
-     "slope": 1.27294,
-     "intercept": 0.783136,
+     "slope": 0.871883,
+     "intercept": -0.155795,
      "oe": 0.994376,
      "ece": 0.018141
     },
     "XGBoost": {
      "auc": 0.802437,
      "brier": 0.127508,
-     "slope": 1.240328,
-     "intercept": 0.812172,
+     "slope": 0.862752,
+     "intercept": -0.145264,
      "oe": 1.00251,
      "ece": 0.02099
     }
@@ -28,16 +28,16 @@
     "Logistic": {
      "auc": 0.76515,
      "brier": 0.136716,
-     "slope": 1.272895,
-     "intercept": 0.783004,
+     "slope": 0.871818,
+     "intercept": -0.155961,
      "oe": 0.994313,
      "ece": 0.018154
     },
     "XGBoost": {
      "auc": 0.802459,
      "brier": 0.127515,
-     "slope": 1.240132,
-     "intercept": 0.812046,
+     "slope": 0.862647,
+     "intercept": -0.1452,
      "oe": 1.002616,
      "ece": 0.020997
     }
@@ -51,16 +51,16 @@
     "Logistic": {
      "auc": -8e-06,
      "brier": -0.0,
-     "slope": -4.5e-05,
-     "intercept": -0.000132,
+     "slope": -6.5e-05,
+     "intercept": -0.000166,
      "oe": -6.3e-05,
      "ece": 1.3e-05
     },
     "XGBoost": {
      "auc": 2.2e-05,
      "brier": 7e-06,
-     "slope": -0.000196,
-     "intercept": -0.000126,
+     "slope": -0.000104,
+     "intercept": 6.4e-05,
      "oe": 0.000106,
      "ece": 7e-06
     }
@@ -74,16 +74,16 @@
     "Logistic": {
      "auc": 0.724527,
      "brier": 0.13425,
-     "slope": 1.115219,
-     "intercept": 0.199242,
+     "slope": 0.786474,
+     "intercept": -0.579985,
      "oe": 0.778033,
      "ece": 0.048997
     },
     "XGBoost": {
      "auc": 0.750588,
      "brier": 0.136224,
-     "slope": 1.134382,
-     "intercept": 0.146695,
+     "slope": 0.77375,
+     "intercept": -0.69704,
      "oe": 0.714887,
      "ece": 0.068495
     }
@@ -92,16 +92,16 @@
     "Logistic": {
      "auc": 0.719782,
      "brier": 0.13426,
-     "slope": 1.043932,
-     "intercept": 0.184987,
+     "slope": 0.747646,
+     "intercept": -0.53546,
      "oe": 0.83891,
      "ece": 0.044193
     },
     "XGBoost": {
      "auc": 0.745438,
      "brier": 0.134798,
-     "slope": 1.057499,
-     "intercept": 0.12219,
+     "slope": 0.74151,
+     "intercept": -0.651228,
      "oe": 0.75859,
      "ece": 0.060687
     }
@@ -115,16 +115,16 @@
     "Logistic": {
      "auc": -0.004745,
      "brier": 1e-05,
-     "slope": -0.071287,
-     "intercept": -0.014255,
+     "slope": -0.038828,
+     "intercept": 0.044526,
      "oe": 0.060877,
      "ece": -0.004804
     },
     "XGBoost": {
      "auc": -0.00515,
      "brier": -0.001426,
-     "slope": -0.076883,
-     "intercept": -0.024505,
+     "slope": -0.032239,
+     "intercept": 0.045811,
      "oe": 0.043703,
      "ece": -0.007808
     }
@@ -138,16 +138,16 @@
     "Logistic": {
      "auc": 0.77856,
      "brier": 0.11904,
-     "slope": 0.855181,
-     "intercept": -0.364483,
+     "slope": 0.537776,
+     "intercept": -1.215463,
      "oe": 0.603059,
      "ece": 0.092257
     },
     "XGBoost": {
      "auc": 0.848439,
      "brier": 0.094584,
-     "slope": 1.318848,
-     "intercept": 0.247469,
+     "slope": 0.799052,
+     "intercept": -0.984138,
      "oe": 0.625467,
      "ece": 0.076363
     }
@@ -162,16 +162,16 @@
     "Logistic": {
      "auc": 0.829638,
      "brier": 0.076978,
-     "slope": 1.402632,
-     "intercept": 1.041917,
+     "slope": 1.007206,
+     "intercept": -0.009044,
      "oe": 0.985148,
      "ece": 0.016125
     },
     "XGBoost": {
      "auc": 0.8645,
      "brier": 0.071284,
-     "slope": 1.267482,
-     "intercept": 1.005941,
+     "slope": 0.943172,
+     "intercept": 0.045043,
      "oe": 1.092344,
      "ece": 0.013905
     }
@@ -180,16 +180,16 @@
     "Logistic": {
      "auc": 0.829654,
      "brier": 0.076987,
-     "slope": 1.402868,
-     "intercept": 1.042671,
+     "slope": 1.007495,
+     "intercept": -0.008116,
      "oe": 0.985442,
      "ece": 0.016323
     },
     "XGBoost": {
      "auc": 0.864548,
      "brier": 0.071289,
-     "slope": 1.267515,
-     "intercept": 1.006473,
+     "slope": 0.943253,
+     "intercept": 0.045741,
      "oe": 1.092748,
      "ece": 0.013938
     }
@@ -203,16 +203,16 @@
     "Logistic": {
      "auc": 1.7e-05,
      "brier": 9e-06,
-     "slope": 0.000235,
-     "intercept": 0.000753,
+     "slope": 0.000289,
+     "intercept": 0.000929,
      "oe": 0.000294,
      "ece": 0.000199
     },
     "XGBoost": {
      "auc": 4.8e-05,
      "brier": 4e-06,
-     "slope": 3.3e-05,
-     "intercept": 0.000533,
+     "slope": 8.1e-05,
+     "intercept": 0.000698,
      "oe": 0.000403,
      "ece": 3.3e-05
     }
@@ -226,16 +226,16 @@
     "Logistic": {
      "auc": 0.66295,
      "brier": 0.075899,
-     "slope": 0.703525,
-     "intercept": -0.819212,
+     "slope": 0.617564,
+     "intercept": -1.120886,
      "oe": 0.684364,
      "ece": 0.041682
     },
     "XGBoost": {
      "auc": 0.729893,
      "brier": 0.077025,
-     "slope": 0.827725,
-     "intercept": -0.508032,
+     "slope": 0.650526,
+     "intercept": -1.036495,
      "oe": 0.689706,
      "ece": 0.038724
     }
@@ -244,16 +244,16 @@
     "Logistic": {
      "auc": 0.650578,
      "brier": 0.076022,
-     "slope": 0.606678,
-     "intercept": -0.923109,
+     "slope": 0.534957,
+     "intercept": -1.177278,
      "oe": 0.789459,
      "ece": 0.035604
     },
     "XGBoost": {
      "auc": 0.720578,
      "brier": 0.075465,
-     "slope": 0.766793,
-     "intercept": -0.526459,
+     "slope": 0.622823,
+     "intercept": -0.983323,
      "oe": 0.777103,
      "ece": 0.033075
     }
@@ -267,16 +267,16 @@
     "Logistic": {
      "auc": -0.012372,
      "brier": 0.000123,
-     "slope": -0.096847,
-     "intercept": -0.103896,
+     "slope": -0.082607,
+     "intercept": -0.056392,
      "oe": 0.105095,
      "ece": -0.006078
     },
     "XGBoost": {
      "auc": -0.009314,
      "brier": -0.00156,
-     "slope": -0.060931,
-     "intercept": -0.018428,
+     "slope": -0.027703,
+     "intercept": 0.053172,
      "oe": 0.087397,
      "ece": -0.00565
     }
@@ -290,16 +290,16 @@
     "Logistic": {
      "auc": 0.86877,
      "brier": 0.11403,
-     "slope": 1.440364,
-     "intercept": 0.972187,
+     "slope": 0.84343,
+     "intercept": -0.267638,
      "oe": 0.929522,
      "ece": 0.115254
     },
     "XGBoost": {
      "auc": 0.82631,
      "brier": 0.133948,
-     "slope": 1.563179,
-     "intercept": 1.106809,
+     "slope": 0.962453,
+     "intercept": -0.165244,
      "oe": 0.928617,
      "ece": 0.053116
     }

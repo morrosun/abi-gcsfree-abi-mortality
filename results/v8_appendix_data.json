@@ -892,6 +892,316 @@
    }
   }
  },
+ "treatment_rule_sensitivity": {
+  "generated_at": "2026-10-22T18:44:45",
+  "generated_by": "scripts/126_treatment_rule_sensitivity.py",
+  "cohorts": {
+   "NWICU_1yr": {
+    "note": "NWICU：vasopressor 换'最早开始时间落窗'；mech_vent/rrt 换'窗口内任意记录'（实测 0 差异）",
+    "n": 3420,
+    "events": 699,
+    "as_coded": {
+     "Logistic": {
+      "auc": 0.765158,
+      "brier": 0.136716,
+      "slope": 0.871883,
+      "intercept": -0.155795,
+      "oe": 0.994376,
+      "ece": 0.018141
+     },
+     "XGBoost": {
+      "auc": 0.802437,
+      "brier": 0.127508,
+      "slope": 0.862752,
+      "intercept": -0.145264,
+      "oe": 1.00251,
+      "ece": 0.02099
+     }
+    },
+    "alt": {
+     "Logistic": {
+      "auc": 0.76515,
+      "brier": 0.136716,
+      "slope": 0.871818,
+      "intercept": -0.155961,
+      "oe": 0.994313,
+      "ece": 0.018154
+     },
+     "XGBoost": {
+      "auc": 0.802459,
+      "brier": 0.127515,
+      "slope": 0.862647,
+      "intercept": -0.1452,
+      "oe": 1.002616,
+      "ece": 0.020997
+     }
+    },
+    "alt_flags": {
+     "vasopressor": 375,
+     "mech_vent": 557,
+     "rrt": 60
+    },
+    "delta": {
+     "Logistic": {
+      "auc": -8e-06,
+      "brier": -0.0,
+      "slope": -6.5e-05,
+      "intercept": -0.000166,
+      "oe": -6.3e-05,
+      "ece": 1.3e-05
+     },
+     "XGBoost": {
+      "auc": 2.2e-05,
+      "brier": 7e-06,
+      "slope": -0.000104,
+      "intercept": 6.4e-05,
+      "oe": 0.000106,
+      "ece": 7e-06
+     }
+    }
+   },
+   "INSPIRE_1yr": {
+    "note": "INSPIRE：三个治疗指标换'最早记录时间落窗'",
+    "n": 1543,
+    "events": 265,
+    "as_coded": {
+     "Logistic": {
+      "auc": 0.724527,
+      "brier": 0.13425,
+      "slope": 0.786474,
+      "intercept": -0.579985,
+      "oe": 0.778033,
+      "ece": 0.048997
+     },
+     "XGBoost": {
+      "auc": 0.750588,
+      "brier": 0.136224,
+      "slope": 0.77375,
+      "intercept": -0.69704,
+      "oe": 0.714887,
+      "ece": 0.068495
+     }
+    },
+    "alt": {
+     "Logistic": {
+      "auc": 0.719782,
+      "brier": 0.13426,
+      "slope": 0.747646,
+      "intercept": -0.53546,
+      "oe": 0.83891,
+      "ece": 0.044193
+     },
+     "XGBoost": {
+      "auc": 0.745438,
+      "brier": 0.134798,
+      "slope": 0.74151,
+      "intercept": -0.651228,
+      "oe": 0.75859,
+      "ece": 0.060687
+     }
+    },
+    "alt_flags": {
+     "mech_vent": 683,
+     "rrt": 31,
+     "vasopressor": 84
+    },
+    "delta": {
+     "Logistic": {
+      "auc": -0.004745,
+      "brier": 1e-05,
+      "slope": -0.038828,
+      "intercept": 0.044526,
+      "oe": 0.060877,
+      "ece": -0.004804
+     },
+     "XGBoost": {
+      "auc": -0.00515,
+      "brier": -0.001426,
+      "slope": -0.032239,
+      "intercept": 0.045811,
+      "oe": 0.043703,
+      "ece": -0.007808
+     }
+    }
+   },
+   "eICU_inhosp": {
+    "note": "eICU：infusiondrug 仅 infusionoffset 单时点 ⇒ 两规则恒等；mech_vent/rrt 来自 APACHE 汇总",
+    "n": 14852,
+    "events": 1894,
+    "as_coded": {
+     "Logistic": {
+      "auc": 0.77856,
+      "brier": 0.11904,
+      "slope": 0.537776,
+      "intercept": -1.215463,
+      "oe": 0.603059,
+      "ece": 0.092257
+     },
+     "XGBoost": {
+      "auc": 0.848439,
+      "brier": 0.094584,
+      "slope": 0.799052,
+      "intercept": -0.984138,
+      "oe": 0.625467,
+      "ece": 0.076363
+     }
+    },
+    "alt": null
+   },
+   "NWICU_inhosp": {
+    "note": "NWICU：同上",
+    "n": 3420,
+    "events": 376,
+    "as_coded": {
+     "Logistic": {
+      "auc": 0.829638,
+      "brier": 0.076978,
+      "slope": 1.007206,
+      "intercept": -0.009044,
+      "oe": 0.985148,
+      "ece": 0.016125
+     },
+     "XGBoost": {
+      "auc": 0.8645,
+      "brier": 0.071284,
+      "slope": 0.943172,
+      "intercept": 0.045043,
+      "oe": 1.092344,
+      "ece": 0.013905
+     }
+    },
+    "alt": {
+     "Logistic": {
+      "auc": 0.829654,
+      "brier": 0.076987,
+      "slope": 1.007495,
+      "intercept": -0.008116,
+      "oe": 0.985442,
+      "ece": 0.016323
+     },
+     "XGBoost": {
+      "auc": 0.864548,
+      "brier": 0.071289,
+      "slope": 0.943253,
+      "intercept": 0.045741,
+      "oe": 1.092748,
+      "ece": 0.013938
+     }
+    },
+    "alt_flags": {
+     "vasopressor": 375,
+     "mech_vent": 557,
+     "rrt": 60
+    },
+    "delta": {
+     "Logistic": {
+      "auc": 1.7e-05,
+      "brier": 9e-06,
+      "slope": 0.000289,
+      "intercept": 0.000929,
+      "oe": 0.000294,
+      "ece": 0.000199
+     },
+     "XGBoost": {
+      "auc": 4.8e-05,
+      "brier": 4e-06,
+      "slope": 8.1e-05,
+      "intercept": 0.000698,
+      "oe": 0.000403,
+      "ece": 3.3e-05
+     }
+    }
+   },
+   "INSPIRE_inhosp": {
+    "note": "INSPIRE：同上",
+    "n": 1543,
+    "events": 126,
+    "as_coded": {
+     "Logistic": {
+      "auc": 0.66295,
+      "brier": 0.075899,
+      "slope": 0.617564,
+      "intercept": -1.120886,
+      "oe": 0.684364,
+      "ece": 0.041682
+     },
+     "XGBoost": {
+      "auc": 0.729893,
+      "brier": 0.077025,
+      "slope": 0.650526,
+      "intercept": -1.036495,
+      "oe": 0.689706,
+      "ece": 0.038724
+     }
+    },
+    "alt": {
+     "Logistic": {
+      "auc": 0.650578,
+      "brier": 0.076022,
+      "slope": 0.534957,
+      "intercept": -1.177278,
+      "oe": 0.789459,
+      "ece": 0.035604
+     },
+     "XGBoost": {
+      "auc": 0.720578,
+      "brier": 0.075465,
+      "slope": 0.622823,
+      "intercept": -0.983323,
+      "oe": 0.777103,
+      "ece": 0.033075
+     }
+    },
+    "alt_flags": {
+     "mech_vent": 683,
+     "rrt": 31,
+     "vasopressor": 84
+    },
+    "delta": {
+     "Logistic": {
+      "auc": -0.012372,
+      "brier": 0.000123,
+      "slope": -0.082607,
+      "intercept": -0.056392,
+      "oe": 0.105095,
+      "ece": -0.006078
+     },
+     "XGBoost": {
+      "auc": -0.009314,
+      "brier": -0.00156,
+      "slope": -0.027703,
+      "intercept": 0.053172,
+      "oe": 0.087397,
+      "ece": -0.00565
+     }
+    }
+   },
+   "Huaian_inhosp": {
+    "note": "淮安：单中心 Excel 台账，无事件层时间来源 ⇒ 规则变体不适用",
+    "n": 225,
+    "events": 55,
+    "as_coded": {
+     "Logistic": {
+      "auc": 0.86877,
+      "brier": 0.11403,
+      "slope": 0.84343,
+      "intercept": -0.267638,
+      "oe": 0.929522,
+      "ece": 0.115254
+     },
+     "XGBoost": {
+      "auc": 0.82631,
+      "brier": 0.133948,
+      "slope": 0.962453,
+      "intercept": -0.165244,
+      "oe": 0.928617,
+      "ece": 0.053116
+     }
+    },
+    "alt": null
+   }
+  }
+ },
  "death_label_bounds_primary": {
   "_note": "有界 / 无界死亡标签对照，在当前主分析输入 nwicu_abi_final_v6.csv 上重算，冻结模型 = 118 号（preproc_v2 / models_v2 / model_inhosp_v2）。旧的 death_label_bounds_impact_v1.json 出自 110 号，读的是 v4 输入，只能作为历史对照。",
   "input_file": "data/nwicu_abi_final_v6.csv",
