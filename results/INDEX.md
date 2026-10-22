@@ -6,11 +6,12 @@ carries the audit result plus a `generated_by` / `generated_at` field where the 
 ## ⚠️ Snapshot version (read this first)
 
 The analysis behind this repository has been run more than once, so this directory holds **two
-vintages side by side**: nineteen files are snapshots of the **current analysis run**, and eight are
-snapshots of the **earlier run** that it superseded. Nothing here is hand-edited — every file is a
-verbatim copy of the output directory of the run that produced it, and the *Vintage* column below
-says which. The earlier-run files are kept because they are still the correct reference for the
-archived audit figures and because later scripts read them.
+vintages side by side**: twenty files describe the **current state** — nineteen snapshots of the
+**current analysis run** plus one audit of the frozen submission package — and eight are snapshots
+of the **earlier run** that it superseded. Nothing here is hand-edited — every file is a verbatim
+copy of the output directory of the run that produced it, and the *Vintage* column below says which.
+The earlier-run files are kept because they are still the correct reference for the archived audit
+figures and because later scripts read them.
 
 What the current run changed, and where it shows up in these files:
 
@@ -64,6 +65,7 @@ Two consequences are worth knowing before comparing a file against the paper:
 | `v9_panel_pixel_repro.json` | current run | `96_v9_pixel_repro.py` | Pixel-level reproducibility of every panel and composite figure of the current run against an independent regeneration of the same generator |
 | `treatment_rule_check_v1.json` | current run | `125_treatment_rule_check.py` | **The extraction windows and coding rules of the three treatment-intensity indicators, re-derived cohort by cohort.** For each database and each indicator it recomputes six definitions (the value in the analysis file, the rule as coded, earliest start time inside the window, any qualifying record inside the window, overlap with the window, and the wording the manuscript previously used) and reports the pairwise differences in patient counts. Archived since v1.4.4, when the manuscript stopped describing all predictors as measured "inside the first 24 hours of the ICU stay" |
 | `treatment_rule_sensitivity_v1.json` | current run | `126_treatment_rule_sensitivity.py` | What the choice of coding rule does to the **frozen** models: for each cohort where a variant exists, the AUC / O:E / calibration slope / Brier / ECE under the rule as coded and under the alternative rule, with the differences. The `as_coded` block must reproduce the published external-validation AUCs digit for digit; the script asserts this against `external_validation_v9.csv` before it reports anything. Requires the three frozen model artefacts written by `118_v10_retrain.py`, which are derived from credentialed data and are therefore not redistributed |
+| `freeze_numeric_audit_v13.json` | package audit | `127_freeze_numeric_audit.py` | Read-only audit of the **frozen submission package**: SHA256 and size of the fifteen deliverables, of the eight analysis inputs and of the chain scripts; an independent recomputation of the ten external-validation cohort–outcome combinations (own preparation, prediction and metric code) compared against the numbers **printed in Table 4** rather than against intermediate files; the appendix cells of Tables S3, S5 and S19 and the abstract's Results sentences traced back to the result file that holds each; a character-identity check for every quantity printed more than once; and the abstract / page / table counts. 304 checks in the deposited run: the four recorded as *needs a decision* rather than as passes are listed in the README. Needs the patient-level CSVs, the three frozen model artefacts and the submission package; any layer whose inputs are absent is reported as skipped, not as a failure |
 
 > **Note on `v8_appendix_data.json`**: it is written by the manuscript's appendix builder, which is *not*
 > deposited because it embeds the unpublished appendix text. It is therefore **the one current-run file

@@ -146,7 +146,7 @@
       "dir": "output/v8_panels",
       "generator": "66_v8_audit_figures.py",
       "depends_on": [
-        "audit_decisionE.json"
+        "gcs_increment_audit.json"
       ],
       "sha256": "d39301778d6bf2ca",
       "panel_mtime": "2026-10-02 07:55:44",

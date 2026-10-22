@@ -104,7 +104,7 @@ GEN = {
     "fig9_recal_calibration.png": ("59_rebuild_external_figures.py", ["external_current.json"]),
     "figR3_rootcause.png": ("12_revision_figures.py",
                             ["revision_internal.json", "revision_external.json"]),
-    "gcs_components_v8.png": ("66_v8_audit_figures.py", ["audit_decisionE.json"]),
+    "gcs_components_v8.png": ("66_v8_audit_figures.py", ["gcs_increment_audit.json"]),
     "leakage_dauc_v8.png": ("66_v8_audit_figures.py", ["leakage_sensitivity.json"]),
     "slope_eps_v8.png": ("66_v8_audit_figures.py", ["slope_epsilon_audit.json"]),
     "calib_ci_v8.png": ("66_v8_audit_figures.py", ["calibration_ci_and_severity.json"]),

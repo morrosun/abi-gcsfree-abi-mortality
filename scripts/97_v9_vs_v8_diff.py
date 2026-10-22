@@ -13,7 +13,7 @@ ABI_BASE = _os.environ.get("ABI_BASE", r"D:/BaiduSyncdisk/MIMIC/ABI/ABI1")
 本脚本把 V8 真源与 V9 真源逐项对齐列出，并标注是否变化，避免靠记忆改稿。
 
 V8 真源：calibration_ci_and_severity.json（62）/ leakage_sensitivity.json（60）
-         audit_decisionE.json（58）/ slope_epsilon_audit.json（63）
+         gcs_increment_audit.json（58）/ slope_epsilon_audit.json（63）
          v8_harmonisation.json（66）/ model_performance.csv（03）
 V9 真源：calibration_ci_and_severity_v2.json（87）/ leakage_sensitivity_v9.json（91）
          downstream_severity_gcs_v9.json（90）/ slope_epsilon_audit_v9.json（93）
@@ -126,7 +126,7 @@ def main():
     # ---------------- 4. GCS 增量 ----------------
     log("")
     log("【4】GCS 增量（+总分 / +运动项）")
-    g8 = j("audit_decisionE.json")['gcs_increment_decisionE']
+    g8 = j("gcs_increment_audit.json")['gcs_increment_decisionE']
     g9 = j("downstream_severity_gcs_v9.json")['gcs_increment']
     master['gcs_v9'] = g9
     for m in ['Logistic', 'XGBoost']:

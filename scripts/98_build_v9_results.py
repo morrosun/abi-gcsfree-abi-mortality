@@ -100,7 +100,7 @@ SE9 = j("slope_epsilon_audit_v9.json")
 
 # V8 原件（只读，用于承载"未变字段"与逐项对账）
 V8CAL = j("calibration_ci_and_severity.json")
-V8AD = j("audit_decisionE.json")
+V8AD = j("gcs_increment_audit.json")
 V8RI = j("revision_internal.json")
 V8RE = j("revision_external.json")
 V8COH = j("cohort_descriptives.json")
@@ -247,7 +247,7 @@ def _saps2(df):
 # ===================================================================== 2 audit_decisionE
 def build_audit():
     log("\n" + "=" * 78)
-    log("[2] audit_decisionE.json  ← V8 框架 + 90 的 gcs_increment / single_site_huaian")
+    log("[2] gcs_increment_audit.json  ← V8 框架 + 90 的 gcs_increment / single_site_huaian")
     obj = json.loads(json.dumps(V8AD))          # 深拷贝
     obj["gcs_increment_decisionE"] = DS["gcs_increment"]
     ss = DS["single_site_huaian"]
@@ -260,9 +260,9 @@ def build_audit():
     obj["single_centre"] = sc
     obj["_v9_note"] = ("gcs_increment_decisionE 与 single_centre 的病因计数/AUC 来自 "
                        "downstream_severity_gcs_v9.json（90）；其余键沿用 V8（与治疗窗/标签无关）。")
-    carry("audit_decisionE.json 除 gcs_increment_decisionE / single_centre 外全部键",
+    carry("gcs_increment_audit.json 除 gcs_increment_decisionE / single_centre 外全部键",
           "V8 原件中不含受 V9 数据重建影响的量")
-    w("audit_decisionE.json", obj)
+    w("gcs_increment_audit.json", obj)
 
 
 # ===================================================================== 3 斜率 ε

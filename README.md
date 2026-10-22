@@ -85,6 +85,16 @@ scripts/                              Python analysis pipeline
                                      coding rule; asserts the as-coded block reproduces the published
                                      external-validation AUCs first. Needs the three model artefacts
                                      written by `118_v10_retrain.py`
+  ---- fixed-version numeric audit (v1.4.6) -------------------------------
+  127_freeze_numeric_audit.py        Read-only audit of the **frozen** submission package: records the SHA256
+                                     of every deliverable, of the analysis inputs and of the chain scripts;
+                                     recomputes the ten external-validation cohort–outcome combinations with
+                                     its own preparation, prediction and metric code and compares them cell
+                                     by cell with the numbers printed in Table 4; traces appendix cells and
+                                     abstract claims back to the result files; checks that a quantity printed
+                                     twice is character-identical; and recounts the abstract, the pages and
+                                     the tables. Layers whose inputs are not redistributable are reported as
+                                     skipped, not as failures
   98_build_v9_results.py              Last step of the **current** analysis run: translates that run's
                                        `*_v2` / `*_v9` outputs into the result schema the rest of the pipeline
                                        reads, and writes the current-run files in `results/`
@@ -257,6 +267,8 @@ python scripts/98_build_v9_results.py
 #        so they run after 118 and write results/treatment_rule_*.json)
 python scripts/125_treatment_rule_check.py            # needs PostgreSQL
 python scripts/126_treatment_rule_sensitivity.py      # needs PostgreSQL + the 118 model artefacts
+# 17   fixed-version numeric audit of the package (read-only; v1.4.6, see below)
+python scripts/127_freeze_numeric_audit.py            # needs the package + the 118 model artefacts
 ```
 
 `results/v9_number_master.json` — the machine-readable record of every number printed inside every figure of
@@ -325,6 +337,56 @@ and from 0.690 to 0.777. In NWICU the AUC is **unchanged to four decimal places*
 and the full metric grid are in `results/treatment_rule_check_v1.json` and
 `results/treatment_rule_sensitivity_v1.json`, indexed in `results/INDEX.md`; the manuscript
 reports them in Appendix Table S3 and the paragraph that follows it.
+
+### Fixed-version numeric audit (v1.4.6)
+
+Checking a frozen package is a different job from revising it, so the last step of this deposit is not a
+script that produces a number but one that checks the numbers already printed.
+`127_freeze_numeric_audit.py` is read-only: it refits nothing, rewrites nothing, and writes only its own
+report. It runs in five layers.
+
+* **Fingerprint.** SHA256 and byte size of all fifteen deliverable files, of the eight analysis inputs and
+  of the chain scripts, plus the version DOI the package claims. This is the layer that answers *is the
+  package in my hands the one that was audited*.
+* **Independent recomputation.** For each of the ten external-validation cohort–outcome combinations it
+  prepares the predictors, predicts, and computes AUC, Brier score, calibration slope and intercept,
+  observed:expected ratio and ECE from scratch — its own code, nothing imported from the sensitivity
+  script and nothing from the figure generator — and compares the results against the numbers *printed in
+  Table 4*, not against the intermediate files those numbers came from. The slope and intercept are fitted
+  on the unclipped linear predictor (`decision_function` for logistic regression, raw margin for XGBoost).
+* **Transcription.** Cells of the six main tables, of Appendix Tables S3, S5 and S19 and of the abstract's
+  Results sentences, traced back to the result file that holds them.
+* **Cross-document consistency.** Every quantity that appears more than once across the manuscript, the
+  appendix, the cover letter and the response letter must be character-identical; the audit also scans for
+  values that belong to a superseded run and must no longer appear anywhere.
+* **Counts.** Abstract words under three counting conventions, main-text words, pages, table counts.
+
+The archived result is `results/freeze_numeric_audit_v13.json`: **304 checks, 300 passed, 4 recorded as
+*needs a decision*, 0 failed**, run twice with identical verdicts. The four items are not errors and were
+deliberately not "fixed" by editing the manuscript:
+
+1. the observed:expected ratio is printed to two decimals while its confidence interval is printed to
+   three, so the third decimal of 0.603 is not recoverable from the table;
+2. the internal one-year logistic AUC has two bootstrap intervals that differ in the third decimal:
+   0.805–0.829, which is what Tables 2 and 4 print and what `internal_learners.json` holds, and
+   0.8059–0.8307, computed and used only inside the GCS-sensitivity branch of the same run and cited by
+   no table;
+3. a legacy intermediate file (`model_performance_v9.csv`) records 0.818 (0.806–0.830) for that same
+   estimate. It was superseded by `internal_learners.json`, no table cites it, and it is not part of this
+   deposit — it is flagged because two unexplained intervals for one estimate is exactly the discrepancy a
+   reviewer will find;
+4. the abstract reaches exactly 350 words including its structural labels, i.e. it has no headroom left.
+
+**What it cannot check from this deposit alone.** The recomputation needs the four patient-level cohort
+files and the three frozen model artefacts, and the transcription and count layers need the submission
+package itself; none of these can be redistributed. Each of those layers is wrapped so that a missing input
+is reported as *skipped* and the audit continues — run against this repository alone it still completes the
+one layer that needs nothing external (the double-source consistency of the internal-set metrics) and
+exits 0. The numbers above are from the full run.
+
+One bookkeeping detail, the same one that applies to the DOI block below: the fingerprint block records the
+repository state at the moment the audit ran, and the audit's own output file is the only file added to the
+tree after that point.
 
 ### How the provenance claims are verified
 
@@ -452,6 +514,19 @@ the authoritative statement for any given release is the version and DOI shown o
 > long-term mortality model in critically ill patients with acute brain injury* (v1.4.5).
 > Zenodo, 2026. **doi: [10.5281/zenodo.23562581](https://doi.org/10.5281/zenodo.23562581)**
 
+- v1.4.6 (this release): **deposits the fixed-version numeric audit.** `scripts/127_freeze_numeric_audit.py`
+  is a read-only auditor of the frozen submission package, and `results/freeze_numeric_audit_v13.json` is
+  its output: **304 checks, 300 passed, 4 recorded as *needs a decision*, none failed**, produced by two
+  runs with identical verdicts. It pins the SHA256 of the fifteen deliverable files, of the eight analysis
+  inputs and of the chain scripts; recomputes the ten external-validation cohort–outcome combinations with
+  its own preparation, prediction and metric code and compares them cell by cell against the numbers
+  printed in Table 4; traces appendix cells and the abstract's Results sentences back to the result files
+  that hold them; checks that any quantity printed twice across the manuscript, the appendix, the cover
+  letter and the response letter is character-identical; and recounts the abstract, the pages and the
+  tables. No analysis number changes in this release. Its one substantive fix is naming: three archived
+  scripts (`80`, `97`, `98`) and `results/v8_panel_provenance.json` still referred to the GCS-increment
+  result file by the codename used while the package was being assembled, and now use the name under which
+  that file is actually deposited. Everything else is the auditor and its output.
 - v1.4.5 (current): `10.5281/zenodo.23562581` — **corrects the calibration slope in the treatment-rule
   sensitivity analysis.** The archived `126_treatment_rule_sensitivity.py` estimated calibration by
   regressing the outcome on `log(p)` instead of on the linear predictor, so the slopes it reported
