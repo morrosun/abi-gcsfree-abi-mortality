@@ -55,6 +55,27 @@ scripts/                              Python analysis pipeline
   74_recover_nwicu_vasopressor.py     Forensic audit + recovery of the NWICU vasopressor variable
   91_leakage_sensitivity_v9.py        Leakage-sensitivity grid for the **current** analysis run (adds the joint
                                        deletion of the seven aetiology indicators **with the Charlson index**)
+  ---- input-generating chain of the current analysis run (v1.4.3) ---------
+  84_death_label_crosscheck.py       Re-derive and cross-check the death labels of every database
+  85_treatment_window_audit.py       Treatment-window audit; writes the NWICU cohort file the rebuild reads
+  86_rebuild_datasets.py             **Rebuild the four analysis datasets** on the first-day treatment window
+                                     and the corrected labels (writes `data/*_v2.csv`)
+  118_v10_retrain.py                 **Retrain** the frozen models on the rebuilt data; re-selects the tree
+                                     hyper-parameters inside the current training split; window-exclusion
+                                     sensitivity
+  102_nwicu_source_reaggregation.py  NWICU source-layer re-aggregation (the main external analysis) + the
+                                     sentinel accounting behind Appendix S10
+  88_eta_calibration_audit.py        Calibration on the unclipped linear predictor (η)
+  89_sentinel_clean_and_reeval.py    Placeholder-cleaned variant used as the sensitivity analysis
+  90_downstream_v9_severity_gcs.py   Severity-score head-to-head and the GCS increment
+  92_v9_audit_figures.py             Audit figures, harmonisation table and their number records
+  93_slope_epsilon_v9.py             Calibration slope as a function of the clipping constant
+  94_v9_main_figures.py              Main figures of the current run + the number master
+  95_v9_external_figures.py          External-validation figures of the current run
+  96_v9_pixel_repro.py               Pixel-level reproducibility of the current-run figures
+  97_v9_vs_v8_diff.py                Cell-by-cell diff against the previous run
+  108_split_overlap_sensitivity.py   No-overlap subset analysis (Appendix S11)
+  124_death_label_bounds_primary.py  Bounded-label primary analysis and its sensitivity grid
   98_build_v9_results.py              Last step of the **current** analysis run: translates that run's
                                        `*_v2` / `*_v9` outputs into the result schema the rest of the pipeline
                                        reads, and writes the current-run files in `results/`
@@ -97,11 +118,19 @@ any archived number against the manuscript.
 
 PhysioNet data-use agreements forbid redistribution of the source data **and of objects derived from it**
 (e.g. the extracted cohort CSVs, feature medians, and the trained model files). Those are therefore **not**
-included. The archived pipeline regenerates the **earlier-run** result files end to end against credentialed
-copies (the single exception, `results/v8_appendix_data.json`, is footnoted in `results/INDEX.md`). The
-**current-run** result files are archived as snapshots of that run: the scripts that produce their inputs
-are not part of this repository, so they are published as verbatim copies rather than as re-derivable
-outputs — which is why `results/INDEX.md` labels every file with its vintage.
+included.
+
+**Both vintages of `results/` are re-derivable from this repository.** Since **v1.4.3** the scripts that
+*produce the inputs* of the current analysis run are archived alongside the scripts that consume them, so
+the chain `SQL → 84/85 → 86 → 118 → 102 → 88/89/90 → 92/93/94/95 → 96 → 97 → 98 → results/` can be executed
+end to end against your own credentialed copy of each database. The run order and the inputs each step
+expects are given under "Running the pipeline" below. The **single exception is
+`results/v8_appendix_data.json`**: it is written by the manuscript's appendix builder, which is not
+deposited because it embeds the unpublished appendix text. The file itself is archived, it is what
+Appendix Table S4 points at, and `results/INDEX.md` says so.
+
+`results/INDEX.md` labels every file with its vintage and states what each change was, so an archived
+number can never be mistaken for a current one.
 
 ### De-identification of the local cohort
 
@@ -154,10 +183,10 @@ python scripts/61_extract_severity_inputs.py          # needs PostgreSQL
 python scripts/58_gcs_increment_audit.py
 python scripts/60_leakage_sensitivity.py
 python scripts/91_leakage_sensitivity_v9.py           # writes results/leakage_sensitivity_v9.json
-# 98 is the last step of the *current* analysis run: it translates that run's `*_v2` / `*_v9`
+# 98 is the last step of the *current* analysis run. It translates that run's `*_v2` / `*_v9`
 # outputs into the result schema the rest of the pipeline reads, and writes the current-run
-# files in results/. The scripts that produce its inputs are not part of this repository
-# (see results/INDEX.md); running 98 alone therefore regenerates nothing on its own.
+# files in results/. Its inputs are produced by the chain listed under "Current analysis run"
+# below, which is archived in this repository since v1.4.3.
 python scripts/98_build_v9_results.py
 python scripts/62_calib_ci_and_severity.py            # reads the CSV written by 79
 python scripts/63_check_slope_epsilon.py
@@ -178,6 +207,48 @@ python scripts/80_panel_provenance.py
 # then run 82. It refuses to report a pass if the backup is missing.
 python scripts/82_panel_pixel_repro.py
 ```
+
+### Current analysis run — exact order
+
+This is the chain that regenerates every file `results/INDEX.md` marks *current run* from a credentialed copy
+of each database. Each step names what it reads, because the two most common ways to get a wrong answer here
+are to run a step before its input exists, or to run it against the previous run's file.
+
+```bash
+# 1–2  labels and treatment windows (PostgreSQL). 85 writes the NWICU cohort file that 86 reads.
+python scripts/84_death_label_crosscheck.py           # needs PostgreSQL
+python scripts/85_treatment_window_audit.py           # needs PostgreSQL
+# 3    rebuild all four analysis datasets on the first-day window + corrected labels
+#      -> data/mimic_abi_cohort_v2.csv, eicu_abi_final_v2.csv, inspire_abi_final_v2.csv
+python scripts/86_rebuild_datasets.py                 # needs PostgreSQL
+# 4    retrain: frozen models refitted, tree hyper-parameters re-selected inside the current
+#      training split, window-exclusion sensitivity  -> calibration_ci_and_severity_v2.json
+python scripts/118_v10_retrain.py                     # needs PostgreSQL
+# 5    NWICU source-layer re-aggregation, which is the main external analysis, plus the
+#      sentinel accounting behind Appendix S10      -> nwicu_abi_final_v5.csv
+python scripts/102_nwicu_source_reaggregation.py      # needs PostgreSQL
+# 6–8  evaluation layers
+python scripts/88_eta_calibration_audit.py            # calibration on the unclipped margin
+python scripts/89_sentinel_clean_and_reeval.py        # placeholder-cleaned sensitivity variant
+python scripts/90_downstream_v9_severity_gcs.py       # severity head-to-head + GCS increment
+python scripts/91_leakage_sensitivity_v9.py           # leakage-sensitivity grid
+python scripts/108_split_overlap_sensitivity.py       # no-overlap subset (Appendix S11)
+python scripts/124_death_label_bounds_primary.py      # bounded-label primary + sensitivity grid
+# 9–13 figures of this run, their number master, and the pixel check
+python scripts/92_v9_audit_figures.py                 # audit figures + harmonisation table
+python scripts/93_slope_epsilon_v9.py                 # slope vs clipping constant
+python scripts/94_v9_main_figures.py                  # main figures + results/v9_number_master.json
+python scripts/95_v9_external_figures.py              # external-validation figures
+python scripts/96_v9_pixel_repro.py                   # pixel-level reproducibility
+python scripts/97_v9_vs_v8_diff.py                    # cell-by-cell diff against the previous run
+# 14   translate into the result schema and write results/
+python scripts/98_build_v9_results.py
+```
+
+`results/v9_number_master.json` — the machine-readable record of every number printed inside every figure of
+this run, each entry pointing at the result field it was derived from — is written by step 12 and archived
+here. `results/v8_appendix_data.json` is the one current-run file this chain does not produce: it is written
+by the manuscript's appendix builder, which is not deposited.
 
 Two things worth knowing before you run the audits:
 

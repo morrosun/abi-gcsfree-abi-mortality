@@ -1,0 +1,160 @@
+[
+ {
+  "figure": 1,
+  "file": "Figure1.png",
+  "px": [
+   1200,
+   613
+  ],
+  "size_mb": 0.13,
+  "layout": "h",
+  "panels": [
+   "fig1_roc_v9.png",
+   "fig2_calibration_v9.png"
+  ],
+  "panel_labels": [
+   "A",
+   "B"
+  ],
+  "caption": "Development-cohort (MIMIC-IV) internal validation. (A) Receiver operating characteristic curves of the logistic, random forest and XGBoost models (all five candidate learners are compared in Table 2). (B) Calibration curves of the logistic and XGBoost models across ten quantile bins.",
+  "short_caption": "Internal validation (MIMIC-IV): discrimination and calibration"
+ },
+ {
+  "figure": 2,
+  "file": "Figure2.png",
+  "px": [
+   1200,
+   848
+  ],
+  "size_mb": 0.111,
+  "layout": "h",
+  "panels": [
+   "fig4_forest_v9.png",
+   "fig5_xgb_importance_v9.png"
+  ],
+  "panel_labels": [
+   "A",
+   "B"
+  ],
+  "caption": "Predictors of one-year mortality. (A) Adjusted odds ratios of the primary logistic model (per 1-SD increase for continuous variables; variables with P<.05 are shown). (B) XGBoost feature importance (gain) for the highest-ranked predictors.",
+  "short_caption": "Predictors: adjusted odds ratios and XGBoost importance"
+ },
+ {
+  "figure": 3,
+  "file": "Figure3.png",
+  "px": [
+   1200,
+   526
+  ],
+  "size_mb": 0.068,
+  "layout": "v",
+  "panels": [
+   "gcs_components_v9.png"
+  ],
+  "panel_labels": [
+   ""
+  ],
+  "caption": "Audit finding 1: the cost of omitting the Glasgow Coma Scale (GCS). (A) Change in AUC when the total GCS score or the motor component alone is added to the GCS-free model (MIMIC-IV internal test set, n=4,980). (B) Discrimination of the GCS by itself, overall and stratified by mechanical ventilation.",
+  "short_caption": "Audit finding 1: what omitting the GCS actually costs"
+ },
+ {
+  "figure": 4,
+  "file": "Figure4.png",
+  "px": [
+   1124,
+   1199
+  ],
+  "size_mb": 0.242,
+  "layout": "v",
+  "panels": [
+   "fig6_ext_roc_v9.png",
+   "fig8_ext_calibration_v9.png"
+  ],
+  "panel_labels": [
+   "A",
+   "B"
+  ],
+  "caption": "External validation. (A) Receiver operating characteristic curves in NWICU and INSPIRE for the one-year outcome. (B) Calibration curves before recalibration, in every validation database.",
+  "short_caption": "External validation: discrimination and initial calibration"
+ },
+ {
+  "figure": 5,
+  "file": "Figure5.png",
+  "px": [
+   918,
+   1200
+  ],
+  "size_mb": 0.276,
+  "layout": "v",
+  "panels": [
+   "fig7_ext_roc_bymodel_v9.png",
+   "fig9_recal_calibration_v9.png"
+  ],
+  "panel_labels": [
+   "A",
+   "B"
+  ],
+  "caption": "Discrimination by model and database, and recalibration. (A) Receiver operating characteristic curves of both models in every validation database. (B) Calibration curves after logistic recalibration, fitted in each external database.",
+  "short_caption": "Discrimination by model and post-recalibration calibration"
+ },
+ {
+  "figure": 6,
+  "file": "Figure6.png",
+  "px": [
+   1200,
+   1001
+  ],
+  "size_mb": 0.147,
+  "layout": "v",
+  "panels": [
+   "figR3_rootcause_v9.png",
+   "leakage_dauc_v9.png"
+  ],
+  "panel_labels": [
+   "A",
+   "B"
+  ],
+  "caption": "Audit findings 2 and 3: structural differences between databases, and how much the model depends on discharge-coded aetiology. Upper panel: first-day vasopressor recording across databases (left) and the aetiology mix in NWICU versus INSPIRE (right). Lower panel: change in AUC after removing all seven discharge-coded aetiology indicators, internally across three label-timing scenarios (left) and in the external databases (right). MIMIC-IV carries no present-on-admission flag and no diagnosis timestamp, so the timing of these codes cannot be verified directly.",
+  "short_caption": "Audit findings 2-3: structural database differences and code-timing dependence"
+ },
+ {
+  "figure": 7,
+  "file": "Figure7.png",
+  "px": [
+   1200,
+   1060
+  ],
+  "size_mb": 0.204,
+  "layout": "v",
+  "panels": [
+   "slope_eps_v9.png",
+   "calib_ci_v9.png"
+  ],
+  "panel_labels": [
+   "A",
+   "B"
+  ],
+  "caption": "Audit finding 4: how stable are the calibration estimates? (A) The calibration slope depends on the constant ε used to clip predictions before the logit transformation. The largest sensitivity was observed in the smallest cohort; its determinants were not isolated by this analysis. (B) Calibration slopes with 95% bootstrap confidence intervals (1,000 resamples); the intervals in the smallest cohort are too wide to establish adequate calibration.",
+  "short_caption": "Audit finding 4: stability of the calibration estimates"
+ },
+ {
+  "figure": 8,
+  "file": "Figure8.png",
+  "px": [
+   1200,
+   1040
+  ],
+  "size_mb": 0.164,
+  "layout": "v",
+  "panels": [
+   "harmonisation_v9.png",
+   "huaian_panel_v9.png"
+  ],
+  "panel_labels": [
+   "A",
+   "B"
+  ],
+  "caption": "Audit finding 5: measurement harmonisation at the independent site, and what the frozen model achieved there. Upper row: (A) change in AUC and (B) observed:expected ratio when laboratory units are not converted and when the feature-scaling convention is not respected (Huaian, n=225). Lower row: calibration and discrimination of the frozen in-hospital model after harmonisation.",
+  "short_caption": "Audit finding 5: harmonisation effects and independent-site performance"
+ }
+]
