@@ -358,11 +358,17 @@ corresponding author and it will be provided.
 The failure mode this repository is designed to make impossible is a figure annotated with numbers from an
 earlier analysis run. Two manifests make that checkable:
 
-* `results/figure_number_manifest.json` — every number printed in the external-validation figures, with the
-  key in the run's `external_current.json` it was read from. **V8-legacy snapshot**: its values predate the
-  current run (NWICU one-year events 635, logistic AUC 0.6971) and are kept for the archived V8 figures only;
-  the current figure numbers are not tracked by any file in this repository.
-* `results/v8_figure_number_manifest.json` — the same idea for the audit figures.
+* `results/v9_number_master.json` — **the manifest for the figures of this submission.** Every number
+  printed inside every figure of the current run, each with the result field it was derived from. Since
+  v1.4.3 this file is part of the deposit, so a figure number can be checked without asking the authors.
+* `results/figure_inventory.json` — which panels each composite figure is assembled from.
+* `results/v9_panel_pixel_repro.json` — the pixel-level check of every panel against an independent
+  regeneration of the same generator.
+* `results/figure_number_manifest.json` — every number printed in the external-validation figures of the
+  **earlier** run, with the key in that run's `external_current.json` it was read from. **V8-legacy
+  snapshot**: its values predate the current run (NWICU one-year events 635, logistic AUC 0.6971) and are
+  kept for the archived V8 figures only.
+* `results/v8_figure_number_manifest.json` — the same idea for the audit figures of that earlier run.
 
 In both files, `value` is **derived** from `source` at build time; no value is typed in by hand. So a
 manifest entry can always be recomputed from the result files in this repository, and any discrepancy
@@ -379,10 +385,23 @@ Code: **MIT** (see `LICENSE`). The de-identified dataset is released under
 Archived on Zenodo — cite the **version-specific DOI** of the release you used:
 
 > Pan Q, Zhu X, Li C, Wang K. *Analysis code and de-identified local validation cohort for a GCS-free
-> long-term mortality model in critically ill patients with acute brain injury* (v1.4.2).
-> Zenodo, 2026. **doi: [10.5281/zenodo.23535852](https://doi.org/10.5281/zenodo.23535852)**
+> long-term mortality model in critically ill patients with acute brain injury* (v1.4.3).
+> Zenodo, 2026. **doi: [10.5281/zenodo.23552843](https://doi.org/10.5281/zenodo.23552843)**
 
-- v1.4.2 (current): `10.5281/zenodo.23535852` — corrects three statements in this README that did not
+- v1.4.3 (current): `10.5281/zenodo.23552843` — **archives the scripts that generate the inputs** of the
+  current analysis run, not only the scripts that consume them. Previously only `98_build_v9_results.py`
+  was deposited, so the current-run result files were verbatim snapshots that no reader could rebuild.
+  v1.4.3 adds the label cross-check (`84`), the treatment-window audit (`85`), the rebuild of all four
+  datasets (`86`), retraining with hyper-parameter re-selection inside the current training split (`118`),
+  the NWICU source-layer re-aggregation (`102`), the calibration and placeholder-cleaning evaluations
+  (`88`, `89`, `90`), the figure generators of this run (`92`–`95`), the pixel check (`96`), the
+  cell-by-cell diff (`97`), the package assembly (`99`), the no-overlap subset (`108`), the bounded-label
+  analysis (`124`) and the GCS operationalisation (`119`), together with the exact run order. It also adds
+  `results/v9_number_master.json`, `results/figure_inventory.json` and `results/v9_panel_pixel_repro.json`,
+  so the figure-number claim is checkable from the deposit alone. The one current-run file the deposit
+  still does not regenerate is `results/v8_appendix_data.json`, written by the manuscript appendix
+  builder; the file is archived and `results/INDEX.md` says so.
+- v1.4.2 (previous): `10.5281/zenodo.23535852` — corrects three statements in this README that did not
   match the analysis files they describe, and adds no new analysis. (i) The feature-scaling example now
   quotes the `results/v8_harmonisation.json` values that the manuscript reports — logistic AUC
   0.869 → 0.567 and XGBoost 0.826 → 0.448, ΔAUC −0.301 and −0.378 — in place of an illustration that
