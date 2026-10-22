@@ -1,0 +1,2782 @@
+{
+ "generated_at": "2026-10-22T20:51:13",
+ "generated_by": "scripts/127_freeze_numeric_audit.py",
+ "package": "output/submission_v13",
+ "fingerprint": {
+  "deliverables": [
+   {
+    "file": "01_Manuscript_V13.docx",
+    "bytes": 3552956,
+    "sha256": "bdd5ac5793e539ca"
+   },
+   {
+    "file": "01_Manuscript_V13.pdf",
+    "bytes": 2160998,
+    "sha256": "99835bff8c8a143e"
+   },
+   {
+    "file": "02_Cover_Letter_V13.docx",
+    "bytes": 39024,
+    "sha256": "b261dc86a727a479"
+   },
+   {
+    "file": "03_Compliance_Checklist_V13.html",
+    "bytes": 5095,
+    "sha256": "60861063ef11af47"
+   },
+   {
+    "file": "04_Additional_file_1_V13.docx",
+    "bytes": 361574,
+    "sha256": "7412e03a398e37fc"
+   },
+   {
+    "file": "04_Additional_file_1_V13.pdf",
+    "bytes": 694210,
+    "sha256": "77a3153fb19a3956"
+   },
+   {
+    "file": "05_References_Vancouver_V13.docx",
+    "bytes": 42118,
+    "sha256": "a87834f8c975759f"
+   },
+   {
+    "file": "05_References_Vancouver_V13.txt",
+    "bytes": 11432,
+    "sha256": "caded4a10ec94c42"
+   },
+   {
+    "file": "06_Response_to_Prior_Review_V13.docx",
+    "bytes": 44257,
+    "sha256": "1eeb1a8ac1d7f182"
+   },
+   {
+    "file": "Figures_for_upload_V13.zip",
+    "bytes": 3560053,
+    "sha256": "60e43401aa5f8325"
+   },
+   {
+    "file": "TOC_image_V13.png",
+    "bytes": 92701,
+    "sha256": "b42662d02cc91f74"
+   },
+   {
+    "file": "figure_captions_V13.txt",
+    "bytes": 3821,
+    "sha256": "9285e70ea822b543"
+   },
+   {
+    "file": "figure_inventory_V13.json",
+    "bytes": 5532,
+    "sha256": "42f02b4ae78426d0"
+   },
+   {
+    "file": "v9_number_master.json",
+    "bytes": 47271,
+    "sha256": "e84d1f4dfdcf5585"
+   },
+   {
+    "file": "v9_panel_pixel_repro.json",
+    "bytes": 8262,
+    "sha256": "14bff26de97225b3"
+   }
+  ],
+  "chain": [
+   {
+    "script": "submission-package builder (not deposited)",
+    "sha256": "91f0888ff8d44238"
+   },
+   {
+    "script": "65_build_v8_appendix.py",
+    "sha256": "9ede0db20ffd960e"
+   },
+   {
+    "script": "70_manuscript_pdf.py",
+    "sha256": "26cb7f5bf72e5072"
+   },
+   {
+    "script": "76_refs_final_to_package.py",
+    "sha256": "6a61c007b4b6db07"
+   },
+   {
+    "script": "package verifier (not deposited)",
+    "sha256": "277e47fe931e1a88"
+   },
+   {
+    "script": "126_treatment_rule_sensitivity.py",
+    "sha256": "6993c949b7c45435"
+   },
+   {
+    "script": "95_v9_external_figures.py",
+    "sha256": "61d448ac73121fc2"
+   },
+   {
+    "script": "93_slope_epsilon_v9.py",
+    "sha256": "6f066b057b3fc601"
+   }
+  ],
+  "inputs": [
+   {
+    "file": "output/v9_number_master.json",
+    "bytes": 47271,
+    "sha256": "e84d1f4dfdcf5585"
+   },
+   {
+    "file": "output/external_validation_v9.csv",
+    "bytes": 1961,
+    "sha256": "b31fb1d60ac0dbb7"
+   },
+   {
+    "file": "output/slope_epsilon_audit_v9.json",
+    "bytes": 11728,
+    "sha256": "bf93e7888e31f624"
+   },
+   {
+    "file": "output/treatment_rule_sensitivity_v1.json",
+    "bytes": 6473,
+    "sha256": "0f5a5996a7e3e5d6"
+   },
+   {
+    "file": "output/treatment_rule_check_v1.json",
+    "bytes": 11966,
+    "sha256": "8aac624bb20f3e7b"
+   },
+   {
+    "file": "output/calibration_ci_and_severity.json",
+    "bytes": 14721,
+    "sha256": "d4d78445bfd3aca9"
+   },
+   {
+    "file": "output/leakage_sensitivity_v9.json",
+    "bytes": 34510,
+    "sha256": "4a707d7760c7ca50"
+   },
+   {
+    "file": "output/cohort_descriptives.json",
+    "bytes": 3913,
+    "sha256": "70b9ac1ee645cfa3"
+   }
+  ],
+  "repo": {
+   "head": "44df76eb8487a002b0997d4fa744dd314739c638",
+   "describe": "v1.4.6",
+   "tag_head": "44df76eb8487a002b0997d4fa744dd314739c638",
+   "dirty": false,
+   "after_tag": "",
+   "remote": "https://github.com/morrosun/abi-gcsfree-abi-mortality.git"
+  },
+  "doi": "10.5281/zenodo.23562581"
+ },
+ "recomputed": {
+  "NWICU_1yr": {
+   "n": 3420,
+   "events": 699,
+   "Logistic": {
+    "auc": 0.7651582903912187,
+    "brier": 0.136716324280959,
+    "slope": 0.8718832652577455,
+    "intercept": -0.1557951842666266,
+    "oe": 0.9943762285265023,
+    "ece": 0.018140874048852267
+   },
+   "XGBoost": {
+    "auc": 0.8024373560381056,
+    "brier": 0.12750808894634247,
+    "slope": 0.8627517819404602,
+    "intercept": -0.14526355266571045,
+    "oe": 1.002509610435534,
+    "ece": 0.02099023780714699
+   }
+  },
+  "INSPIRE_1yr": {
+   "n": 1543,
+   "events": 265,
+   "Logistic": {
+    "auc": 0.7245268255233708,
+    "brier": 0.13425016104456133,
+    "slope": 0.7864737290742567,
+    "intercept": -0.5799852939825588,
+    "oe": 0.7780332738091683,
+    "ece": 0.0489970185119585
+   },
+   "XGBoost": {
+    "auc": 0.7505875926418046,
+    "brier": 0.13622353971004486,
+    "slope": 0.7737497091293335,
+    "intercept": -0.6970397233963013,
+    "oe": 0.7148868945751051,
+    "ece": 0.0684951551799371
+   }
+  },
+  "NWICU_inhosp": {
+   "n": 3420,
+   "events": 376,
+   "Logistic": {
+    "auc": 0.8296378295635642,
+    "brier": 0.07697798686232162,
+    "slope": 1.0072061974596416,
+    "intercept": -0.009044481144000287,
+    "oe": 0.9851481670600968,
+    "ece": 0.016124650291194746
+   },
+   "XGBoost": {
+    "auc": 0.8644997483714038,
+    "brier": 0.07128448784351349,
+    "slope": 0.9431724548339844,
+    "intercept": 0.04504282400012016,
+    "oe": 1.0923442920411226,
+    "ece": 0.013905096493051414
+   }
+  },
+  "INSPIRE_inhosp": {
+   "n": 1543,
+   "events": 126,
+   "Logistic": {
+    "auc": 0.6629504542348579,
+    "brier": 0.07589885627810276,
+    "slope": 0.6175637555732375,
+    "intercept": -1.1208864588486056,
+    "oe": 0.68436389963746,
+    "ece": 0.04168227150206481
+   },
+   "XGBoost": {
+    "auc": 0.7298926863147046,
+    "brier": 0.07702527940273285,
+    "slope": 0.6505259275436401,
+    "intercept": -1.0364954471588135,
+    "oe": 0.6897062733371471,
+    "ece": 0.03872439467088017
+   }
+  },
+  "eICU_inhosp": {
+   "n": 14852,
+   "events": 1894,
+   "Logistic": {
+    "auc": 0.7785600640066446,
+    "brier": 0.11903953196677551,
+    "slope": 0.5377757648187466,
+    "intercept": -1.2154627434356802,
+    "oe": 0.6030593635465061,
+    "ece": 0.09225681566761171
+   },
+   "XGBoost": {
+    "auc": 0.8484385749231576,
+    "brier": 0.0945838987827301,
+    "slope": 0.7990521788597107,
+    "intercept": -0.9841377139091492,
+    "oe": 0.625466521339846,
+    "ece": 0.07636275521632302
+   }
+  },
+  "Huaian_inhosp": {
+   "n": 225,
+   "events": 55,
+   "Logistic": {
+    "auc": 0.8687700534759358,
+    "brier": 0.11403021211240308,
+    "slope": 0.8434304927139729,
+    "intercept": -0.2676375313573267,
+    "oe": 0.9295223651029527,
+    "ece": 0.11525375117354714
+   },
+   "XGBoost": {
+    "auc": 0.8263101604278074,
+    "brier": 0.1339482218027115,
+    "slope": 0.9624533653259277,
+    "intercept": -0.16524361073970795,
+    "oe": 0.9286172149784928,
+    "ece": 0.05311646213134129
+   }
+  }
+ },
+ "counts": {
+  "abstract": 350,
+  "cover": 453,
+  "pages_main": 30,
+  "pages_appendix": 54,
+  "tables_main": 6,
+  "tables_appendix": 19
+ },
+ "totals": {
+  "checks": 304,
+  "passed": 300,
+  "noted": 4,
+  "failed": 0,
+  "by_layer": {
+   "L1": [
+    2,
+    0,
+    0
+   ],
+   "L2b": [
+    128,
+    0,
+    1
+   ],
+   "L3": [
+    50,
+    0,
+    0
+   ],
+   "L3b": [
+    30,
+    0,
+    2
+   ],
+   "L3c": [
+    17,
+    0,
+    0
+   ],
+   "L3d": [
+    10,
+    0,
+    0
+   ],
+   "L4": [
+    56,
+    0,
+    0
+   ],
+   "L5": [
+    7,
+    0,
+    1
+   ]
+  }
+ },
+ "skipped": [],
+ "checks": [
+  {
+   "layer": "L1",
+   "name": "归档 tag 可定位到当前树",
+   "expected": "v1.4.5 v1.4.6",
+   "actual": "HEAD 44df76eb，tag 之后变动 无",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L1",
+   "name": "工作区无未提交改动",
+   "expected": "clean",
+   "actual": "clean",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic n (events)",
+   "expected": "4980 (1591)",
+   "actual": "4980 (1591)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic AUC master→印出（3dp）",
+   "expected": "0.818",
+   "actual": "0.818",
+   "ok": true,
+   "note": "master 0.817637"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic AUC CI（master 源）",
+   "expected": "[0.805, 0.829]",
+   "actual": "[0.805, 0.829]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic Brier master→印出（3dp）",
+   "expected": "0.158",
+   "actual": "0.158",
+   "ok": true,
+   "note": "master 0.158082"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic 斜率 master→印出（3dp）",
+   "expected": "0.979",
+   "actual": "0.979",
+   "ok": true,
+   "note": "master 0.978695"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic 斜率 CI（eta 源）",
+   "expected": "[0.911, 1.048]",
+   "actual": "[0.911, 1.048]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic 截距 master→印出（3dp）",
+   "expected": "-0.020",
+   "actual": "-0.02",
+   "ok": true,
+   "note": "master -0.020082"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic 截距 CI（eta 源）",
+   "expected": "[-0.105, 0.068]",
+   "actual": "[-0.105, 0.068]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic O:E master→印出（2dp）",
+   "expected": "1.00",
+   "actual": "1.0",
+   "ok": true,
+   "note": "master 0.996209"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic O:E CI（master 源）",
+   "expected": "[0.961, 1.032]",
+   "actual": "[0.961, 1.032]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic ECE master→印出（3dp）",
+   "expected": "0.021",
+   "actual": "0.021",
+   "ok": true,
+   "note": "master 0.021422"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr Logistic ECE CI（master 源）",
+   "expected": "[0.016, 0.035]",
+   "actual": "[0.016, 0.035]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost n (events)",
+   "expected": "4980 (1591)",
+   "actual": "4980 (1591)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost AUC master→印出（3dp）",
+   "expected": "0.846",
+   "actual": "0.846",
+   "ok": true,
+   "note": "master 0.845853"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost AUC CI（master 源）",
+   "expected": "[0.834, 0.857]",
+   "actual": "[0.834, 0.857]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost Brier master→印出（3dp）",
+   "expected": "0.146",
+   "actual": "0.146",
+   "ok": true,
+   "note": "master 0.145680"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost 斜率 master→印出（3dp）",
+   "expected": "0.988",
+   "actual": "0.988",
+   "ok": true,
+   "note": "master 0.988055"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost 斜率 CI（eta 源）",
+   "expected": "[0.926, 1.053]",
+   "actual": "[0.926, 1.053]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost 截距 master→印出（3dp）",
+   "expected": "-0.008",
+   "actual": "-0.008",
+   "ok": true,
+   "note": "master -0.007904"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost 截距 CI（eta 源）",
+   "expected": "[-0.090, 0.081]",
+   "actual": "[-0.09, 0.081]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost O:E master→印出（2dp）",
+   "expected": "1.00",
+   "actual": "1.0",
+   "ok": true,
+   "note": "master 0.999175"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost O:E CI（master 源）",
+   "expected": "[0.963, 1.033]",
+   "actual": "[0.963, 1.033]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost ECE master→印出（3dp）",
+   "expected": "0.016",
+   "actual": "0.016",
+   "ok": true,
+   "note": "master 0.016490"
+  },
+  {
+   "layer": "L2b",
+   "name": "MIMIC_internal_1yr XGBoost ECE CI（master 源）",
+   "expected": "[0.012, 0.030]",
+   "actual": "[0.012, 0.03]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic n (events)",
+   "expected": "3420 (699)",
+   "actual": "3420 (699)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic 重算队列规模",
+   "expected": "3420 (699)",
+   "actual": "3420 (699)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic AUC 重算→印出（3dp）",
+   "expected": "0.765",
+   "actual": "0.765",
+   "ok": true,
+   "note": "重算 0.765158"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic AUC CI（master 源）",
+   "expected": "[0.745, 0.785]",
+   "actual": "[0.745, 0.785]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic Brier 重算→印出（3dp）",
+   "expected": "0.137",
+   "actual": "0.137",
+   "ok": true,
+   "note": "重算 0.136716"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic 斜率 重算→印出（3dp）",
+   "expected": "0.872",
+   "actual": "0.872",
+   "ok": true,
+   "note": "重算 0.871883"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic 斜率 CI（eta 源）",
+   "expected": "[0.778, 0.957]",
+   "actual": "[0.778, 0.957]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic 截距 重算→印出（3dp）",
+   "expected": "-0.156",
+   "actual": "-0.156",
+   "ok": true,
+   "note": "重算 -0.155795"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic 截距 CI（eta 源）",
+   "expected": "[-0.304, -0.011]",
+   "actual": "[-0.304, -0.011]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic O:E 重算→印出（2dp）",
+   "expected": "0.99",
+   "actual": "0.99",
+   "ok": true,
+   "note": "重算 0.994376"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic O:E CI（master 源）",
+   "expected": "[0.932, 1.056]",
+   "actual": "[0.932, 1.056]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic ECE 重算→印出（3dp）",
+   "expected": "0.018",
+   "actual": "0.018",
+   "ok": true,
+   "note": "重算 0.018141"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr Logistic ECE CI（master 源）",
+   "expected": "[0.014, 0.033]",
+   "actual": "[0.014, 0.033]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost n (events)",
+   "expected": "3420 (699)",
+   "actual": "3420 (699)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost 重算队列规模",
+   "expected": "3420 (699)",
+   "actual": "3420 (699)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost AUC 重算→印出（3dp）",
+   "expected": "0.802",
+   "actual": "0.802",
+   "ok": true,
+   "note": "重算 0.802437"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost AUC CI（master 源）",
+   "expected": "[0.784, 0.820]",
+   "actual": "[0.784, 0.82]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost Brier 重算→印出（3dp）",
+   "expected": "0.128",
+   "actual": "0.128",
+   "ok": true,
+   "note": "重算 0.127508"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost 斜率 重算→印出（3dp）",
+   "expected": "0.863",
+   "actual": "0.863",
+   "ok": true,
+   "note": "重算 0.862752"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost 斜率 CI（eta 源）",
+   "expected": "[0.794, 0.933]",
+   "actual": "[0.794, 0.933]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost 截距 重算→印出（3dp）",
+   "expected": "-0.145",
+   "actual": "-0.145",
+   "ok": true,
+   "note": "重算 -0.145264"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost 截距 CI（eta 源）",
+   "expected": "[-0.275, -0.017]",
+   "actual": "[-0.275, -0.017]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost O:E 重算→印出（2dp）",
+   "expected": "1.00",
+   "actual": "1.0",
+   "ok": true,
+   "note": "重算 1.002510"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost O:E CI（master 源）",
+   "expected": "[0.944, 1.062]",
+   "actual": "[0.944, 1.062]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost ECE 重算→印出（3dp）",
+   "expected": "0.021",
+   "actual": "0.021",
+   "ok": true,
+   "note": "重算 0.020990"
+  },
+  {
+   "layer": "L2b",
+   "name": "NWICU_1yr XGBoost ECE CI（master 源）",
+   "expected": "[0.015, 0.036]",
+   "actual": "[0.015, 0.036]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic n (events)",
+   "expected": "1543 (265)",
+   "actual": "1543 (265)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic 重算队列规模",
+   "expected": "1543 (265)",
+   "actual": "1543 (265)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic AUC 重算→印出（3dp）",
+   "expected": "0.725",
+   "actual": "0.725",
+   "ok": true,
+   "note": "重算 0.724527"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic AUC CI（master 源）",
+   "expected": "[0.690, 0.756]",
+   "actual": "[0.69, 0.756]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic Brier 重算→印出（3dp）",
+   "expected": "0.134",
+   "actual": "0.134",
+   "ok": true,
+   "note": "重算 0.134250"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic 斜率 重算→印出（3dp）",
+   "expected": "0.786",
+   "actual": "0.786",
+   "ok": true,
+   "note": "重算 0.786474"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic 斜率 CI（eta 源）",
+   "expected": "[0.649, 0.937]",
+   "actual": "[0.649, 0.937]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic 截距 重算→印出（3dp）",
+   "expected": "-0.580",
+   "actual": "-0.58",
+   "ok": true,
+   "note": "重算 -0.579985"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic 截距 CI（eta 源）",
+   "expected": "[-0.799, -0.373]",
+   "actual": "[-0.799, -0.373]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic O:E 重算→印出（2dp）",
+   "expected": "0.78",
+   "actual": "0.78",
+   "ok": true,
+   "note": "重算 0.778033"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic O:E CI（master 源）",
+   "expected": "[0.697, 0.864]",
+   "actual": "[0.697, 0.864]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic ECE 重算→印出（3dp）",
+   "expected": "0.049",
+   "actual": "0.049",
+   "ok": true,
+   "note": "重算 0.048997"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr Logistic ECE CI（master 源）",
+   "expected": "[0.037, 0.068]",
+   "actual": "[0.037, 0.068]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost n (events)",
+   "expected": "1543 (265)",
+   "actual": "1543 (265)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost 重算队列规模",
+   "expected": "1543 (265)",
+   "actual": "1543 (265)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost AUC 重算→印出（3dp）",
+   "expected": "0.751",
+   "actual": "0.751",
+   "ok": true,
+   "note": "重算 0.750588"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost AUC CI（master 源）",
+   "expected": "[0.719, 0.778]",
+   "actual": "[0.719, 0.778]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost Brier 重算→印出（3dp）",
+   "expected": "0.136",
+   "actual": "0.136",
+   "ok": true,
+   "note": "重算 0.136224"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost 斜率 重算→印出（3dp）",
+   "expected": "0.774",
+   "actual": "0.774",
+   "ok": true,
+   "note": "重算 0.773750"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost 斜率 CI（eta 源）",
+   "expected": "[0.656, 0.886]",
+   "actual": "[0.656, 0.886]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost 截距 重算→印出（3dp）",
+   "expected": "-0.697",
+   "actual": "-0.697",
+   "ok": true,
+   "note": "重算 -0.697040"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost 截距 CI（eta 源）",
+   "expected": "[-0.873, -0.527]",
+   "actual": "[-0.873, -0.527]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost O:E 重算→印出（2dp）",
+   "expected": "0.71",
+   "actual": "0.71",
+   "ok": true,
+   "note": "重算 0.714887"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost O:E CI（master 源）",
+   "expected": "[0.642, 0.790]",
+   "actual": "[0.642, 0.79]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost ECE 重算→印出（3dp）",
+   "expected": "0.068",
+   "actual": "0.068",
+   "ok": true,
+   "note": "重算 0.068495"
+  },
+  {
+   "layer": "L2b",
+   "name": "INSPIRE_1yr XGBoost ECE CI（master 源）",
+   "expected": "[0.055, 0.089]",
+   "actual": "[0.055, 0.089]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic n (events)",
+   "expected": "14852 (1894)",
+   "actual": "14852 (1894)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic 重算队列规模",
+   "expected": "14852 (1894)",
+   "actual": "14852 (1894)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic AUC 重算→印出（3dp）",
+   "expected": "0.779",
+   "actual": "0.779",
+   "ok": true,
+   "note": "重算 0.778560"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic AUC CI（master 源）",
+   "expected": "[0.768, 0.790]",
+   "actual": "[0.768, 0.79]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic Brier 重算→印出（3dp）",
+   "expected": "0.119",
+   "actual": "0.119",
+   "ok": true,
+   "note": "重算 0.119040"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic 斜率 重算→印出（3dp）",
+   "expected": "0.538",
+   "actual": "0.538",
+   "ok": true,
+   "note": "重算 0.537776"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic 斜率 CI（eta 源）",
+   "expected": "[0.510, 0.567]",
+   "actual": "[0.51, 0.567]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic 截距 重算→印出（3dp）",
+   "expected": "-1.215",
+   "actual": "-1.215",
+   "ok": true,
+   "note": "重算 -1.215463"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic 截距 CI（eta 源）",
+   "expected": "[-1.275, -1.160]",
+   "actual": "[-1.275, -1.16]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic O:E 重算→印出（2dp）",
+   "expected": "0.60",
+   "actual": "0.6",
+   "ok": true,
+   "note": "重算 0.603059"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic O:E CI（master 源）",
+   "expected": "[0.579, 0.625]",
+   "actual": "[0.579, 0.625]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic ECE 重算→印出（3dp）",
+   "expected": "0.092",
+   "actual": "0.092",
+   "ok": true,
+   "note": "重算 0.092257"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp Logistic ECE CI（master 源）",
+   "expected": "[0.087, 0.098]",
+   "actual": "[0.087, 0.098]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost n (events)",
+   "expected": "14852 (1894)",
+   "actual": "14852 (1894)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost 重算队列规模",
+   "expected": "14852 (1894)",
+   "actual": "14852 (1894)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost AUC 重算→印出（3dp）",
+   "expected": "0.848",
+   "actual": "0.848",
+   "ok": true,
+   "note": "重算 0.848439"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost AUC CI（master 源）",
+   "expected": "[0.839, 0.858]",
+   "actual": "[0.839, 0.858]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost Brier 重算→印出（3dp）",
+   "expected": "0.095",
+   "actual": "0.095",
+   "ok": true,
+   "note": "重算 0.094584"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost 斜率 重算→印出（3dp）",
+   "expected": "0.799",
+   "actual": "0.799",
+   "ok": true,
+   "note": "重算 0.799052"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost 斜率 CI（eta 源）",
+   "expected": "[0.763, 0.834]",
+   "actual": "[0.763, 0.834]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost 截距 重算→印出（3dp）",
+   "expected": "-0.984",
+   "actual": "-0.984",
+   "ok": true,
+   "note": "重算 -0.984138"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost 截距 CI（eta 源）",
+   "expected": "[-1.045, -0.928]",
+   "actual": "[-1.045, -0.928]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost O:E 重算→印出（2dp）",
+   "expected": "0.63",
+   "actual": "0.63",
+   "ok": true,
+   "note": "重算 0.625467"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost O:E CI（master 源）",
+   "expected": "[0.603, 0.648]",
+   "actual": "[0.603, 0.648]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost ECE 重算→印出（3dp）",
+   "expected": "0.076",
+   "actual": "0.076",
+   "ok": true,
+   "note": "重算 0.076363"
+  },
+  {
+   "layer": "L2b",
+   "name": "eICU_inhosp XGBoost ECE CI（master 源）",
+   "expected": "[0.072, 0.081]",
+   "actual": "[0.072, 0.081]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic n (events)",
+   "expected": "225 (55)",
+   "actual": "225 (55)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic 重算队列规模",
+   "expected": "225 (55)",
+   "actual": "225 (55)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic AUC 重算→印出（3dp）",
+   "expected": "0.869",
+   "actual": "0.869",
+   "ok": true,
+   "note": "重算 0.868770"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic AUC CI（master 源）",
+   "expected": "[0.802, 0.929]",
+   "actual": "[0.802, 0.929]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic Brier 重算→印出（3dp）",
+   "expected": "0.114",
+   "actual": "0.114",
+   "ok": true,
+   "note": "重算 0.114030"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic 斜率 重算→印出（3dp）",
+   "expected": "0.843",
+   "actual": "0.843",
+   "ok": true,
+   "note": "重算 0.843430"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic 斜率 CI（eta 源）",
+   "expected": "[0.207, 1.819]",
+   "actual": "[0.207, 1.819]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic 截距 重算→印出（3dp）",
+   "expected": "-0.268",
+   "actual": "-0.268",
+   "ok": true,
+   "note": "重算 -0.267638"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic 截距 CI（eta 源）",
+   "expected": "[-0.958, 0.663]",
+   "actual": "[-0.958, 0.663]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic O:E 重算→印出（2dp）",
+   "expected": "0.93",
+   "actual": "0.93",
+   "ok": true,
+   "note": "重算 0.929522"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic O:E CI（master 源）",
+   "expected": "[0.762, 1.099]",
+   "actual": "[0.762, 1.099]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic ECE 重算→印出（3dp）",
+   "expected": "0.115",
+   "actual": "0.115",
+   "ok": true,
+   "note": "重算 0.115254"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp Logistic ECE CI（master 源）",
+   "expected": "[0.090, 0.162]",
+   "actual": "[0.09, 0.162]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost n (events)",
+   "expected": "225 (55)",
+   "actual": "225 (55)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost 重算队列规模",
+   "expected": "225 (55)",
+   "actual": "225 (55)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost AUC 重算→印出（3dp）",
+   "expected": "0.826",
+   "actual": "0.826",
+   "ok": true,
+   "note": "重算 0.826310"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost AUC CI（master 源）",
+   "expected": "[0.761, 0.887]",
+   "actual": "[0.761, 0.887]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost Brier 重算→印出（3dp）",
+   "expected": "0.134",
+   "actual": "0.134",
+   "ok": true,
+   "note": "重算 0.133948"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost 斜率 重算→印出（3dp）",
+   "expected": "0.962",
+   "actual": "0.962",
+   "ok": true,
+   "note": "重算 0.962453"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost 斜率 CI（eta 源）",
+   "expected": "[0.676, 1.388]",
+   "actual": "[0.676, 1.388]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost 截距 重算→印出（3dp）",
+   "expected": "-0.165",
+   "actual": "-0.165",
+   "ok": true,
+   "note": "重算 -0.165244"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost 截距 CI（eta 源）",
+   "expected": "[-0.601, 0.267]",
+   "actual": "[-0.601, 0.267]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost O:E 重算→印出（2dp）",
+   "expected": "0.93",
+   "actual": "0.93",
+   "ok": true,
+   "note": "重算 0.928617"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost O:E CI（master 源）",
+   "expected": "[0.757, 1.110]",
+   "actual": "[0.757, 1.11]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost ECE 重算→印出（3dp）",
+   "expected": "0.053",
+   "actual": "0.053",
+   "ok": true,
+   "note": "重算 0.053116"
+  },
+  {
+   "layer": "L2b",
+   "name": "Huaian_inhosp XGBoost ECE CI（master 源）",
+   "expected": "[0.047, 0.119]",
+   "actual": "[0.047, 0.119]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L2b",
+   "name": "O:E 点位只印两位小数（CI 三位）",
+   "expected": "0.603 → 印 0.60",
+   "actual": "见各队列 O:E",
+   "ok": null,
+   "note": "O:E 点位统一两位、CI 统一三位：读者无法从表格恢复 0.6031（eICU 院内 LR）。不影响 O:E 的量级结论，但若审稿人核对到第三位会对不上——同一列内部精度不一致，属可选的排版问题，本轮不改稿"
+  },
+  {
+   "layer": "L3",
+   "name": "S19 one-year Logistic AUC 0.725→0.720",
+   "expected": "0.725→0.720",
+   "actual": "0.725→0.720",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 one-year Logistic O:E 0.778→0.839",
+   "expected": "0.778→0.839",
+   "actual": "0.778→0.839",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 one-year Logistic slope 0.786→0.748",
+   "expected": "0.786→0.748",
+   "actual": "0.786→0.748",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 one-year Logistic ΔAUC",
+   "expected": "-0.005",
+   "actual": "−0.005",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 one-year XGBoost AUC 0.751→0.745",
+   "expected": "0.751→0.745",
+   "actual": "0.751→0.745",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 one-year XGBoost O:E 0.715→0.759",
+   "expected": "0.715→0.759",
+   "actual": "0.715→0.759",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 one-year XGBoost slope 0.774→0.742",
+   "expected": "0.774→0.742",
+   "actual": "0.774→0.742",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 one-year XGBoost ΔAUC",
+   "expected": "-0.005",
+   "actual": "−0.005",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 in-hospital Logistic AUC 0.663→0.651",
+   "expected": "0.663→0.651",
+   "actual": "0.663→0.651",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 in-hospital Logistic O:E 0.684→0.789",
+   "expected": "0.684→0.789",
+   "actual": "0.684→0.789",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 in-hospital Logistic slope 0.618→0.535",
+   "expected": "0.618→0.535",
+   "actual": "0.618→0.535",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 in-hospital Logistic ΔAUC",
+   "expected": "-0.012",
+   "actual": "−0.012",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 in-hospital XGBoost AUC 0.730→0.721",
+   "expected": "0.730→0.721",
+   "actual": "0.730→0.721",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 in-hospital XGBoost O:E 0.690→0.777",
+   "expected": "0.690→0.777",
+   "actual": "0.690→0.777",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 in-hospital XGBoost slope 0.651→0.623",
+   "expected": "0.651→0.623",
+   "actual": "0.651→0.623",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S19 in-hospital XGBoost ΔAUC",
+   "expected": "-0.009",
+   "actual": "−0.009",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S3 INSPIRE mech_vent 重分类计数",
+   "expected": "185",
+   "actual": "185",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S3 INSPIRE rrt 重分类计数",
+   "expected": "11",
+   "actual": "11",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S3 INSPIRE vasopressor 重分类计数",
+   "expected": "50",
+   "actual": "50",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S3 NWICU vasopressor 重分类计数",
+   "expected": "6",
+   "actual": "6",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 MIMIC_internal_1yr Logistic ε 网格（四值）",
+   "expected": "[0.9787, 0.9787, 0.9787, 0.9807]",
+   "actual": "[0.9787, 0.9787, 0.9787, 0.9807]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 MIMIC_internal_1yr Logistic Spread",
+   "expected": "0.0020",
+   "actual": "0.002",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 MIMIC_internal_1yr XGBoost ε 网格（四值）",
+   "expected": "[0.9881, 0.9881, 0.9881, 0.9888]",
+   "actual": "[0.9881, 0.9881, 0.9881, 0.9888]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 MIMIC_internal_1yr XGBoost Spread",
+   "expected": "0.0007",
+   "actual": "0.0007",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 MIMIC_internal_inhosp Logistic ε 网格（四值）",
+   "expected": "[1.0126, 1.0126, 1.0126, 1.0144]",
+   "actual": "[1.0126, 1.0126, 1.0126, 1.0144]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 MIMIC_internal_inhosp Logistic Spread",
+   "expected": "0.0018",
+   "actual": "0.0018",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 MIMIC_internal_inhosp XGBoost ε 网格（四值）",
+   "expected": "[0.9806, 0.9806, 0.9806, 0.9888]",
+   "actual": "[0.9806, 0.9806, 0.9806, 0.9888]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 MIMIC_internal_inhosp XGBoost Spread",
+   "expected": "0.0083",
+   "actual": "0.0083",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 NWICU_1yr Logistic ε 网格（四值）",
+   "expected": "[0.8719, 0.8719, 0.8742, 0.8792]",
+   "actual": "[0.8719, 0.8719, 0.8742, 0.8792]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 NWICU_1yr Logistic Spread",
+   "expected": "0.0073",
+   "actual": "0.0073",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 NWICU_1yr XGBoost ε 网格（四值）",
+   "expected": "[0.8628, 0.8628, 0.8628, 0.8629]",
+   "actual": "[0.8628, 0.8628, 0.8628, 0.8629]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 NWICU_1yr XGBoost Spread",
+   "expected": "0.0001",
+   "actual": "0.0001",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 INSPIRE_1yr Logistic ε 网格（四值）",
+   "expected": "[0.7865, 0.7865, 0.7865, 0.7867]",
+   "actual": "[0.7865, 0.7865, 0.7865, 0.7867]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 INSPIRE_1yr Logistic Spread",
+   "expected": "0.0002",
+   "actual": "0.0002",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 INSPIRE_1yr XGBoost ε 网格（四值）",
+   "expected": "[0.7737, 0.7737, 0.7737, 0.7738]",
+   "actual": "[0.7737, 0.7737, 0.7737, 0.7738]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 INSPIRE_1yr XGBoost Spread",
+   "expected": "0.0001",
+   "actual": "0.0001",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 eICU_inhosp Logistic ε 网格（四值）",
+   "expected": "[0.5378, 0.5379, 0.5389, 0.5472]",
+   "actual": "[0.5378, 0.5379, 0.5389, 0.5472]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 eICU_inhosp Logistic Spread",
+   "expected": "0.0094",
+   "actual": "0.0094",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 eICU_inhosp XGBoost ε 网格（四值）",
+   "expected": "[0.7991, 0.7991, 0.7991, 0.802]",
+   "actual": "[0.7991, 0.7991, 0.7991, 0.802]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 eICU_inhosp XGBoost Spread",
+   "expected": "0.0030",
+   "actual": "0.003",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 Huaian_inhosp Logistic ε 网格（四值）",
+   "expected": "[0.9399, 1.0518, 1.1137, 1.1885]",
+   "actual": "[0.9399, 1.0518, 1.1137, 1.1885]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 Huaian_inhosp Logistic Spread",
+   "expected": "0.2486",
+   "actual": "0.2486",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 Huaian_inhosp XGBoost ε 网格（四值）",
+   "expected": "[0.9625, 0.9625, 0.9625, 0.9625]",
+   "actual": "[0.9625, 0.9625, 0.9625, 0.9625]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "S5 Huaian_inhosp XGBoost Spread",
+   "expected": "0.0000",
+   "actual": "0.0",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "表 1 NWICU n",
+   "expected": "3420",
+   "actual": "3420",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "表 1 NWICU 事件数",
+   "expected": "699",
+   "actual": "699",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "表 1 INSPIRE n",
+   "expected": "1543",
+   "actual": "1543",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "表 1 INSPIRE 事件数",
+   "expected": "265",
+   "actual": "265",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "表 1 eICU n",
+   "expected": "14852",
+   "actual": "14852",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3",
+   "name": "表 1 eICU 事件数",
+   "expected": "1894",
+   "actual": "1894",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 Logistic regression GCS-free AUC",
+   "expected": "0.818",
+   "actual": "0.818",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 Logistic regression ΔAUC 加总分 GCS",
+   "expected": "+0.005",
+   "actual": "+0.005",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 Logistic regression ΔAUC 加运动 GCS",
+   "expected": "+0.016",
+   "actual": "+0.016",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 Logistic regression cNRI（运动）",
+   "expected": "0.588",
+   "actual": "0.588",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 Logistic regression IDI（运动）",
+   "expected": "0.029",
+   "actual": "0.029",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 Logistic regression DeLong P（运动）< .001",
+   "expected": "P<.001",
+   "actual": "1.7064127888488656e-12",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 XGBoost GCS-free AUC",
+   "expected": "0.846",
+   "actual": "0.846",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 XGBoost ΔAUC 加总分 GCS",
+   "expected": "+0.008",
+   "actual": "+0.008",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 XGBoost ΔAUC 加运动 GCS",
+   "expected": "+0.015",
+   "actual": "+0.015",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 XGBoost cNRI（运动）",
+   "expected": "0.464",
+   "actual": "0.464",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 XGBoost IDI（运动）",
+   "expected": "0.034",
+   "actual": "0.034",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 2 XGBoost DeLong P（运动）< .001",
+   "expected": "P<.001",
+   "actual": "5.519469326031867e-09",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SOFA 中位(IQR)",
+   "expected": "3 (2–5)",
+   "actual": "3 (2–5)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SOFA 单指标 AUC",
+   "expected": "0.697",
+   "actual": "0.697",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SOFA ΔAUC vs Logistic",
+   "expected": "+0.121",
+   "actual": "0.121",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SOFA ΔAUC vs Logistic 的 P<.001",
+   "expected": "P<.001",
+   "actual": "True",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SOFA ΔAUC vs XGBoost",
+   "expected": "+0.149",
+   "actual": "0.149",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SOFA ΔAUC vs XGBoost 的 P<.001",
+   "expected": "P<.001",
+   "actual": "True",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 OASIS 中位(IQR)",
+   "expected": "31 (26–37)",
+   "actual": "31 (26–37)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 OASIS 单指标 AUC",
+   "expected": "0.718",
+   "actual": "0.718",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 OASIS ΔAUC vs Logistic",
+   "expected": "+0.100",
+   "actual": "0.1",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 OASIS ΔAUC vs Logistic 的 P<.001",
+   "expected": "P<.001",
+   "actual": "True",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 OASIS ΔAUC vs XGBoost",
+   "expected": "+0.128",
+   "actual": "0.128",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 OASIS ΔAUC vs XGBoost 的 P<.001",
+   "expected": "P<.001",
+   "actual": "True",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SAPS-II 中位(IQR)",
+   "expected": "33 (25–42)",
+   "actual": "33 (25–42)",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SAPS-II 单指标 AUC",
+   "expected": "0.779",
+   "actual": "0.779",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SAPS-II ΔAUC vs Logistic",
+   "expected": "+0.039",
+   "actual": "0.039",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SAPS-II ΔAUC vs Logistic 的 P<.001",
+   "expected": "P<.001",
+   "actual": "True",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SAPS-II ΔAUC vs XGBoost",
+   "expected": "+0.067",
+   "actual": "0.067",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "表 5 SAPS-II ΔAUC vs XGBoost 的 P<.001",
+   "expected": "P<.001",
+   "actual": "True",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3b",
+   "name": "内部 LR AUC 的 CI 有两个自举版本",
+   "expected": "印 cohorts.ci95＝internal_learners",
+   "actual": "gcs_v9.base_ci=[0.8059, 0.8307]",
+   "ok": null,
+   "note": "权威源已确认：cohorts.MIMIC_internal_1yr.ci95.auc 与 internal_learners.json 的 ci95 逐位相同（0.805–0.829），表 2/表 4 印的是这份。gcs_v9.base_ci 是 GCS 敏感性分析内部另一次自举（若印会成 0.806–0.831），不被任何表格引用。两版差 0.001 ⇒ 不算错误，但同一模型存在两个自举 CI 这一事实，建议在归档说明里点一句取哪一个"
+  },
+  {
+   "layer": "L3b",
+   "name": "旧中间件 model_performance_v9.csv 的 CI 未被引用",
+   "expected": "0.806–0.830 不出现",
+   "actual": "见 docx 计数",
+   "ok": null,
+   "note": "该 CSV 记 0.818 (0.806–0.830)，已被 internal_learners.json 的 (0.805–0.829) 取代，成稿不引用它。归档时若两者并列且无说明，读者会看到同一 AUC 两个 CI"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.869",
+   "expected": "0.869",
+   "actual": "在",
+   "ok": true,
+   "note": "单位换算正确时的淮安 LR AUC"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.726",
+   "expected": "0.726",
+   "actual": "在",
+   "ok": true,
+   "note": "直接喂 SI 单位时的 AUC"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.93",
+   "expected": "0.93",
+   "actual": "在",
+   "ok": true,
+   "note": "换算正确时的 O:E"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 6.42",
+   "expected": "6.42",
+   "actual": "在",
+   "ok": true,
+   "note": "直接喂 SI 单位时的 O:E"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.035",
+   "expected": "0.035",
+   "actual": "在",
+   "ok": true,
+   "note": "删七个病因指标的最大 |ΔAUC|（外部）"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.9399",
+   "expected": "0.9399",
+   "actual": "在",
+   "ok": true,
+   "note": "裁剪概率路线斜率下限"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 1.1885",
+   "expected": "1.1885",
+   "actual": "在",
+   "ok": true,
+   "note": "裁剪概率路线斜率上限"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.0036",
+   "expected": "0.0036",
+   "actual": "在",
+   "ok": true,
+   "note": "找回 NWICU 升压药后的最大 |ΔAUC|"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 11.1",
+   "expected": "11.1",
+   "actual": "在",
+   "ok": true,
+   "note": "找回后的升压药占比"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.876（缺氧性脑病单指标 AUC）",
+   "expected": "0.876",
+   "actual": "在",
+   "ok": true,
+   "note": "源：output/v9_results/gcs_increment_audit.json"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要 18.8% = 表 1 开发队列升压药记录率",
+   "expected": "18.8",
+   "actual": "18.8",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.765",
+   "expected": "0.765",
+   "actual": "在",
+   "ok": true,
+   "note": "表 4 的 NWICU (1-year) Logistic AUC 与摘要同源"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.802",
+   "expected": "0.802",
+   "actual": "在",
+   "ok": true,
+   "note": "表 4 的 NWICU (1-year) XGBoost AUC 与摘要同源"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.725",
+   "expected": "0.725",
+   "actual": "在",
+   "ok": true,
+   "note": "表 4 的 INSPIRE (1-year) Logistic AUC 与摘要同源"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.751",
+   "expected": "0.751",
+   "actual": "在",
+   "ok": true,
+   "note": "表 4 的 INSPIRE (1-year) XGBoost AUC 与摘要同源"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.779",
+   "expected": "0.779",
+   "actual": "在",
+   "ok": true,
+   "note": "表 4 的 eICU (in-hospital) Logistic AUC 与摘要同源"
+  },
+  {
+   "layer": "L3c",
+   "name": "摘要印出 0.848",
+   "expected": "0.848",
+   "actual": "在",
+   "ok": true,
+   "note": "表 4 的 eICU (in-hospital) XGBoost AUC 与摘要同源"
+  },
+  {
+   "layer": "L3d",
+   "name": "内部集测试集规模：master ↔ internal_learners",
+   "expected": "4980",
+   "actual": "4980",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "内部集事件数：master ↔ internal_learners",
+   "expected": "1591",
+   "actual": "1591",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "内部一年 Logistic AUC：master ↔ internal_learners",
+   "expected": "0.817636606",
+   "actual": "0.817636606",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "内部一年 Logistic AUC CI：master ↔ internal_learners",
+   "expected": "[0.805016, 0.829279]",
+   "actual": "[0.805016, 0.829279]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "内部一年 XGBoost AUC：master ↔ internal_learners",
+   "expected": "0.845852825",
+   "actual": "0.845852825",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "内部一年 XGBoost AUC CI：master ↔ internal_learners",
+   "expected": "[0.834362, 0.856974]",
+   "actual": "[0.834362, 0.856974]",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "成稿印出划分数字 11,617",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "成稿印出划分数字 4,980",
+   "expected": ">=1",
+   "actual": "10",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "成稿印出划分数字 1,591",
+   "expected": ">=1",
+   "actual": "4",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L3d",
+   "name": "成稿印出划分数字 3,712",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L4",
+   "name": "NWICU 一年 LR AUC 出现于 manuscript（10 次）",
+   "expected": ">=1",
+   "actual": "10",
+   "ok": true,
+   "note": "0.765"
+  },
+  {
+   "layer": "L4",
+   "name": "NWICU 一年 LR 斜率 出现于 manuscript（3 次）",
+   "expected": ">=1",
+   "actual": "3",
+   "ok": true,
+   "note": "0.872"
+  },
+  {
+   "layer": "L4",
+   "name": "NWICU 一年 LR O:E 出现于 manuscript（1 次）",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": "0.994"
+  },
+  {
+   "layer": "L4",
+   "name": "INSPIRE 一年 LR AUC 出现于 manuscript（3 次）",
+   "expected": ">=1",
+   "actual": "3",
+   "ok": true,
+   "note": "0.725"
+  },
+  {
+   "layer": "L4",
+   "name": "eICU 院内 LR 斜率 出现于 manuscript（2 次）",
+   "expected": ">=1",
+   "actual": "2",
+   "ok": true,
+   "note": "0.538"
+  },
+  {
+   "layer": "L4",
+   "name": "淮安院内 LR 斜率 出现于 manuscript（6 次）",
+   "expected": ">=1",
+   "actual": "6",
+   "ok": true,
+   "note": "0.843"
+  },
+  {
+   "layer": "L4",
+   "name": "NWICU 事件数 出现于 manuscript（5 次）",
+   "expected": ">=1",
+   "actual": "5",
+   "ok": true,
+   "note": "699"
+  },
+  {
+   "layer": "L4",
+   "name": "NWICU 事件数 出现于 appendix（12 次）",
+   "expected": ">=1",
+   "actual": "12",
+   "ok": true,
+   "note": "699"
+  },
+  {
+   "layer": "L4",
+   "name": "病例重叠（一年） 出现于 manuscript（2 次）",
+   "expected": ">=1",
+   "actual": "2",
+   "ok": true,
+   "note": "2,276"
+  },
+  {
+   "layer": "L4",
+   "name": "病例重叠（一年） 出现于 appendix（8 次）",
+   "expected": ">=1",
+   "actual": "8",
+   "ok": true,
+   "note": "2,276"
+  },
+  {
+   "layer": "L4",
+   "name": "重叠占比 出现于 manuscript（2 次）",
+   "expected": ">=1",
+   "actual": "2",
+   "ok": true,
+   "note": "45.7"
+  },
+  {
+   "layer": "L4",
+   "name": "重叠占比 出现于 appendix（1 次）",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": "45.7"
+  },
+  {
+   "layer": "L4",
+   "name": "病例重叠（院内） 出现于 manuscript（2 次）",
+   "expected": ">=1",
+   "actual": "2",
+   "ok": true,
+   "note": "3,483"
+  },
+  {
+   "layer": "L4",
+   "name": "病例重叠（院内） 出现于 appendix（4 次）",
+   "expected": ">=1",
+   "actual": "4",
+   "ok": true,
+   "note": "3,483"
+  },
+  {
+   "layer": "L4",
+   "name": "两版本共有留出 出现于 appendix（4 次）",
+   "expected": ">=1",
+   "actual": "4",
+   "ok": true,
+   "note": "2,704"
+  },
+  {
+   "layer": "L4",
+   "name": "两版本共有留出 出现于 response（1 次）",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": "2,704"
+  },
+  {
+   "layer": "L4",
+   "name": "两结局共有留出 出现于 manuscript（1 次）",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": "1,461"
+  },
+  {
+   "layer": "L4",
+   "name": "两结局共有留出 出现于 appendix（1 次）",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": "1,461"
+  },
+  {
+   "layer": "L4",
+   "name": "开发集规模 出现于 manuscript（1 次）",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": "11,617"
+  },
+  {
+   "layer": "L4",
+   "name": "开发集规模 出现于 appendix（1 次）",
+   "expected": ">=1",
+   "actual": "1",
+   "ok": true,
+   "note": "11,617"
+  },
+  {
+   "layer": "L4",
+   "name": "留出集规模 出现于 manuscript（13 次）",
+   "expected": ">=1",
+   "actual": "13",
+   "ok": true,
+   "note": "4,980"
+  },
+  {
+   "layer": "L4",
+   "name": "留出集规模 出现于 appendix（15 次）",
+   "expected": ">=1",
+   "actual": "15",
+   "ok": true,
+   "note": "4,980"
+  },
+  {
+   "layer": "L4",
+   "name": "留出集事件 出现于 manuscript（6 次）",
+   "expected": ">=1",
+   "actual": "6",
+   "ok": true,
+   "note": "1,591"
+  },
+  {
+   "layer": "L4",
+   "name": "留出集事件 出现于 appendix（3 次）",
+   "expected": ">=1",
+   "actual": "3",
+   "ok": true,
+   "note": "1,591"
+  },
+  {
+   "layer": "L4",
+   "name": "S19 ΔAUC（INSPIRE 一年） 出现于 appendix（2 次）",
+   "expected": ">=1",
+   "actual": "2",
+   "ok": true,
+   "note": "-0.005"
+  },
+  {
+   "layer": "L4",
+   "name": "S19 ΔAUC（INSPIRE 院内） 出现于 appendix（3 次）",
+   "expected": ">=1",
+   "actual": "3",
+   "ok": true,
+   "note": "-0.012"
+  },
+  {
+   "layer": "L4",
+   "name": "S19 O:E（一年 LR 备择） 出现于 appendix（2 次）",
+   "expected": ">=1",
+   "actual": "2",
+   "ok": true,
+   "note": "0.839"
+  },
+  {
+   "layer": "L4",
+   "name": "S19 O:E（院内 LR 备择） 出现于 appendix（3 次）",
+   "expected": ">=1",
+   "actual": "3",
+   "ok": true,
+   "note": "0.789"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 manuscript",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "1.2729"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 appendix",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "1.2729"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 cover",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "1.2729"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 response",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "1.2729"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 manuscript",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "1.1152"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 appendix",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "1.1152"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 cover",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "1.1152"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 response",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "1.1152"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 manuscript",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "0.8552"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 appendix",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "0.8552"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 cover",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "0.8552"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 旧 log(p) 路线斜率 于 response",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "0.8552"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 上一版归档 DOI 于 manuscript",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "23557369"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 上一版归档 DOI 于 appendix",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "23557369"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 上一版归档 DOI 于 cover",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "23557369"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 上一版归档 DOI 于 response",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "23557369"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 已删的过度结论 于 manuscript",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "least well calibrated"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 已删的过度结论 于 appendix",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "least well calibrated"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 已删的过度结论 于 cover",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "least well calibrated"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 已删的过度结论 于 response",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "least well calibrated"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 已改的泛指句 于 manuscript",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "as for every other predictor"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 已改的泛指句 于 appendix",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "as for every other predictor"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 已改的泛指句 于 cover",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "as for every other predictor"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 已改的泛指句 于 response",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "as for every other predictor"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 公式错误写法 于 manuscript",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "log(p)"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 公式错误写法 于 appendix",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "log(p)"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 公式错误写法 于 cover",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "log(p)"
+  },
+  {
+   "layer": "L4",
+   "name": "残留 公式错误写法 于 response",
+   "expected": "0",
+   "actual": "0",
+   "ok": true,
+   "note": "log(p)"
+  },
+  {
+   "layer": "L5",
+   "name": "摘要词数（含全部结构标签，≤350）",
+   "expected": "<=350",
+   "actual": "350",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L5",
+   "name": "标题页自述 349 与实测 350 的差异可解释",
+   "expected": "349（自述）",
+   "actual": "349（剥全部标签 346）",
+   "ok": null,
+   "note": "三个口径：剥全部结构标签 346、自述 349、含全部标签 350。差异来自 builder 只剥首标签；投稿刊 350 词上限按含标签口径实测 **恰好 350，已无余量**"
+  },
+  {
+   "layer": "L5",
+   "name": "投稿信词数（≤500）",
+   "expected": "≤500",
+   "actual": "453",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L5",
+   "name": "正文页数（≥28）",
+   "expected": ">=28",
+   "actual": "30",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L5",
+   "name": "附录页数（≥50）",
+   "expected": ">=50",
+   "actual": "54",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L5",
+   "name": "正文表数（6）",
+   "expected": "6",
+   "actual": "6",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L5",
+   "name": "附录表数（19，S1–S19）",
+   "expected": "19",
+   "actual": "19",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "layer": "L5",
+   "name": "PDF 含 Table S19 引用",
+   "expected": ">=1",
+   "actual": "2",
+   "ok": true,
+   "note": ""
+  }
+ ]
+}
